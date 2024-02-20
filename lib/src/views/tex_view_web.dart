@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/utils/core_utils.dart';
 import 'package:flutter_tex/src/utils/fake_ui.dart'
-    if (dart.library.html) 'dart:ui' as ui;
+if (dart.library.html) 'dart:ui' as ui;
 
 class TeXViewState extends State<TeXView> {
   String? _lastData;
@@ -35,7 +35,7 @@ class TeXViewState extends State<TeXView> {
   void _initWebview() {
     ui.platformViewRegistry.registerViewFactory(
         _viewId,
-        (int id) => html.IFrameElement()
+            (int id) => html.IFrameElement()
           ..src =
               "assets/packages/flutter_tex/js/${widget.renderingEngine?.name ?? "katex"}/index.html"
           ..id = _viewId
@@ -54,6 +54,14 @@ class TeXViewState extends State<TeXView> {
 
     js.context['OnTapCallback'] = (id) {
       widget.child.onTapCallback(id);
+    };
+
+    js.context['OnWheelCallback'] = (deltaY) {
+      widget.scrollController?.position.animateTo(
+        widget.scrollController!.position.pixels + deltaY * 2,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeIn,
+      );
     };
   }
 
