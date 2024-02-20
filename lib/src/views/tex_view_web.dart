@@ -57,11 +57,14 @@ class TeXViewState extends State<TeXView> {
     };
 
     js.context['OnWheelCallback'] = (deltaY) {
-      widget.scrollController?.position.animateTo(
-        widget.scrollController!.position.pixels + deltaY * 2,
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.easeIn,
-      );
+      // first make sure no other scroll is happening
+      if (widget.scrollController?.position.isScrollingNotifier.value == false) {
+        widget.scrollController?.position.animateTo(
+          widget.scrollController!.position.pixels + deltaY * 2,
+          duration: const Duration(milliseconds: 50),
+          curve: Curves.easeInOut,
+        );
+      }
     };
   }
 
