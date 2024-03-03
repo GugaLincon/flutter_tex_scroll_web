@@ -39,7 +39,7 @@ class TeXViewState extends State<TeXView> {
           ..src =
               "assets/packages/flutter_tex/js/${widget.renderingEngine?.name ?? "katex"}/index.html"
           ..id = _viewId
-          ..style.height = '100%'
+          ..style.height = '101%'
           ..style.width = '100%'
           ..style.border = '0');
 
