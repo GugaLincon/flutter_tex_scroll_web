@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 
 class TeXViewImageVideoExample extends StatelessWidget {
-  final TeXViewRenderingEngine renderingEngine;
-
-  const TeXViewImageVideoExample(
-      {super.key, this.renderingEngine = const TeXViewRenderingEngine.katex()});
+  const TeXViewImageVideoExample({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +11,6 @@ class TeXViewImageVideoExample extends StatelessWidget {
         title: const Text("TeXView Image & Video"),
       ),
       body: TeXView(
-          renderingEngine: renderingEngine,
           child: const TeXViewColumn(children: [
             TeXViewDocument(
                 r"""<h2>Flutter \( \rm\\TeX \) Image Example</h2>""",
@@ -27,14 +23,14 @@ class TeXViewImageVideoExample extends StatelessWidget {
                 borderRadius: TeXViewBorderRadius.all(20),
               ),
             ),
-            TeXViewDocument('Video loaded form Youtube link'),
-            TeXViewVideo.youtube(
-                "https://www.youtube.com/watch?v=YiNbVEXV_NM&lc=Ugyg4ljzrK0D6YfrO854AaABAg"),
+            // TeXViewDocument('Video loaded form Youtube link'),
+            // TeXViewVideo.youtube(
+            //     "https://www.youtube.com/watch?v=YiNbVEXV_NM&lc=Ugyg4ljzrK0D6YfrO854AaABAg"),
             TeXViewDocument(
                 'Image Loaded From Network, this may take some time according to your network speed'),
             TeXViewContainer(
               child: TeXViewImage.network(
-                  'https://raw.githubusercontent.com/shah-xad/flutter_tex/master/example/assets/flutter_tex_banner.png'),
+                  'https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/example/assets/flutter_tex_banner.png'),
               style: TeXViewStyle(
                 margin: TeXViewMargin.all(10),
                 borderRadius: TeXViewBorderRadius.all(20),

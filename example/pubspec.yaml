@@ -2,7 +2,7 @@ name: flutter_tex_example
 description: A Flutter Package (Demo) to render LaTeX with full HTML and JavaScript support.
 homepage: https://github.com/shahxadakram/flutter_tex
 
-version: 3.6.7
+version: 3.6.7+14
 
 publish_to: "none"
 
@@ -15,12 +15,11 @@ dependencies:
     sdk: flutter
   flutter_tex:
     path: ../
-  webview_flutter_web: ^0.2.2+3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true

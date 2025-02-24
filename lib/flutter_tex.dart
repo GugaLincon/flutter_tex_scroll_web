@@ -1,4 +1,4 @@
-library flutter_tex;
+library;
 
 export 'package:flutter_tex/src/models/font.dart';
 export 'package:flutter_tex/src/models/rendering_engine.dart';
@@ -21,3 +21,4 @@ export 'package:flutter_tex/src/widgets/markdown.dart';
 export 'package:flutter_tex/src/widgets/video.dart';
 export 'package:flutter_tex/src/widgets/widget.dart';
 export 'package:flutter_tex/src/widgets/details.dart';
+export 'package:flutter_tex/src/utils/tex_rendering_server.dart';

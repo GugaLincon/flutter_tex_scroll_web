@@ -3,7 +3,7 @@ import 'package:flutter_tex/flutter_tex.dart';
 
 class TeXExample {
   static TeXViewWidget introduction =
-      _teXViewWidget(r"""<h4>Flutter \( \rm\TeX \)</h4>""", r""" 
+      _teXViewWidget(r"""<h4>Flutter \( \rm\TeX \)</h4>""", r"""
              
       <p>Flutter \( \rm\TeX \) is a Flutter Package to render so many types of equations based on \( \rm\LaTeX \), It also includes full HTML with JavaScript
       support.</p>
@@ -54,8 +54,7 @@ class TeXExample {
          c & d
       \end{bmatrix}$$</p>""");
 
-  static TeXViewWidget alignedTag =
-      _teXViewWidget(r"<h4>Aligned Tag</h4>", r"""    
+  static TeXViewWidget alignedTag = _teXViewWidget(r"<h4>Aligned Tag</h4>", r"""
            $$
            \begin{aligned}
            \dot{x} & = \sigma(y-x) \\
@@ -102,10 +101,7 @@ class TeXExample {
 }
 
 class TeXViewDocumentExamples extends StatelessWidget {
-  final TeXViewRenderingEngine renderingEngine;
-
-  const TeXViewDocumentExamples(
-      {super.key, this.renderingEngine = const TeXViewRenderingEngine.katex()});
+  const TeXViewDocumentExamples({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +111,6 @@ class TeXViewDocumentExamples extends StatelessWidget {
         title: const Text("TeXViewDocument"),
       ),
       body: TeXView(
-        renderingEngine: renderingEngine,
         child: TeXViewColumn(children: [
           TeXExample.introduction,
           TeXExample.mathML,
@@ -126,11 +121,13 @@ class TeXViewDocumentExamples extends StatelessWidget {
           TeXExample.chemistryEquations,
           TeXExample.matrix,
           TeXViewDetails(
-            title: "sdfsdfsdsd",
+            title: "Collapsible Widget",
             style: const TeXViewStyle(backgroundColor: Colors.amber),
             body: TeXExample.matrix,
           ),
-          if (renderingEngine.name == 'mathjax') ...[TeXExample.others]
+          if (TeXRederingServer.renderingEngine.name == 'mathjax') ...[
+            TeXExample.others
+          ]
         ]),
         style: const TeXViewStyle(
           margin: TeXViewMargin.all(10),

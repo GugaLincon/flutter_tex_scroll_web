@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 
 class TeXViewFontsExamples extends StatelessWidget {
-  final TeXViewRenderingEngine renderingEngine;
 
   const TeXViewFontsExamples(
-      {super.key, this.renderingEngine = const TeXViewRenderingEngine.katex()});
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,6 @@ class TeXViewFontsExamples extends StatelessWidget {
                 fontFamily: 'subaccuz_regular',
                 src: 'fonts/SubaccuzRegular.ttf'),
           ],
-          renderingEngine: renderingEngine,
           child: TeXViewColumn(children: [
             _teXViewWidget("Army", 'army'),
             _teXViewWidget("Budhrg", 'budhrg'),

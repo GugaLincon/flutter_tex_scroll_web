@@ -11,14 +11,8 @@ class TeXView extends StatefulWidget {
   /// Style TeXView Widget with [TeXViewStyle].
   final TeXViewStyle? style;
 
-  /// TeXView height (Only for Web)
-  //final double? height;
-
   /// Register fonts.
   final List<TeXViewFont>? fonts;
-
-  /// Render Engine to render TeX.
-  final TeXViewRenderingEngine? renderingEngine;
 
   /// Show a loading widget before rendering completes.
   final Widget Function(BuildContext context)? loadingWidgetBuilder;
@@ -34,7 +28,6 @@ class TeXView extends StatefulWidget {
     super.key,
     required this.child,
     this.fonts,
-    // this.height = 500,
     this.style,
     this.loadingWidgetBuilder,
     this.onRenderFinished,
