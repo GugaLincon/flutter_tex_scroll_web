@@ -11,11 +11,11 @@ external set teXViewRenderedCallback(JSFunction callback);
 @JS('OnTapCallback')
 external set onTapCallback(JSFunction callback);
 
-@JS('OnWheelCallback')
-external set onWheelCallback(JSFunction callback);
-
 @JS('initWebTeXView')
 external void initWebTeXView(String viewId, String rawData);
+
+@JS('OnWheelCallback')
+external set onWheelCallback(JSFunction callback);
 
 class TeXViewState extends State<TeXView> {
   final String _viewId = UniqueKey().toString();
@@ -50,6 +50,7 @@ class TeXViewState extends State<TeXView> {
 
     teXViewRenderedCallback = onTeXViewRendered.toJS;
     onTapCallback = onTap.toJS;
+    onWheelCallback = onWheel.toJS;
 
     _isReady = true;
     _renderTeXView();
