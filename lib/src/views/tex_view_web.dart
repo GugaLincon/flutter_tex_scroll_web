@@ -14,6 +14,9 @@ external set onTapCallback(JSFunction callback);
 @JS('OnWheelCallback')
 external set onWheelCallback(JSFunction callback);
 
+@JS('initWebTeXView')
+external void initWebTeXView(String viewId, String rawData);
+
 class TeXViewState extends State<TeXView> {
   final String _viewId = UniqueKey().toString();
   final HTMLIFrameElement iframeElement = HTMLIFrameElement()
@@ -47,7 +50,6 @@ class TeXViewState extends State<TeXView> {
 
     teXViewRenderedCallback = onTeXViewRendered.toJS;
     onTapCallback = onTap.toJS;
-    onWheelCallback = onWheel.toJS;
 
     _isReady = true;
     _renderTeXView();
@@ -60,11 +62,10 @@ class TeXViewState extends State<TeXView> {
   }
 
   void onWheel(JSNumber deltaY) {
-    // first make sure no other scroll is happening
     if (widget.scrollController?.position.isScrollingNotifier.value ==
         false) {
         widget.scrollController?.position.animateTo(
-          widget.scrollController!.position.pixels + double.parse(deltaY.toString()) * 2,
+          widget.scrollController!.position.pixels + double.parse(deltaY.toString()),
           duration: const Duration(milliseconds: 50),
         curve: Curves.easeInOut,
       );
@@ -86,6 +87,7 @@ class TeXViewState extends State<TeXView> {
     }
     var currentRawData = getRawData(widget);
     if (currentRawData != _lastRawData) {
+      initWebTeXView(_viewId, currentRawData);
       _lastRawData = currentRawData;
     }
   }
