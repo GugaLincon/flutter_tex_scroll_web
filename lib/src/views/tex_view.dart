@@ -31,7 +31,6 @@ class TeXView extends StatefulWidget {
     this.style,
     this.loadingWidgetBuilder,
     this.onRenderFinished,
-    this.renderingEngine,
     this.scrollController,
   });
 
