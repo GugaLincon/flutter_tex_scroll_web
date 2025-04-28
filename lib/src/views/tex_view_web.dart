@@ -14,6 +14,9 @@ external set onTapCallback(JSFunction callback);
 @JS('initWebTeXView')
 external void initWebTeXView(String viewId, String rawData);
 
+@JS('OnWheelCallback')
+external set onWheelCallback(JSFunction callback);
+
 class TeXViewState extends State<TeXView> {
   final String _viewId = UniqueKey().toString();
   final HTMLIFrameElement iframeElement = HTMLIFrameElement()
@@ -47,6 +50,7 @@ class TeXViewState extends State<TeXView> {
 
     teXViewRenderedCallback = onTeXViewRendered.toJS;
     onTapCallback = onTap.toJS;
+    onWheelCallback = onWheel.toJS;
 
     _isReady = true;
     _renderTeXView();
@@ -54,42 +58,20 @@ class TeXViewState extends State<TeXView> {
     super.initState();
   }
 
-  void _initWebview() {
-    ui.platformViewRegistry.registerViewFactory(
-        _viewId,
-        (int id) => html.IFrameElement()
-          ..src =
-              "assets/packages/flutter_tex/js/${renderingEngine.name}/index.html"
-          ..id = _viewId
-          ..style.height = '100%'
-          ..style.overflow = 'hidden'
-          ..style.width = '100%'
-          ..style.border = '0');
+  void onTap(JSString id) {
+    widget.child.onTapCallback(id.toString());
+  }
 
-    js.context['TeXViewRenderedCallback'] = (message) {
-      double viewHeight = double.parse(message.toString());
-      if (viewHeight != widgetHeight) {
-        setState(() {
-          widgetHeight = viewHeight;
-        });
-      }
-    };
-
-    js.context['OnTapCallback'] = (id) {
-      widget.child.onTapCallback(id);
-    };
-
-    js.context['OnWheelCallback'] = (deltaY) {
-      // first make sure no other scroll is happening
-      if (widget.scrollController?.position.isScrollingNotifier.value ==
-          false) {
+  void onWheel(JSNumber deltaY) {
+    // first make sure no other scroll is happening
+    if (widget.scrollController?.position.isScrollingNotifier.value ==
+        false) {
         widget.scrollController?.position.animateTo(
-          widget.scrollController!.position.pixels + deltaY * 2,
+          widget.scrollController!.position.pixels + deltaY,
           duration: const Duration(milliseconds: 50),
-          curve: Curves.easeInOut,
-        );
-      }
-    };
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   void onTeXViewRendered(JSNumber message) {
