@@ -9,13 +9,9 @@ import 'package:flutter_tex_example/tex_view_markdown_example.dart';
 import 'package:flutter_tex_example/tex_view_quiz_example.dart';
 
 main() async {
-  TeXRederingServer.renderingEngine = const TeXViewRenderingEngine.mathjax();
-
   if (!kIsWeb) {
-    await TeXRederingServer.run();
-    await TeXRederingServer.initController();
+    await TeXRenderingServer.start();
   }
-
   runApp(const FlutterTeXExample());
 }
 
@@ -39,8 +35,6 @@ class TeXViewFullExample extends StatefulWidget {
 }
 
 class _TeXViewFullExampleState extends State<TeXViewFullExample> {
-  int radVal = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,45 +52,6 @@ class _TeXViewFullExampleState extends State<TeXViewFullExample> {
               fit: BoxFit.contain,
               height: 200,
             ),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioListTile<int>(
-                value: 0,
-                groupValue: radVal,
-                onChanged: (val) async {
-                  TeXRederingServer.renderingEngine =
-                      const TeXViewRenderingEngine.mathjax();
-
-                  if (!kIsWeb) {
-                    await TeXRederingServer.initController();
-                  }
-
-                  setState(() {
-                    radVal = val!;
-                  });
-                },
-                title: const Text("MathJax"),
-                subtitle: const Text("RenderingEngine for Fast Rendering"),
-              ),
-              RadioListTile<int>(
-                value: 1,
-                groupValue: radVal,
-                onChanged: (val) async {
-                  TeXRederingServer.renderingEngine =
-                      const TeXViewRenderingEngine.katex();
-                  if (!kIsWeb) {
-                    await TeXRederingServer.initController();
-                  }
-                  setState(() {
-                    radVal = val!;
-                  });
-                },
-                title: const Text("Katex"),
-                subtitle: const Text("RenderingEngine for Quality Rendering"),
-              ),
-            ],
           ),
           const Divider(
             height: 30,

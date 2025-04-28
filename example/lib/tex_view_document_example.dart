@@ -45,7 +45,7 @@ class TeXExample {
       _teXViewWidget(r"<h4>Chemistry Equations</h4>", r"""<p>    
      \( \ce{CO2 + C -> 2 CO} \) <br>
      \( \ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-} \)<br>
-     Scroll long formulas in Katex $$ \ce{x Na(NH4)HPO4 ->[\Delta] (NaPO3)_x + x Nh4 ^ + x H2O} $$ <br>
+     $$ \ce{x Na(NH4)HPO4 ->[\Delta] (NaPO3)_x + x Nh4 ^ + x H2O} $$ <br>
     </p>""");
 
   static TeXViewWidget matrix = _teXViewWidget(r"<h4>Matrix</h4>", r"""<p>
@@ -86,14 +86,16 @@ class TeXExample {
                 borderStyle: TeXViewBorderStyle.groove,
                 borderColor: Colors.green))),
         children: [
-          TeXViewDocument(title,
-              style: const TeXViewStyle(
-                  padding: TeXViewPadding.all(10),
-                  borderRadius: TeXViewBorderRadius.all(10),
-                  textAlign: TeXViewTextAlign.center,
-                  width: 250,
-                  margin: TeXViewMargin.zeroAuto(),
-                  backgroundColor: Colors.green)),
+          TeXViewDocument(
+            title,
+            style: const TeXViewStyle(
+                padding: TeXViewPadding.all(10),
+                borderRadius: TeXViewBorderRadius.all(10),
+                textAlign: TeXViewTextAlign.center,
+                // width: 250,
+                margin: TeXViewMargin.zeroAuto(),
+                backgroundColor: Colors.green),
+          ),
           TeXViewDocument(body,
               style: const TeXViewStyle(margin: TeXViewMargin.only(top: 10)))
         ]);
@@ -125,9 +127,7 @@ class TeXViewDocumentExamples extends StatelessWidget {
             style: const TeXViewStyle(backgroundColor: Colors.amber),
             body: TeXExample.matrix,
           ),
-          if (TeXRederingServer.renderingEngine.name == 'mathjax') ...[
-            TeXExample.others
-          ]
+          TeXExample.others
         ]),
         style: const TeXViewStyle(
           margin: TeXViewMargin.all(10),

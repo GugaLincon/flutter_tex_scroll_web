@@ -9,7 +9,6 @@
 - [About](#about)
 - [How it works?](#how-it-works)
 - [Demo Video](#demo-video)
-  - [Click to Watch Demo on Youtube](#click-to-watch-demo-on-youtube)
 - [Screenshots](#screenshots)
 - [How to setup?](#how-to-setup)
     - [Android](#android)
@@ -32,14 +31,15 @@
       - [TeXView InkWell Example](#texview-inkwell-example-1)
     - [Complete Example](#complete-example)
       - [Complete Example Code](#complete-example-code)
-- [Application Demo.](#application-demo)
-- [Web Demo.](#web-demo)
-- [Api Changes.](#api-changes)
-- [Api Usage.](#api-usage)
+- [Application Demo:](#application-demo)
+- [Web Demo:](#web-demo)
+- [Api Changes:](#api-changes)
+- [Api Usage:](#api-usage)
+- [ToDo](#todo)
 - [Limitations:](#limitations)
 
 # About
-A Flutter Package to render **fully offline** so many types of equations and expressions based on **LaTeX** , **TeX** and **MathML**, most commonly used are as followings:
+A Flutter Package, to render **fully offline** all types of equations and expressions based on **LaTeX** , **TeX** and **MathML**, most commonly used are as followings:
 
 - **Mathematics / Maths Equations and expressions** (Algebra, Calculus, Geometry, Geometry etc...)
 
@@ -55,12 +55,11 @@ A Flutter Package to render **fully offline** so many types of equations and exp
 
 # How it works?
 
-Basically it's a flutter dart wrapper around the most powerful JavaScript libraries [MathJax](https://github.com/mathjax/MathJax) and [Katex](https://github.com/KaTeX/KaTeX) which render the equations in [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus).
-
+Flutter TeX is a port to a powerful JavaScript library [MathJax](https://github.com/mathjax/MathJax) which render the equations in [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus). All credits goes to [MathJax](https://github.com/mathjax/MathJax) developers.
 
 # Demo Video
 
-## [Click to Watch Demo on Youtube](https://www.youtube.com/watch?v=YiNbVEXV_NM)
+* [Click to Watch Demo on Youtube](https://www.youtube.com/watch?v=YiNbVEXV_NM)
 
 # Screenshots
  |                        Fonts Sample                         |                         Quiz Sample                         |                        TeX Document                         |
@@ -80,7 +79,7 @@ Basically it's a flutter dart wrapper around the most powerful JavaScript librar
 
 ```yaml
 dependencies:
-  flutter_tex: ^4.0.13
+  flutter_tex: ^4.1.3
 ``` 
 
 **2:** You can install packages from the command line:
@@ -111,6 +110,35 @@ It completely works offline, without internet connection, but these are required
 ```xml
     <uses-permission android:name="android.permission.INTERNET" />
 ```
+and intents in queries block: 
+
+```xml
+<queries>
+  ...
+  ...
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="https" />
+    </intent>
+
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="sms" />
+    </intent>
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="tel" />
+    </intent>
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="mailto" />
+    </intent>
+    <intent>
+        <action android:name="android.support.customtabs.action.CustomTabsService" />
+    </intent>
+</queries>
+```
+
 
 It'll still work in debug mode without permissions, but it won't work in release application without mentioned permissions.
 
@@ -123,6 +151,14 @@ Add following code in your `<project-directory>/ios/Runner/Info.plist`
     <key>NSAllowsArbitraryLoads</key> <true/>
   </dict>
 <key>io.flutter.embedded_views_preview</key> <true/> 
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>https</string>
+    <string>http</string>
+    <string>tel</string>
+    <string>mailto</string>
+</array> 
+
 ```
 
 ### Web
@@ -130,12 +166,9 @@ For Web support you need to put `<script src="assets/packages/flutter_tex/js/flu
 
 ```html
 <head>
-  
-    <meta charset="UTF-8">
-    <title>Flutter TeX</title>
-
+    ...
+    ...
     <script src="assets/packages/flutter_tex/js/flutter_tex.js"></script>
-    <script type="text/javascript">window.flutterWebRenderer = "canvaskit";</script>
 </head>
 ```
 
@@ -151,11 +184,9 @@ Make sure to setup `TeXRederingServer` before rendering TeX:
 
 ```dart
 main() async {
-  TeXRederingServer.renderingEngine = const TeXViewRenderingEngine.mathjax();
 
   if (!kIsWeb) {
-    await TeXRederingServer.run();
-    await TeXRederingServer.initController();
+    await TeXRenderingServer.start();
   }
 
   runApp(...);
@@ -201,8 +232,7 @@ TeXView(
           borderWidth: 5)),
       backgroundColor: Colors.white,
     ),
-   ),
-  )
+   );
 ```
 
 ### TeXView Document Example
@@ -227,18 +257,18 @@ TeXView(
 #### [Complete Example Code](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example)
 
 
-# Application Demo.
+# Application Demo:
 <a href='https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
 [Demo Source](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example)
 
-# Web Demo.
+# Web Demo:
 You can find web demo at [https://flutter-tex.web.app](https://flutter-tex.web.app)
 
-# Api Changes.
+# Api Changes:
 * Please see [CHANGELOG.md](https://github.com/Shahxad-Akram/flutter_tex/blob/master/CHANGELOG.md).
 
-# Api Usage.
+# Api Usage:
 - `children:` A list of `TeXViewWidget`
 
 - **`TeXViewWidget`**
@@ -254,7 +284,6 @@ You can find web demo at [https://flutter-tex.web.app](https://flutter-tex.web.a
 
 - `TeXViewStyle()` You can style each and everything using `TeXViewStyle()` or by using custom `CSS` code by `TeXViewStyle.fromCSS()` where you can pass hard coded String containing CSS code. For more information please check the example.
     
-- `renderingEngine:` Render Engine to render TeX (Default is Katex Rendering Engine). Use **Katex RenderingEngine** for fast render and  **MathJax RenderingEngine** for quality render.
 
 - `loadingWidgetBuilder:` Show a loading widget before rendering completes.
 
@@ -262,5 +291,8 @@ You can find web demo at [https://flutter-tex.web.app](https://flutter-tex.web.a
 
 For more please see the [Example](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example).
 
+# ToDo
+- MathJax configurations from Flutter.
+
 # Limitations:
-- Please avoid using too many `TeXView` in a single page, because this is based on [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) a complete web browser. Which may cause slowing down your app. I am trying to add all necessary widgets within `TeXView`, So please prefer to use `TeXViewWidget`. You can check [example folder](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example) for details. If you find any problem you can [report an issue](https://github.com/Shahxad-Akram/flutter_tex/issues/new).
+- Please avoid using too many `TeXView`s in a single page, because this is based on [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) a complete web browser. Which may cause slowing down your app. I am trying to add all necessary widgets within `TeXView`, So please prefer to use `TeXViewWidget`. You can check [example folder](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example) for details. If you find any problem you can [report an issue](https://github.com/Shahxad-Akram/flutter_tex/issues/new).

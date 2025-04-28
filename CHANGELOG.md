@@ -1,9 +1,27 @@
+## [4.1.3] - Apr 06, 2025
+* Web related issues fixed.
+
+## [4.1.2] - Apr 04, 2025
+* Minor fixes.
+
+## [4.1.1] - Apr 02, 2025
+* Minor fixes.
+
+## [4.1.0] - Apr 01, 2025
+* MathJax upgraded to version 3.2, a huge performance improvement.
+* Katex has been removed.
+* Minor API changes, please refer to the example before upgrade the package.
+
+## [4.0.14] - Jan 04, 2025
+* Minmum flutter SDK requirement is 3.27.x
+* Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib) before using this version.
+
 ## [4.0.13] - Jan 03, 2025
 * Minmum flutter SDK requirement is 3.27.x
 * Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib) before using this version.
 
 ## [4.0.12] - Dec 27, 2024
-* Fixed color alpha value calculation in getColor function [#200](https://github.com/Shahxad-Akram/flutter_tex/pull/200
+* Fixed color alpha value calculation in getColor function [#200](https://github.com/Shahxad-Akram/flutter_tex/pull/200)
 
 ## [4.0.11] - Dec 27, 2024
 * API changes, please refer to [TeXView Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib)

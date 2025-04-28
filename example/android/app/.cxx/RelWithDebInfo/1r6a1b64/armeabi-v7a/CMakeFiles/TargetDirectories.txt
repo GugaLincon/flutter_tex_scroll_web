@@ -1,0 +1,2 @@
+/home/shahzad/Projects/Public/flutter_tex/example/android/app/.cxx/RelWithDebInfo/1r6a1b64/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/shahzad/Projects/Public/flutter_tex/example/android/app/.cxx/RelWithDebInfo/1r6a1b64/armeabi-v7a/CMakeFiles/rebuild_cache.dir
