@@ -34,6 +34,11 @@ class TeXRenderingServer {
             onTeXViewRenderedCallback
                 ?.call(teXViewRenderedCallbackMessage.message),
       )
+      ..addJavaScriptChannel(
+        'OnWheelCallback',
+        onMessageReceived: (onWheelCallbackMessage) =>
+            onWheelCallback?.call(onWheelCallbackMessage.message),
+      )
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageFinished: (String url) {

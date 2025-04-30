@@ -3,6 +3,23 @@
     padding: 0;
 }
 
+/* Hide scrollbar styling while maintaining functionality */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* For IE and Edge */
+* {
+    -ms-overflow-style: none;
+}
+
 #TeXView {
     overflow: hidden;
     position: relative;
