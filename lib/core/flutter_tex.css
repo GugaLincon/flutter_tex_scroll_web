@@ -5,19 +5,19 @@
 
 /* Hide scrollbar styling while maintaining functionality */
 ::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    background: transparent;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
 }
 
 /* For Firefox */
 * {
-    scrollbar-width: none;
+    scrollbar-width: none !important;
 }
 
 /* For IE and Edge */
 * {
-    -ms-overflow-style: none;
+    -ms-overflow-style: none !important;
 }
 
 #TeXView {
