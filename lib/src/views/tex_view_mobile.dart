@@ -25,6 +25,9 @@ class TeXViewState extends State<TeXView> {
 
     TeXRenderingServer.onTapCallback =
         (tapCallbackMessage) => widget.child.onTapCallback(tapCallbackMessage);
+
+    TeXRenderingServer.onWheelCallback =
+        (wheelCallbackMessage) => widget.child.onWheelCallback(wheelCallbackMessage);
     super.initState();
   }
 

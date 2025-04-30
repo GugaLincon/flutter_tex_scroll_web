@@ -14,7 +14,8 @@ class TeXRenderingServer {
 
   static RenderingEngineCallback? onPageFinished,
       onTapCallback,
-      onTeXViewRenderedCallback;
+      onTeXViewRenderedCallback,
+      onWheelCallback;
 
   static Future<void> start(
       {int port = 0, Map mathJaxConfig = const {}}) async {
