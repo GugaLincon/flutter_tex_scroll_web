@@ -18,6 +18,7 @@
     <div id="TeXView"></div>
 
     <script>
+
         function renderTeXView(onCompleteCallback) {
             MathJax.typesetPromise(["#TeXView"]).then(() => {
                 onCompleteCallback();
@@ -26,17 +27,6 @@
                 console.error("Error during MathJax typesetting:", err);
             });
         }
-        
-        // Add event listener to the entire document to capture wheel events that might occur outside TeXView
-        document.addEventListener('wheel', function(e) {
-            // Only prevent default and handle if not already handled by TeXView
-            if (e.target.closest('#TeXView') === null) {
-                e.preventDefault();
-                if (typeof onWheelCallback === 'function') {
-                    onWheelCallback(e.deltaY);
-                }
-            }
-        }, { passive: false });
     </script>
 
 </body>
