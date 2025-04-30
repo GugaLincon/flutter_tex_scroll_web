@@ -1,5 +1,6 @@
 import 'dart:js_interop';
 import 'dart:ui_web';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/utils/core_utils.dart';
@@ -63,13 +64,23 @@ class TeXViewState extends State<TeXView> {
   }
 
   void onWheel(JSNumber deltaY) {
-    if (widget.scrollController?.position.isScrollingNotifier.value ==
-        false) {
+    if (widget.scrollController?.position.isScrollingNotifier.value == false) {
+      final delta = double.parse(deltaY.toString());
+      final scaleFactor = 1.0;
+      final adjustedDelta = delta * scaleFactor;
+      if (delta.abs() < 10) {
+        widget.scrollController?.position.jumpTo(
+          widget.scrollController!.position.pixels + adjustedDelta
+        );
+      } else {
+        final duration = Duration(milliseconds: (20 + delta.abs() * 0.5).clamp(20, 150).toInt());
+        
         widget.scrollController?.position.animateTo(
-          widget.scrollController!.position.pixels + double.parse(deltaY.toString()),
-          duration: const Duration(milliseconds: 50),
-        curve: Curves.easeInOut,
-      );
+          widget.scrollController!.position.pixels + adjustedDelta,
+          duration: duration,
+          curve: Curves.linear,
+        );
+      }
     }
   }
 
