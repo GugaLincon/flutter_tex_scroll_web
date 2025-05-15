@@ -23,6 +23,11 @@ class TeXViewContainer implements TeXViewWidget {
   }
 
   @override
+  void onWheelCallback(String id) {
+    child.onWheelCallback(id);
+  }
+
+  @override
   Map toJson() => {
         'meta': meta().toJson(),
         'data': child.toJson(),

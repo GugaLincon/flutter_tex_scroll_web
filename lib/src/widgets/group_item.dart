@@ -32,4 +32,9 @@ class TeXViewGroupItem implements TeXViewWidget {
   void onTapCallback(String id) {
     child.onTapCallback(id);
   }
+
+  @override
+  void onWheelCallback(String id) {
+    child.onWheelCallback(id);
+  }
 }

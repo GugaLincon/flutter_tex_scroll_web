@@ -45,4 +45,9 @@ class TeXViewDetails implements TeXViewWidget {
   void onTapCallback(String id) {
     body.onTapCallback(id);
   }
+
+  @override
+  void onWheelCallback(String id) {
+    body.onWheelCallback(id);
+  }
 }

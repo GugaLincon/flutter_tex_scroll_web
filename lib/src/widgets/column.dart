@@ -26,6 +26,13 @@ class TeXViewColumn implements TeXViewWidget {
   }
 
   @override
+  void onWheelCallback(String id) {
+    for (TeXViewWidget child in children) {
+      child.onWheelCallback(id);
+    }
+  }
+
+  @override
   Map toJson() => {
         'meta': meta().toJson(),
         'data': children.map((child) => child.toJson()).toList(),
