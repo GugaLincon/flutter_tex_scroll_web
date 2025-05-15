@@ -7,5 +7,7 @@ abstract class TeXViewWidget {
 
   void onTapCallback(String id) {}
 
+  void onWheelCallback(String id) {}
+
   Map<dynamic, dynamic> toJson();
 }
