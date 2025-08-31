@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build_mathjax": "node node_modules/@mathjax/src/components/bin/makeAll --cjs"
+    "build_mathjax": "node node_modules/@mathjax/src/components/bin/makeAll --cjs",
+    "testt": "node test.js"
   },
   "type": "commonjs",
   "dependencies": {
