@@ -3,17 +3,58 @@ const { Loader } = require('@mathjax/src/js/components/loader.js');
 const { loadFont } = require('@mathjax/src/components/js/output/svg/svg.js');
 const { source } = require('@mathjax/src/components/js/source.js');
 
-// AllPackages = Object.keys(source).filter((name) => name.substring(0, 6) === '[tex]/').sort()
-
 
 require('@mathjax/src/components/js/core/core.js');
+
+// Input
 require('@mathjax/src/components/js/input/tex/tex.js');
-// for (const ext of AllPackages.map((ext) => ext.replace('[tex]/', ''))) {
-//   require(`@mathjax/src/components/js/input/tex/extensions/${ext}/${ext}.js`);
-// }
 require('@mathjax/src/components/js/input/mml/mml.js');
 require('@mathjax/src/components/js/input/asciimath/asciimath.js');
 
+// TeX Extensions
+require('@mathjax/src/components/js/input/tex/extensions/action/action.js')
+require('@mathjax/src/components/js/input/tex/extensions/ams/ams.js')
+require('@mathjax/src/components/js/input/tex/extensions/amscd/amscd.js')
+require('@mathjax/src/components/js/input/tex/extensions/autoload/autoload.js')
+require('@mathjax/src/components/js/input/tex/extensions/bbm/bbm.js')
+require('@mathjax/src/components/js/input/tex/extensions/bboldx/bboldx.js')
+require('@mathjax/src/components/js/input/tex/extensions/bbox/bbox.js')
+require('@mathjax/src/components/js/input/tex/extensions/begingroup/begingroup.js')
+require('@mathjax/src/components/js/input/tex/extensions/boldsymbol/boldsymbol.js')
+require('@mathjax/src/components/js/input/tex/extensions/braket/braket.js')
+require('@mathjax/src/components/js/input/tex/extensions/bussproofs/bussproofs.js')
+require('@mathjax/src/components/js/input/tex/extensions/cancel/cancel.js')
+require('@mathjax/src/components/js/input/tex/extensions/cases/cases.js')
+require('@mathjax/src/components/js/input/tex/extensions/centernot/centernot.js')
+require('@mathjax/src/components/js/input/tex/extensions/color/color.js')
+require('@mathjax/src/components/js/input/tex/extensions/colortbl/colortbl.js')
+require('@mathjax/src/components/js/input/tex/extensions/colorv2/colorv2.js')
+require('@mathjax/src/components/js/input/tex/extensions/configmacros/configmacros.js')
+require('@mathjax/src/components/js/input/tex/extensions/dsfont/dsfont.js')
+require('@mathjax/src/components/js/input/tex/extensions/empheq/empheq.js')
+require('@mathjax/src/components/js/input/tex/extensions/enclose/enclose.js')
+require('@mathjax/src/components/js/input/tex/extensions/extpfeil/extpfeil.js')
+require('@mathjax/src/components/js/input/tex/extensions/gensymb/gensymb.js')
+require('@mathjax/src/components/js/input/tex/extensions/html/html.js')
+require('@mathjax/src/components/js/input/tex/extensions/mathtools/mathtools.js')
+require('@mathjax/src/components/js/input/tex/extensions/mhchem/mhchem.js')
+require('@mathjax/src/components/js/input/tex/extensions/newcommand/newcommand.js')
+require('@mathjax/src/components/js/input/tex/extensions/noerrors/noerrors.js')
+require('@mathjax/src/components/js/input/tex/extensions/noundefined/noundefined.js')
+require('@mathjax/src/components/js/input/tex/extensions/physics/physics.js')
+require('@mathjax/src/components/js/input/tex/extensions/require/require.js')
+require('@mathjax/src/components/js/input/tex/extensions/setoptions/setoptions.js')
+require('@mathjax/src/components/js/input/tex/extensions/tagformat/tagformat.js')
+require('@mathjax/src/components/js/input/tex/extensions/texhtml/texhtml.js')
+require('@mathjax/src/components/js/input/tex/extensions/textcomp/textcomp.js')
+require('@mathjax/src/components/js/input/tex/extensions/textmacros/textmacros.js')
+require('@mathjax/src/components/js/input/tex/extensions/unicode/unicode.js')
+require('@mathjax/src/components/js/input/tex/extensions/units/units.js')
+require('@mathjax/src/components/js/input/tex/extensions/upgreek/upgreek.js')
+require('@mathjax/src/components/js/input/tex/extensions/verb/verb.js')
+
+
+TeXPackages = Object.keys(source).filter((name) => name.substring(0, 6) === '[tex]/').sort()
 
 
 Loader.preLoaded(
@@ -21,7 +62,9 @@ Loader.preLoaded(
   'startup',
   'core',
   'input/tex',
-  // ...AllPackages,
+  ...TeXPackages,
+  'input/mml',
+  'input/asciimath',
   'output/svg',
 );
 
@@ -42,13 +85,13 @@ const { SVG } = require('@mathjax/src/js/output/svg.js');
 class FlutterTeXLiteDOM {
 
   constructor() {
-    this.adapteor = liteAdaptor();
-    RegisterHTMLHandler(this.adapteor);
+    this.adaptor = liteAdaptor();
+    RegisterHTMLHandler(this.adaptor);
     this.inputOptions = {
     };
 
     this.texInput = new TeX({
-      // packages: AllPackages,
+      packages: ['base'].concat(AllPackages.map((name) => name.substring(6))),
       ...this.inputOptions
     });
     this.mathmlInput = new MathML(this.inputOptions);
@@ -59,7 +102,7 @@ class FlutterTeXLiteDOM {
   }
 
   teX2SVG(math, inputType, options) {
-    return this.adapteor.innerHTML(mathjax.document('', {
+    return this.adaptor.innerHTML(mathjax.document('', {
       InputJax: this.getInputType(inputType), OutputJax: this.outputJax
     }).convert(math, options));
   }
