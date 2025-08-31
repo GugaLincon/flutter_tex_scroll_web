@@ -1,62 +1,39 @@
-//
-//  Initialize the MathJax startup code
-//
-require('mathjax-full/components/src/startup/lib/startup.js');
+const { startup } = require('@mathjax/src/components/js/startup/init.js');
+const { Loader } = require('@mathjax/src/js/components/loader.js');
+const { loadFont } = require('@mathjax/src/components/js/output/svg/svg.js');
 
-//
-//  Get the loader module and indicate the modules that
-//  will be loaded by hand below
-//
-const { Loader } = require('mathjax-full/js/components/loader.js');
-Loader.preLoad(
+
+require('@mathjax/src/components/js/core/core.js');
+require('@mathjax/src/components/js/input/tex/tex.js');
+require('@mathjax/src/components/js/input/mml/mml.js');
+require('@mathjax/src/components/js/input/asciimath/asciimath.js');
+
+
+Loader.preLoaded(
   'loader',
   'startup',
   'core',
-  'input/tex-full',
-  'input/mml',
-  'input/asciimath',
+  'input/tex',
   'output/svg',
 );
-//
-// Load the components that we want to combine into one component
-//   (the ones listed in the preLoad() call above)
-require('mathjax-full/components/src/core/core.js');
-require('mathjax-full/components/src/input/tex-full/tex-full.js');
-require('mathjax-full/components/src/input/mml/mml.js');
-require('mathjax-full/components/src/input/asciimath/asciimath.js');
-require('mathjax-full/components/src/output/svg/svg.js');
-
-//
-// Update the configuration to include any updated values
-//
-
-// const { insert } = require('mathjax-full/js/util/Options.js');
-// insert(MathJax.config, {
-//   tex: {
-//     packages: { '[+]': ['ams', 'newcommand', 'configmacros'] }
-//   }
-// });
-
-//
-// Loading this component will cause all the normal startup
-//   operations to be performed
-//
-require('mathjax-full/components/src/startup/startup.js');
-
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
-const { mathjax } = require('mathjax-full/js/mathjax.js');
-const { liteAdaptor } = require('mathjax-full/js/adaptors/liteAdaptor.js');
-const { RegisterHTMLHandler } = require('mathjax-full/js/handlers/html.js');
-const { TeX } = require('mathjax-full/js/input/tex.js');
-const { MathML } = require('mathjax-full/js/input/mathml.js');
-const { AsciiMath } = require('mathjax-full/js/input/asciimath.js');
-const { SVG } = require('mathjax-full/js/output/svg.js');
-const { AllPackages } = require('mathjax-full/js/input/tex/AllPackages.js');
 
 
-class MathJaxLiteDOM {
+loadFont(startup, true);
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+const { mathjax } = require('@mathjax/src/js/mathjax.js');
+const { liteAdaptor } = require('@mathjax/src/js/adaptors/liteAdaptor.js');
+const { RegisterHTMLHandler } = require('@mathjax/src/js/handlers/html.js');
+const { TeX } = require('@mathjax/src/js/input/tex.js');
+const { MathML } = require('@mathjax/src/js/input/mathml.js');
+const { AsciiMath } = require('@mathjax/src/js/input/asciimath.js');
+const { SVG } = require('@mathjax/src/js/output/svg.js');
+const { source } = require('@mathjax/src/components/js/source.js');
+
+
+class FlutterTeXLiteDOM {
 
   constructor() {
     this.adapteor = liteAdaptor();
@@ -65,7 +42,7 @@ class MathJaxLiteDOM {
     };
 
     this.texInput = new TeX({
-      packages: AllPackages,
+      packages: Object.keys(source).filter((name) => name.substring(0, 6) === '[tex]/').sort(),
       ...this.inputOptions
     });
     this.mathmlInput = new MathML(this.inputOptions);
@@ -95,7 +72,5 @@ class MathJaxLiteDOM {
   }
 }
 
-const mathJaxLiteDOM = new MathJaxLiteDOM();
 
-module.exports = { mathJaxLiteDOM: mathJaxLiteDOM };
-
+module.exports = { flutterTeXLiteDOM: new FlutterTeXLiteDOM() };
