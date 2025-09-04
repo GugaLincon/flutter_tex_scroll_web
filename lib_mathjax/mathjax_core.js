@@ -82,7 +82,6 @@ import { MathML } from '@mathjax/src/js/input/mathml.js';
 import { AsciiMath } from '@mathjax/src/js/input/asciimath.js';
 import { SVG } from '@mathjax/src/js/output/svg.js';
 import { GLOBAL } from '@mathjax/src/js/components/global.js';
-import { source } from '@mathjax/src/components/js/source.js';
 
 
 class FlutterTeXLiteDOM {
@@ -90,20 +89,13 @@ class FlutterTeXLiteDOM {
   constructor() {
     this.adaptor = liteAdaptor();
     RegisterHTMLHandler(this.adaptor);
-    this.inputOptions = {
-    };
-
-
-    this.mathmlInput = new MathML(this.inputOptions);
-    this.asciiInput = new AsciiMath(this.inputOptions);
-
     this.outputJax = new SVG();
 
   }
 
   // ['base'].concat(Object.keys(source).filter((name) => name.substring(0, 6) === '[tex]/').sort().map((name) => name.substring(6)))
 
-  initTeXInput(packages) {
+  initTeXInput(packages, options) {
     this.texInput = new TeX({
       packages: ['base',
         'ams',
@@ -113,11 +105,19 @@ class FlutterTeXLiteDOM {
         'require',
         'autoload',
         'configmacros'].concat(packages || []),
-      ...this.inputOptions
+      ...options
     });
   }
 
-  math2SVG(math, inputType, options) {
+  initMathMLInput(options) {
+    this.mathmlInput = new MathML(options);
+  }
+
+  initAsciiMathInput(options) {
+    this.asciiInput = new AsciiMath(options);
+  }
+
+  teX2SVG(math, inputType, options) {
     return this.adaptor.innerHTML(mathjax.document('', {
       InputJax: this.#getInputType(inputType), OutputJax: this.outputJax
     }).convert(math, options));

@@ -24,27 +24,51 @@ class TeXRenderingServer {
     await teXRenderingController.initController();
   }
 
-  static Future<void> initTeXInput(List<String> packages) {
+  static Future<String> initTeXInput(List<String> packages) async {
     try {
-      if (kDebugMode) {
-        print('Initializing TeX inputs with packages: $packages');
-      }
+      await teXRenderingController.webViewControllerPlus.runJavaScript(
+          "MathJax.flutterTeXLiteDOM.initTeXInput(${jsonEncode(packages)});");
+      return Future.value("TeX Input Initialized");
     } catch (e) {
       if (kDebugMode) {
         print('Error in initTeXInput debug print: $e');
       }
+      return Future.error('Error in initTeXInput: $e');
     }
+  }
 
-    return teXRenderingController.webViewControllerPlus.runJavaScript(
-        "MathJax.flutterTeXLiteDOM.initTeXInput(${jsonEncode(packages)});");
+  static Future<String> initMathMLInput() async {
+    try {
+      await teXRenderingController.webViewControllerPlus
+          .runJavaScript("MathJax.flutterTeXLiteDOM.initMathMLInput();");
+      return Future.value("MathML Input Initialized");
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error in initMathMLInput debug print: $e');
+      }
+      return Future.error('Error in initMathMLInput: $e');
+    }
+  }
+
+  static Future<String> initAsciiMathInput() async {
+    try {
+      await teXRenderingController.webViewControllerPlus
+          .runJavaScript("MathJax.flutterTeXLiteDOM.initAsciiMathInput();");
+      return Future.value("AsciiMath Input Initialized");
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error in initAsciiMathInput debug print: $e');
+      }
+      return Future.error('Error in initAsciiMathInput: $e');
+    }
   }
 
   static Future<String> math2SVG(
-      {required String math, required TeXInputType teXInputType}) {
+      {required String math, required MathInputType mathInputType}) {
     try {
       return teXRenderingController.webViewControllerPlus
           .runJavaScriptReturningResult(
-              "MathJax.flutterTeXLiteDOM.math2SVG(${jsonEncode(math)}, '${teXInputType.value}');")
+              "MathJax.flutterTeXLiteDOM.math2SVG(${jsonEncode(math)}, '${mathInputType.value}');")
           .then((data) {
         if (math.trim().isNotEmpty && data.toString().isEmpty) {
           return Future.error('TeX input cannot be empty');

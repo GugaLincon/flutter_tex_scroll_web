@@ -1,3 +1,4 @@
+@Deprecated('Use MathInputType instead.')
 enum TeXInputType {
   teX("teX"),
   mathML("mathML"),
@@ -6,6 +7,16 @@ enum TeXInputType {
   final String value;
 
   const TeXInputType(this.value);
+}
+
+enum MathInputType {
+  teX("teX"),
+  mathML("mathML"),
+  asciiMath("asciiMath");
+
+  final String value;
+
+  const MathInputType(this.value);
 }
 
 enum TeXSegmentType {
