@@ -55,7 +55,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                       const TextSpan(text: 'When '),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: TeX2SVG(
+                        child: Math2SVG(
                           teXInputType: TeXInputType.teX,
                           math: r"a \ne 0",
                         ),
@@ -63,7 +63,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                       const TextSpan(text: ', there are two solutions to'),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: TeX2SVG(
+                        child: Math2SVG(
                           math: r"ax^2 + bx + c = 0",
                         ),
                       ),
@@ -75,7 +75,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                   height: 20,
                   color: Colors.transparent,
                 ),
-                TeX2SVG(
+                Math2SVG(
                   math: r"""x = {-b \pm \sqrt{b^2-4ac} \over 2a}""",
                   formulaWidgetBuilder: (context, svg) {
                     double displayFontSize = fontSize * 3;
@@ -109,7 +109,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                       fontSize: fontSize * 1.5,
                       color: Colors.black,
                     )),
-                TeX2SVG(
+                Math2SVG(
                   math: r"""
                             <math xmlns = "http://www.w3.org/1998/Math/MathML">
                               <mrow>
@@ -161,7 +161,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                       fontSize: fontSize * 1.5,
                       color: Colors.black,
                     )),
-                TeX2SVG(
+                Math2SVG(
                   math: r"""sum_(i=1)^n i^3=((n(n+1))/2)^2""",
                   teXInputType: TeXInputType.asciiMath,
                   formulaWidgetBuilder: (context, svg) {

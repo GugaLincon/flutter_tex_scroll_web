@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 
 ///A pure Flutter Widget to render Mathematics / Maths, Physics and Chemistry, Statistics / Stats Equations based on LaTeX.
-class TeX2SVG extends StatefulWidget {
+class Math2SVG extends StatefulWidget {
   /// A raw LaTeX string to be rendered.
   final String math;
 
@@ -22,7 +22,7 @@ class TeX2SVG extends StatefulWidget {
   /// Whether to keep the widget alive when it is not visible. Default is false.
   final bool wantKeepAlive;
 
-  const TeX2SVG({
+  const Math2SVG({
     super.key,
     required this.math,
     this.wantKeepAlive = false,
@@ -33,17 +33,17 @@ class TeX2SVG extends StatefulWidget {
   });
 
   @override
-  State<TeX2SVG> createState() => _TeX2SVGState();
+  State<Math2SVG> createState() => _Math2SVGState();
 }
 
-class _TeX2SVGState extends State<TeX2SVG>
-    with AutomaticKeepAliveClientMixin<TeX2SVG> {
+class _Math2SVGState extends State<Math2SVG>
+    with AutomaticKeepAliveClientMixin<Math2SVG> {
   late final Future<String> _texRenderingFuture;
 
   @override
   void initState() {
     super.initState();
-    _texRenderingFuture = TeXRenderingServer.teX2SVG(
+    _texRenderingFuture = TeXRenderingServer.math2SVG(
       math: widget.math,
       teXInputType: widget.teXInputType,
     );

@@ -24,12 +24,27 @@ class TeXRenderingServer {
     await teXRenderingController.initController();
   }
 
-  static Future<String> teX2SVG(
+  static Future<void> initTeXInput(List<String> packages) {
+    try {
+      if (kDebugMode) {
+        print('Initializing TeX inputs with packages: $packages');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error in initTeXInput debug print: $e');
+      }
+    }
+
+    return teXRenderingController.webViewControllerPlus.runJavaScript(
+        "MathJax.flutterTeXLiteDOM.initTeXInput(${jsonEncode(packages)});");
+  }
+
+  static Future<String> math2SVG(
       {required String math, required TeXInputType teXInputType}) {
     try {
       return teXRenderingController.webViewControllerPlus
           .runJavaScriptReturningResult(
-              "mathJaxLiteDOM.teX2SVG(${jsonEncode(math)}, '${teXInputType.value}');")
+              "MathJax.flutterTeXLiteDOM.math2SVG(${jsonEncode(math)}, '${teXInputType.value}');")
           .then((data) {
         if (math.trim().isNotEmpty && data.toString().isEmpty) {
           return Future.error('TeX input cannot be empty');

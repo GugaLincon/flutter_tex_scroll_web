@@ -52,7 +52,7 @@ class TeXWidgetExamples extends StatelessWidget {
               math: _formula,
               displayFormulaWidgetBuilder: (context, displayFormula) {
                 return Center(
-                  child: TeX2SVG(
+                  child: Math2SVG(
                     math: displayFormula,
                     formulaWidgetBuilder: (context, svg) {
                       double displayFontSize = 50;
@@ -70,7 +70,7 @@ class TeXWidgetExamples extends StatelessWidget {
                 );
               },
               inlineFormulaWidgetBuilder: (context, inlineFormula) {
-                return TeX2SVG(
+                return Math2SVG(
                   math: inlineFormula,
                   formulaWidgetBuilder: (context, svg) {
                     double displayFontSize = 16;

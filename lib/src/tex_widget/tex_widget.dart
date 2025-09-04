@@ -10,12 +10,12 @@ class TeXWidget extends StatelessWidget {
   final String math;
 
   /// Optional builder for inline formulas.
-  /// If not provided, it defaults to using [TeX2SVG] to render inline math.
+  /// If not provided, it defaults to using [Math2SVG] to render inline math.
   final Widget Function(BuildContext context, String inlineFormula)?
       inlineFormulaWidgetBuilder;
 
   /// Optional builder for display formulas.
-  /// If not provided, it defaults to using [TeX2SVG] to render display math.
+  /// If not provided, it defaults to using [Math2SVG] to render display math.
   final Widget Function(BuildContext context, String displayFormula)?
       displayFormulaWidgetBuilder;
 
@@ -79,7 +79,7 @@ class TeXWidget extends StatelessWidget {
           currentRichTextSpans.add(WidgetSpan(
               alignment: PlaceholderAlignment.middle,
               child: inlineFormulaWidgetBuilder?.call(context, segment.text) ??
-                  TeX2SVG(
+                  Math2SVG(
                     math: segment.text,
                   )));
           break;
@@ -89,7 +89,7 @@ class TeXWidget extends StatelessWidget {
           columnChildren
               .add(displayFormulaWidgetBuilder?.call(context, segment.text) ??
                   Center(
-                    child: TeX2SVG(
+                    child: Math2SVG(
                       math: segment.text,
                       formulaWidgetBuilder: (context, svg) {
                         double displayFontSize = 42;
