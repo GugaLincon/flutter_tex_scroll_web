@@ -13,7 +13,7 @@ class TeXRenderingServer {
   }
 
   static Future<String> math2SVG(
-      {required String math, required MathInputType mathInputType}) {
+      {required String math, required TeXInputType mathInputType}) {
     try {
       return Future<String>.value(
           mathJaxLiteDOMTeX2SVG(math, mathInputType.value));

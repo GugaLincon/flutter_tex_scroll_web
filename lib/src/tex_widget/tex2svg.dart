@@ -6,8 +6,8 @@ class Math2SVG extends StatefulWidget {
   /// A raw LaTeX string to be rendered.
   final String math;
 
-  /// The type of input math to be rendered. Default is [MathInputType.teX].
-  final MathInputType mathInputType;
+  /// The type of input math to be rendered. Default is [TeXInputType.teX].
+  final TeXInputType teXInputType;
 
   /// Show a loading widget before rendering completes.
   final WidgetBuilder? loadingWidgetBuilder;
@@ -26,7 +26,7 @@ class Math2SVG extends StatefulWidget {
     super.key,
     required this.math,
     this.wantKeepAlive = false,
-    this.mathInputType = MathInputType.teX,
+    this.teXInputType = TeXInputType.teX,
     this.loadingWidgetBuilder,
     this.formulaWidgetBuilder,
     this.errorWidgetBuilder,
@@ -43,9 +43,9 @@ class _Math2SVGState extends State<Math2SVG>
   @override
   void initState() {
     super.initState();
-    _texRenderingFuture = TeXRenderingServer.math2SVG(
+    _texRenderingFuture = TeXRenderingServer.teX2SVG(
       math: widget.math,
-      mathInputType: widget.mathInputType,
+      teXInputType: widget.teXInputType,
     );
   }
 

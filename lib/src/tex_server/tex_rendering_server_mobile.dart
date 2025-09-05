@@ -63,12 +63,12 @@ class TeXRenderingServer {
     }
   }
 
-  static Future<String> math2SVG(
-      {required String math, required MathInputType mathInputType}) {
+  static Future<String> teX2SVG(
+      {required String math, required TeXInputType teXInputType}) {
     try {
       return teXRenderingController.webViewControllerPlus
           .runJavaScriptReturningResult(
-              "MathJax.flutterTeXLiteDOM.math2SVG(${jsonEncode(math)}, '${mathInputType.value}');")
+              "MathJax.flutterTeXLiteDOM.teX2SVG(${jsonEncode(math)}, '${teXInputType.value}');")
           .then((data) {
         if (math.trim().isNotEmpty && data.toString().isEmpty) {
           return Future.error('TeX input cannot be empty');
