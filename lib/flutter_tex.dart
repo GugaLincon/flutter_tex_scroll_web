@@ -22,5 +22,5 @@ export 'package:flutter_tex/src/tex_view/widgets/details.dart';
 export 'package:flutter_tex/src/tex_server/tex_rendering_server.dart';
 export 'package:flutter_tex/src/tex_view/utils/font.dart';
 export 'package:flutter_tex/src/math_widget/utils/enums.dart';
-export 'package:flutter_tex/src/math_widget/tex_widget.dart';
+export 'package:flutter_tex/src/math_widget/math_widget.dart';
 export 'package:flutter_svg/flutter_svg.dart';

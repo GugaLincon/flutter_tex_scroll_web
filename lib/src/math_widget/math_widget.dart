@@ -5,7 +5,7 @@ import 'package:flutter_tex/src/math_widget/utils/parse_tex.dart';
 /// A widget to render TeX segments, which can be inline or display math.
 /// Currently, it only supports rendering TeX.
 
-class TeXWidget extends StatelessWidget {
+class MathWidget extends StatelessWidget {
   /// A raw TeX string to be rendered.
   final String math;
 
@@ -24,7 +24,7 @@ class TeXWidget extends StatelessWidget {
   final InlineSpan Function(BuildContext context, String text)?
       textWidgetBuilder;
 
-  const TeXWidget({
+  const MathWidget({
     super.key,
     required this.math,
     this.inlineFormulaWidgetBuilder,

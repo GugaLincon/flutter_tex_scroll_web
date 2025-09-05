@@ -18,9 +18,9 @@
     - [Web](#web)
     - [MacOS](#macos)
 - [How to use?](#how-to-use)
-    - [TeXWidget](#texwidget)
+    - [MathWidget](#mathwidget)
     - [TeXView](#texview)
-    - [TeX2SVG](#tex2svg)
+    - [Math2SVG](#math2svg)
 - [More Examples](#more-examples)
 - [MathJax Configurations - `TeXView`](#mathjax-configurations---texview)
 - [Custom Fonts - `TeXView`](#custom-fonts---texview)
@@ -191,13 +191,13 @@ main() async {
 }
 ```
 
-Now you can use `TeXView`,`TeXWidget` or `TeX2SVG` as a widgets:
+Now you can use `TeXView`,`MathWidget` or `Math2SVG` as a widgets:
 
-### TeXWidget
-A simple but a powerful pure Flutter widget based on `TeX2SVG`. See [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart) for more details:
+### MathWidget
+A simple but a powerful pure Flutter widget based on `Math2SVG`. See [MathWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/math_widget_example.dart) for more details:
 
 ```dart
-TeXWidget(math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
+MathWidget(math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
 ```
 
 
@@ -248,7 +248,7 @@ TeXView(
    );
 ```
 
-### TeX2SVG
+### Math2SVG
 A high-performance, pure Flutter solution for displaying mathematical notations. It accurately parses TeX expressions and renders them as resolution-independent SVGs via the [flutter_svg](https://pub.dev/packages/flutter_svg) library.
 
 - **Pure Flutter**: Ensures seamless integration and optimal performance within your Flutter project.

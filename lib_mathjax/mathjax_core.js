@@ -7,15 +7,6 @@ import '@mathjax/src/components/js/input/tex/tex.js';
 import '@mathjax/src/components/js/input/mml/mml.js';
 import '@mathjax/src/components/js/input/asciimath/asciimath.js';
 // TeX Extensions
-
-// import '@mathjax/src/components/js/input/tex/extensions/newcommand/newcommand.js';
-// import '@mathjax/src/components/js/input/tex/extensions/noundefined/noundefined.js';
-// import '@mathjax/src/components/js/input/tex/extensions/textmacros/textmacros.js';
-// import '@mathjax/src/components/js/input/tex/extensions/ams/ams.js';
-// import '@mathjax/src/components/js/input/tex/extensions/autoload/autoload.js';
-// import '@mathjax/src/components/js/input/tex/extensions/configmacros/configmacros.js';
-// import '@mathjax/src/components/js/input/tex/extensions/require/require.js';
-
 import '@mathjax/src/components/js/input/tex/extensions/action/action.js';
 import '@mathjax/src/components/js/input/tex/extensions/amscd/amscd.js';
 import '@mathjax/src/components/js/input/tex/extensions/bbm/bbm.js';
@@ -93,7 +84,6 @@ class FlutterTeXLiteDOM {
 
   }
 
-  // ['base'].concat(Object.keys(source).filter((name) => name.substring(0, 6) === '[tex]/').sort().map((name) => name.substring(6)))
 
   initTeXInput(packages, options) {
     this.texInput = new TeX({

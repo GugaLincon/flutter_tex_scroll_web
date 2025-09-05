@@ -34,7 +34,7 @@ class TeXWidgetExamples extends StatelessWidget {
               border: Border.all(color: Colors.black, width: 4),
               borderRadius: BorderRadius.circular(8.0),
             ),
-            child: TeXWidget(math: _formula),
+            child: MathWidget(math: _formula),
           ),
           Divider(
             height: 30,
@@ -48,7 +48,7 @@ class TeXWidgetExamples extends StatelessWidget {
               border: Border.all(color: Colors.lime, width: 4),
               borderRadius: BorderRadius.circular(8.0),
             ),
-            child: TeXWidget(
+            child: MathWidget(
               math: _formula,
               displayFormulaWidgetBuilder: (context, displayFormula) {
                 return Center(

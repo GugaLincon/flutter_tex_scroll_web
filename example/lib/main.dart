@@ -6,8 +6,8 @@ import 'package:flutter_tex_example/tex_view_image_video_example.dart';
 import 'package:flutter_tex_example/tex_view_ink_well_example.dart';
 import 'package:flutter_tex_example/tex_view_markdown_example.dart';
 import 'package:flutter_tex_example/tex_view_quiz_example.dart';
-import 'package:flutter_tex_example/tex2svg_example.dart';
-import 'package:flutter_tex_example/tex_widget_example.dart';
+import 'package:flutter_tex_example/math2svg_example.dart';
+import 'package:flutter_tex_example/math_widget_example.dart';
 
 main() async {
   await TeXRenderingServer.start();

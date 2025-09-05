@@ -12,14 +12,14 @@ class TeXRenderingServer {
     TeXRenderingControllerWeb.initialize();
   }
 
-  static Future<String> teX2SVG(
-      {required String math, required TeXInputType teXInputType}) {
+  static Future<String> math2SVG(
+      {required String math, required MathInputType mathInputType}) {
     try {
       return Future<String>.value(
-          mathJaxLiteDOMTeX2SVG(math, teXInputType.value));
+          mathJaxLiteDOMTeX2SVG(math, mathInputType.value));
     } catch (e) {
       if (kDebugMode) {
-        print('Error in teX2SVG: $e');
+        print('Error in math2SVG: $e');
       }
       return Future.error('Error rendering TeX: $e');
     }
