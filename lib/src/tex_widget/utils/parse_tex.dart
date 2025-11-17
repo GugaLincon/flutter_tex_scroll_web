@@ -12,7 +12,7 @@ List<TeXSegment> parseTeX(String latexString) {
 
   // Corrected Order: More specific patterns (double delimiters) come first.
   final RegExp latexRegex = RegExp(
-    "${TeXDelimiters.displayDollar.value}|${TeXDelimiters.diplayBrackets.value}|${TeXDelimiters.inlineDollar.value}|${TeXDelimiters.inlineBrackets.value}",
+    "${TeXDelimiter.displayDollar.delimiter}|${TeXDelimiter.diplayBrackets.delimiter}|${TeXDelimiter.inlineDollar.delimiter}|${TeXDelimiter.inlineBrackets.delimiter}",
   );
 
   int lastEnd = 0;

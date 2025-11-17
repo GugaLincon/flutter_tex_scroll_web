@@ -3,9 +3,9 @@ enum TeXInputType {
   mathML("mathML"),
   asciiMath("asciiMath");
 
-  final String value;
+  final String type;
 
-  const TeXInputType(this.value);
+  const TeXInputType(this.type);
 }
 
 enum TeXSegmentType {
@@ -14,14 +14,53 @@ enum TeXSegmentType {
   display,
 }
 
-// The order of these doesn't matter, but the order of their use in the RegExp does.
-enum TeXDelimiters {
+enum TeXDelimiter {
   inlineBrackets(r"(\\\((.*?)\\\))"),
   inlineDollar(r"(\$(.*?)\$)"),
   diplayBrackets(r"(\\\[(.*?)\\\])"),
   displayDollar(r"(\$\$(.*?)\$\$)");
 
-  final String value;
+  final String delimiter;
 
-  const TeXDelimiters(this.value);
+  const TeXDelimiter(this.delimiter);
+}
+
+enum TeXPackage {
+  action('action'),
+  amscd('amscd'),
+  bbm('bbm'),
+  bboldx('bboldx'),
+  bbox('bbox'),
+  begingroup('begingroup'),
+  boldsymbol('boldsymbol'),
+  braket('braket'),
+  bussproofs('bussproofs'),
+  cancel('cancel'),
+  cases('cases'),
+  centernot('centernot'),
+  color('color'),
+  colortbl('colortbl'),
+  colorv2('colorv2'),
+  dsfont('dsfont'),
+  empheq('empheq'),
+  enclose('enclose'),
+  extpfeil('extpfeil'),
+  gensymb('gensymb'),
+  html('html'),
+  mathtools('mathtools'),
+  mhchem('mhchem'),
+  noerrors('noerrors'),
+  physics('physics'),
+  setoptions('setoptions'),
+  tagformat('tagformat'),
+  texhtml('texhtml'),
+  textcomp('textcomp'),
+  unicode('unicode'),
+  units('units'),
+  upgreek('upgreek'),
+  verb('verb');
+
+  final String pkg;
+
+  const TeXPackage(this.pkg);
 }

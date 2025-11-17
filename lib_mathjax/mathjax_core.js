@@ -60,9 +60,9 @@ loadFont(startup, true);
 
 import '@mathjax/mathjax-mhchem-font-extension/svg.js';
 
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 import { mathjax } from '@mathjax/src/js/mathjax.js';
@@ -78,51 +78,53 @@ import { GLOBAL } from '@mathjax/src/js/components/global.js';
 class FlutterTeXLiteDOM {
 
   constructor() {
+    this.options = {};
     this.adaptor = liteAdaptor();
     RegisterHTMLHandler(this.adaptor);
     this.outputJax = new SVG();
-
   }
 
-
-  initTeXInput(packages, options) {
-    this.texInput = new TeX({
-      packages: ['base',
-        'ams',
-        'newcommand',
-        'textmacros',
-        'noundefined',
-        'require',
-        'autoload',
-        'configmacros'].concat(packages || []),
-      ...options
+  initTeXDoc() {
+    this.teXDoc = mathjax.document('', {
+      InputJax: new TeX({
+        packages: ['base',
+          'ams',
+          'newcommand',
+          'textmacros',
+          'noundefined',
+          'require',
+          'autoload',
+          'configmacros'].concat(tex_packages || []),
+        ...this.options,
+      }), OutputJax: this.outputJax
     });
+    return this.teXDoc;
   }
 
-  initMathMLInput(options) {
-    this.mathmlInput = new MathML(options);
+  initMathMLDoc() {
+    this.mathmlDoc = mathjax.document('', { InputJax: new MathML(this.options), OutputJax: this.outputJax });
+    return this.mathmlDoc;
   }
 
-  initAsciiMathInput(options) {
-    this.asciiInput = new AsciiMath(options);
+  initAsciiMathDoc() {
+    this.asciiDoc = mathjax.document('', { InputJax: new AsciiMath(this.options), OutputJax: this.outputJax });
+    return this.asciiDoc;
   }
 
   teX2SVG(math, inputType, options) {
-    return this.adaptor.innerHTML(mathjax.document('', {
-      InputJax: this.#getInputType(inputType), OutputJax: this.outputJax
-    }).convert(math, options));
+    return this.adaptor.innerHTML(this.#getJaxDoc(inputType).convert(math, options));
   }
 
-  #getInputType(input) {
+  #getJaxDoc(input) {
     switch (input) {
       case 'teX':
-        return this.texInput;
+        return this.teXDoc || this.initTeXDoc();
       case 'mathML':
-        return this.mathmlInput;
+        return this.mathmlDoc || this.initMathMLDoc();
       case 'asciiMath':
-        return this.asciiInput;
+        return this.asciiDoc || this.initAsciiMathDoc();
       default:
-        return this.texInput;
+        return this.teXDoc || this.initTeXDoc();
     }
   }
 }
