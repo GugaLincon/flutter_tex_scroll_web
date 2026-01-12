@@ -1,108 +1,179 @@
-## [4.1.3] - Apr 06, 2025
+## [5.1.10]
+* `TeXViewGroupItem` and `TeXViewGroup` have been removed see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+
+## [5.1.9]
+* [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart) updated with radio buttons.
+
+## [5.1.8]
+* Minor fixes.
+
+## [5.1.7]
+* Performance improvements.
+* Tex2SVG: Trigger rendering in initState [#215](https://github.com/Shahxad-Akram/flutter_tex/pull/215) (Merged)
+
+## [5.1.6]
+* Minor fixes.
+* Multiple TeXView issue resolved [#214](https://github.com/Shahxad-Akram/flutter_tex/issues/214)
+
+## [5.1.5]
+* Minor fixes.
+* MathJax custom config load file name changed to `flutter_tex.js`
+
+## [5.1.4]
+* Minor fixes.
+
+## [5.1.3]
+* Multi TeXView issue resolved [#203](https://github.com/Shahxad-Akram/flutter_tex/issues/203).
+
+## [5.1.2]
+* Custom fonts problems fixed for web.
+
+## [5.1.1]
+* MathJax custom config problems fixed for web.
+
+## [5.1.0]
+* `TeXWidget` added, see [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart)
+
+## [5.0.9]
+* `TeXViewGroup` and `TeXViewGroupItem` have been deprecated see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+
+## [5.0.8]
+* `TeXViewGroup` and `TeXViewGroupItem` have been deprecated see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+
+## [5.0.7]
+* MathJax custom configuration implementation, see the docs.
+
+## [5.0.6]
+* Multi TeXView Support added
+
+## [5.0.5]
+* Issue [#210](https://github.com/Shahxad-Akram/flutter_tex/issues/210) fixed.
+* Minor changes in web implementation, see the docs.
+* Code optimizations.
+
+## [5.0.4]
+* Minor fix.
+  
+## [5.0.3]
+* `TeXWidget` renamed ot `TeX2SVG`
+
+## [5.0.2]
+* Now math can be render as `TeXWidget` along other flutter widgets, `TeXWidget` doesn't depend on a webview, multiple `TeXWidget`s can be used on the same page.
+* Refer to the example for details.
+
+## [5.0.1]
+* Now math can be render as `TeXWidget` along other flutter widgets, `TeXWidget` doesn't depend on a webview, multiple `TeXWidget`s can be used on the same page.
+* Refer to the example for details.
+
+## [5.0.0]
+* Now math can be render as `TeXWidget` along other flutter widgets, `TeXWidget` doesn't depend on a webview, multiple `TeXWidget`s can be used on the same page.
+* Refer to the example for details.
+
+## [4.1.3]
 * Web related issues fixed.
 
-## [4.1.2] - Apr 04, 2025
+## [4.1.2]
 * Minor fixes.
 
-## [4.1.1] - Apr 02, 2025
+## [4.1.1]
 * Minor fixes.
 
-## [4.1.0] - Apr 01, 2025
+## [4.1.0]
 * MathJax upgraded to version 3.2, a huge performance improvement.
 * Katex has been removed.
 * Minor API changes, please refer to the example before upgrade the package.
 
-## [4.0.14] - Jan 04, 2025
+## [4.0.14]
 * Minmum flutter SDK requirement is 3.27.x
 * Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib) before using this version.
 
-## [4.0.13] - Jan 03, 2025
+## [4.0.13]
 * Minmum flutter SDK requirement is 3.27.x
 * Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib) before using this version.
 
-## [4.0.12] - Dec 27, 2024
+## [4.0.12]
 * Fixed color alpha value calculation in getColor function [#200](https://github.com/Shahxad-Akram/flutter_tex/pull/200)
 
-## [4.0.11] - Dec 27, 2024
+## [4.0.11]
 * API changes, please refer to [TeXView Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib)
 
-## [4.0.10] - Dec 23, 2024
+## [4.0.10]
 * API changes, please refer to [TeXView Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib)
 * Performance optimizations.
 
-## [4.0.9]- August 18, 2024
+## [4.0.9]
 * Minor Fixes.
 
-## [4.0.8]- August 13, 2024
+## [4.0.8]
 * Katex upgraded.
 
-## [4.0.7]- August 05, 2024
+## [4.0.7]
 * Dependencies updated.
 
-## [4.0.6]- December 29, 2023
+## [4.0.6]
 * Minor Fixes.
 
-## [4.0.5]- December 17, 2023
+## [4.0.5]
 * Minor Fixes.
 
-## [4.0.4]- December 17, 2023
+## [4.0.4]
 * Dependencies updated.
 
-## [4.0.3+4]- March 05, 2021
+## [4.0.3+4]
 * Dependencies updated.
 
-## [4.0.3+3]- March 01, 2021
+## [4.0.3+3]
 * Minor Fixes.
 
-## [4.0.3+2]- February 19, 2021
+## [4.0.3+2]
 * Major improvements.
 
-## [4.0.3+1]- November 23, 2021
+## [4.0.3+1]
 * `Web` improvements.
 
-## [4.0.3]- September 07, 2021 
+## [4.0.3]
 * `README.md` improvements.
 
-## [4.0.2]- September 07, 2021 
+## [4.0.2]
 * Improvements for web.
 
-## [4.0.1]- April 13, 2021 
+## [4.0.1]
 * Dependencies upgrade.
 
-## [4.0.0]- April 11, 2021 
+## [4.0.0]
 * Null Safety Migrations.
 * MathML Support Added.
 
-## [3.6.7+9]- August 9, 2020
+## [3.6.7+9]
 * Minor fixes.
 
-## [3.6.7+8]- July 5, 2020
+## [3.6.7+8]
 * Minor issues Fixed.
 
-## [3.6.7+7]- July 5, 2020
+## [3.6.7+7]
 * Minor Fixes.
 
-## [3.6.7+6]- July 5, 2020
+## [3.6.7+6]
 * Added support for inline formula by using delimiter `$..$` for mathjax.
 
-## [3.6.7+5]- July 1, 2020
+## [3.6.7+5]
 * Minor fixes.
 
-## [3.6.7+4]- June 11, 2020
+## [3.6.7+4]
 * Minor changes.
 
-## [3.6.7+3]- June 11, 2020
+## [3.6.7+3]
 * Minor changes.
 
-## [3.6.7+2]- June 10, 2020
+## [3.6.7+2]
 * `TeXViewFontWeight` property added in styling.
 * `TeXViewGroup.multipleSelection()` added to select multiple options in group.
 
 
-## [3.6.7+1]- June 8, 2020
+## [3.6.7+1]
 * example links issue solved.
 
-## [3.6.7] - June 7, 2020
+## [3.6.7]
 * Example updated.
 * `onTeXViewCreated` added.
 * `TeXViewMarkdown` widget added for markdown support.
@@ -112,41 +183,41 @@
     * `height` removed.
 
 
-## [3.6.6+6] - June 7, 2020
+## [3.6.6+6]
 * Speed Optimizations for `TeXViewGroup`.
 * Example Updated.
 
-## [3.6.6+6] - June 7, 2020
+## [3.6.6+6]
 * Rendering Enhancements.
 
-## [3.6.6+5] - June 5, 2020
+## [3.6.6+5]
 * Speed Optimizations.
 
-## [3.6.6+4] - June 2, 2020
+## [3.6.6+4]
 * Size reduced
 
-## [3.6.6+3] - June 2, 2020
+## [3.6.6+3]
 * Minor Fixes
 
-## [3.6.6+2] - June 1, 2020
+## [3.6.6+2]
 * Minor Fixes
 
-## [3.6.6+1] - June 1, 2020
+## [3.6.6+1]
 * Bugs fixed.
 
-## [3.6.6] - June 1, 2020
+## [3.6.6]
 * Speed Optimizations. Rendering speed has been improved very much.
 
-## [3.6.5+2] - June 1, 2020
+## [3.6.5+2]
 * Mathjax issues fixed.
 
-## [3.6.5+1] - June 1, 2020
+## [3.6.5+1]
 * Major Fixes.
 
-## [3.6.5] - May 31, 2020
+## [3.6.5]
 * Custom font integration and video player from youtube added, see example folder.
 
-## [3.6.4+2] - May 30, 2020
+## [3.6.4+2]
 * Moved to `webview_flutter_plus` a powerful extension of `webview_flutter`.
 
 ## [3.6.4+1]

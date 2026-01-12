@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'army';
+    src: url("fonts/Army.ttf");
+}
+
+@font-face {
+    font-family: 'budhrg';
+    src: url("fonts/Budhrg.ttf");
+}
+
+@font-face {
+
+    font-family: 'celtg';
+    src: url("fonts/CELTG.ttf");
+}
+
+@font-face {
+    font-family: 'hillock';
+    src: url("fonts/hillock.ttf");
+}
+
+@font-face {
+    font-family: 'intimacy';
+    src: url("fonts/intimacy.ttf");
+}
+
+@font-face {
+    font-family: 'sansation_light';
+    src: url("fonts/SansationLight.ttf");
+}
+
+@font-face {
+    font-family: 'slenmini';
+    src: url("fonts/slenmini.ttf");
+}
+
+@font-face {
+    font-family: 'subaccuz_regular';
+    src: url("fonts/SubaccuzRegular.ttf");
+}

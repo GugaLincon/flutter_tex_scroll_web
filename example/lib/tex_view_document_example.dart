@@ -4,9 +4,23 @@ import 'package:flutter_tex/flutter_tex.dart';
 class TeXExample {
   static TeXViewWidget introduction =
       _teXViewWidget(r"""<h4>Flutter \( \rm\TeX \)</h4>""", r"""
-             
-      <p>Flutter \( \rm\TeX \) is a Flutter Package to render so many types of equations based on \( \rm\LaTeX \), It also includes full HTML with JavaScript
+      <p>Flutter $ \rm\TeX $ is a Flutter Package to render so many types of equations based on \( \rm\LaTeX \), It also includes full HTML with JavaScript
       support.</p>
+      """);
+
+  static TeXViewWidget longFormulaScroll =
+      _teXViewWidget(r"""<h4>Long Formula Scroll</h4>""", r"""
+
+
+    <p>Some text before the formula:</p>
+    <div style="overflow-x: auto; max-width: 100%;">
+      $$
+     \text{ (Horizontal scroll long formula)} E = mc^2 + \frac{p^2}{2m} + \sum_{i} \frac{(p_i - qA_i)^2}{2m_i} + V(r) + ... 
+      $$
+    </div>
+    <p>Some text after the formula.</p>
+
+
       """);
 
   static TeXViewWidget quadraticEquation =
@@ -14,8 +28,7 @@ class TeXExample {
      When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are
      $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$<br>""");
 
-  static TeXViewWidget mathML =
-      _teXViewWidget(r"<h4>MathML (MathJax Only)</h4>", r"""
+  static TeXViewWidget mathML = _teXViewWidget(r"<h4>MathML</h4>", r"""
 <math xmlns = "http://www.w3.org/1998/Math/MathML">
    <mrow>
       <mrow>
@@ -33,6 +46,9 @@ class TeXExample {
       <mn>0</mn>
    </mrow>
 </math>""");
+
+  static TeXViewWidget asciiMath = _teXViewWidget(
+      r"<h4>AsciiMath</h4>", r""" `sum_(i=1)^n i^3=((n(n+1))/2)^2` """);
 
   static TeXViewWidget bohrRadius = _teXViewWidget(r"<h4>Bohr's Radius</h4>",
       r"""\( a_0 = \frac{{\hbar ^2 }}{{m_e ke^2 }} \)""");
@@ -96,8 +112,12 @@ class TeXExample {
                 margin: TeXViewMargin.zeroAuto(),
                 backgroundColor: Colors.green),
           ),
-          TeXViewDocument(body,
-              style: const TeXViewStyle(margin: TeXViewMargin.only(top: 10)))
+          TeXViewDocument(
+            body,
+            style: const TeXViewStyle(
+                margin: TeXViewMargin.only(top: 10),
+                overflow: TeXViewOverflow.auto),
+          ),
         ]);
   }
 }
@@ -116,10 +136,12 @@ class TeXViewDocumentExamples extends StatelessWidget {
         child: TeXViewColumn(children: [
           TeXExample.introduction,
           TeXExample.mathML,
+          TeXExample.asciiMath,
           TeXExample.quadraticEquation,
           TeXExample.relationEnergyPrincipalQuantum,
           TeXExample.alignedTag,
           TeXExample.bohrRadius,
+          TeXExample.longFormulaScroll,
           TeXExample.chemistryEquations,
           TeXExample.matrix,
           TeXViewDetails(

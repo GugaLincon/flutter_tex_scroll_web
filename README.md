@@ -1,74 +1,70 @@
 # flutter_tex
 [![GitHub stars](https://img.shields.io/github/stars/Shahxad-Akram/flutter_tex?style=social)](https://github.com/Shahxad-Akram/flutter_tex/stargazers) [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
 
-<img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/example/assets/flutter_tex_banner.png" alt=""/>
+<img src="example/assets/flutter_tex_banner.png" alt=""/>
 
 # Contents
 - [flutter\_tex](#flutter_tex)
 - [Contents](#contents)
 - [About](#about)
 - [How it works?](#how-it-works)
+- [Web Demo](#web-demo)
+- [Application Demo](#application-demo)
 - [Demo Video](#demo-video)
 - [Screenshots](#screenshots)
 - [How to setup?](#how-to-setup)
     - [Android](#android)
     - [iOS](#ios)
     - [Web](#web)
+    - [MacOS](#macos)
 - [How to use?](#how-to-use)
-- [Examples](#examples)
-    - [Quick Example](#quick-example)
-    - [TeXView Document Example](#texview-document-example)
-      - [TeXView Document Example](#texview-document-example-1)
-    - [TeXView Markdown Example](#texview-markdown-example)
-      - [TeXView Markdown Example](#texview-markdown-example-1)
-    - [TeXView Quiz Example](#texview-quiz-example)
-      - [TeXView Quiz Example](#texview-quiz-example-1)
-    - [TeXView Custom Fonts Example](#texview-custom-fonts-example)
-      - [TeXView Custom Fonts Example](#texview-custom-fonts-example-1)
-    - [TeXView Image and Video Example](#texview-image-and-video-example)
-      - [TeXView Image and Video Example](#texview-image-and-video-example-1)
-    - [TeXView InkWell Example](#texview-inkwell-example)
-      - [TeXView InkWell Example](#texview-inkwell-example-1)
-    - [Complete Example](#complete-example)
-      - [Complete Example Code](#complete-example-code)
-- [Application Demo:](#application-demo)
-- [Web Demo:](#web-demo)
-- [Api Changes:](#api-changes)
-- [Api Usage:](#api-usage)
-- [ToDo](#todo)
-- [Limitations:](#limitations)
+    - [TeXWidget](#texwidget)
+    - [TeXView](#texview)
+    - [TeX2SVG](#tex2svg)
+- [More Examples](#more-examples)
+- [MathJax Configurations - `TeXView`](#mathjax-configurations---texview)
+- [Custom Fonts - `TeXView`](#custom-fonts---texview)
+- [API Usage - `TeXView`](#api-usage---texview)
+- [API Changes](#api-changes)
 
 # About
-A Flutter Package, to render **fully offline** all types of equations and expressions based on **LaTeX** , **TeX** and **MathML**, most commonly used are as followings:
+A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **TeX**, and **MathML**, making it a universal solution for in-app scientific and mathematical visualization.
 
-- **Mathematics / Maths Equations and expressions** (Algebra, Calculus, Geometry, Geometry etc...)
+**Primary use cases include, but are not limited to:**
 
-- **Physics Equations and expressions**
+- General Mathematics and Statistics
+- Physics and Chemistry Equations
+- Signal Processing Expressions
+- In addition to its mathematical capabilities, the package is a powerful tool for displaying rich content, offering complete HTML and JavaScript support.
 
-- **Signal Processing Equations and expressions**
-
-- **Chemistry Equations and expressions**
-
-- **Statistics / Stats Equations and expressions**
-
-- It also includes full **HTML** with **JavaScript** support.
 
 # How it works?
+Flutter TeX brings the power of the [MathJax](https://github.com/mathjax/MathJax) rendering engine to Flutter applications. As a direct port of this essential JavaScript library, it enables the display of a wide range of equations and expressions from formats like LaTeX, TeX, and MathML.
 
-Flutter TeX is a port to a powerful JavaScript library [MathJax](https://github.com/mathjax/MathJax) which render the equations in [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus). All credits goes to [MathJax](https://github.com/mathjax/MathJax) developers.
+The rendering itself is handled within a [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) widget, allowing for a robust and faithful presentation of the original MathJax output.
+
+We extend our sincere credit to the original [MathJax](https://github.com/mathjax/MathJax) developers, whose work is the foundation of this package.
+
+
+# Web Demo
+- ## [https://flutter-tex.web.app](https://flutter-tex.web.app)
+
+
+# Application Demo
+<a href='https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
 # Demo Video
-
-* [Click to Watch Demo on Youtube](https://www.youtube.com/watch?v=YiNbVEXV_NM)
+- ## [Click to Watch Demo on Youtube](https://www.youtube.com/watch?v=YiNbVEXV_NM)
 
 # Screenshots
- |                        Fonts Sample                         |                         Quiz Sample                         |                        TeX Document                         |
- | :---------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: |
- | <img src="https://i.postimg.cc/651PXKYC/screenshot-1.png"/> | <img src="https://i.postimg.cc/wjyGxrGZ/screenshot-2.png"/> | <img src="https://i.postimg.cc/k4cjhP26/screenshot-3.png"/> |
+ |                                                 TeXWidget                                                  |                                                  Quiz Sample                                                  |                                               TeX Document                                               |
+ | :--------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
+ | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_widget.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_quiz.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view.png"/> |
 
- |                        TeX Document                         |                        Image & Video                        |                           InkWell                           |
- | :---------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: |
- | <img src="https://i.postimg.cc/d0GNryv9/screenshot-4.png"/> | <img src="https://i.postimg.cc/prLswcj0/screenshot-5.png"/> | <img src="https://i.postimg.cc/rwBYDJ6m/screenshot-6.png"/> |
+ |                                                  Custom Fonts                                                  |                                                    Image & Video                                                     |                                                     Markdown                                                      |
+ | :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
+ | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_fonts.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_image_video.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_markdown.png"/> |
+
 
 # How to setup?
 
@@ -79,7 +75,7 @@ Flutter TeX is a port to a powerful JavaScript library [MathJax](https://github.
 
 ```yaml
 dependencies:
-  flutter_tex: ^4.1.3
+  flutter_tex: ^5.1.10
 ``` 
 
 **2:** You can install packages from the command line:
@@ -91,7 +87,7 @@ $ flutter packages get
 Alternatively, your editor might support flutter packages get. Check the docs for your editor to learn more.
 
 
-**3:** Now you need to put the following implementations in `Android`, `iOS`, and `Web` respectively.
+**3:** Now you need to put the following implementations in `Android`, `iOS`, `MacOS` and `Web` respectively.
 
 ### Android
 Make sure to add this line `android:usesCleartextTraffic="true"` in your `<project-directory>/android/app/src/main/AndroidManifest.xml` under `application` like this.
@@ -140,12 +136,10 @@ and intents in queries block:
 ```
 
 
-It'll still work in debug mode without permissions, but it won't work in release application without mentioned permissions.
-
 ### iOS
-Add following code in your `<project-directory>/ios/Runner/Info.plist`
+Add following lines in `<project-directory>/ios/Runner/Info.plist`
 
-```plist
+```xml
 <key>NSAppTransportSecurity</key>
   <dict>
     <key>NSAllowsArbitraryLoads</key> <true/>
@@ -158,18 +152,26 @@ Add following code in your `<project-directory>/ios/Runner/Info.plist`
     <string>tel</string>
     <string>mailto</string>
 </array> 
-
 ```
 
 ### Web
-For Web support you need to put `<script src="assets/packages/flutter_tex/js/flutter_tex.js"></script>` and `<script type="text/javascript">window.flutterWebRenderer = "canvaskit";</script>` in `<head>` tag of your `<project-directory>/web/index.html` like this.
+For Web support modify `<project-directory>/web/index.html` like this.
 
 ```html
 <head>
     ...
     ...
-    <script src="assets/packages/flutter_tex/js/flutter_tex.js"></script>
+  <script src="assets/packages/flutter_tex/core/flutter_tex.js"></script>
+  <script src="assets/packages/flutter_tex/core/mathjax_core.js"></script>
 </head>
+```
+
+### MacOS
+By default, macOS apps running in a sandboxed environment (which is the standard for Flutter apps) are not allowed to make network requests. You need to explicitly grant your application the capability to access the internet. In your Flutter project, navigate to the `macos/Runner/` directory and add the following key-value pair to `DebugProfile.entitlements` and `Release.entitlements`.
+
+```xml
+<key>com.apple.security.network.client</key>
+  <true/>
 ```
 
 # How to use?
@@ -184,20 +186,31 @@ Make sure to setup `TeXRederingServer` before rendering TeX:
 
 ```dart
 main() async {
-
-  if (!kIsWeb) {
-    await TeXRenderingServer.start();
-  }
-
+  await TeXRenderingServer.start();
   runApp(...);
 }
 ```
 
-Now you can use `TeXView` as a widget:
+Now you can use `TeXView`,`TeXWidget` or `TeX2SVG` as a widgets:
 
-# Examples
+### TeXWidget
+A simple but a powerful pure Flutter widget based on `TeX2SVG`. See [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart) for more details:
 
-### Quick Example
+```dart
+TeXWidget(math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
+```
+
+
+### TeXView
+This is an advanced widget, based on [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus), engineered for a rich user experience. It excels at rendering complex mathematical equations and offers a flexible environment for dynamic content through its support for:
+
+- **Inline HTML:** Directly embed and render HTML content.
+- **JavaScript:** Execute custom scripts for interactive elements.
+- **Markdown:** Display text with Markdown formatting.
+
+> [!CAUTION]
+Avoid using multiple `TeXView` instances on a single page, It's based on a `webview` and it can lead to performance issues. Instead, use `TeXWidget` or `TeX2SVG` for multiple TeX elements.
+
 
 ```dart
 TeXView(
@@ -235,64 +248,225 @@ TeXView(
    );
 ```
 
-### TeXView Document Example
-#### [TeXView Document Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_document_example.dart)
+### TeX2SVG
+A high-performance, pure Flutter solution for displaying mathematical notations. It accurately parses TeX expressions and renders them as resolution-independent SVGs via the [flutter_svg](https://pub.dev/packages/flutter_svg) library.
 
-### TeXView Markdown Example
-#### [TeXView Markdown Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_markdown_example.dart)
-
-### TeXView Quiz Example
-#### [TeXView Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
-
-### TeXView Custom Fonts Example
-#### [TeXView Custom Fonts Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_fonts_example.dart)
-
-### TeXView Image and Video Example
-#### [TeXView Image and Video Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_image_video_example.dart)
-
-### TeXView InkWell Example
-#### [TeXView InkWell Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_ink_well_example.dart)
-
-### Complete Example
-#### [Complete Example Code](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example)
+- **Pure Flutter**: Ensures seamless integration and optimal performance within your Flutter project.
+- **High-Quality Output**: Renders TeX as SVG for sharp, scalable graphics on any screen size.
+- **Full Render Control**: Provides a comprehensive API for fine-tuning the appearance and behavior of rendered equations.
 
 
-# Application Demo:
-<a href='https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+```dart
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 
-[Demo Source](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example)
+main() async {
+  await TeXRenderingServer.start();
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: TeX2SVGExample(),
+  ));
+}
 
-# Web Demo:
-You can find web demo at [https://flutter-tex.web.app](https://flutter-tex.web.app)
+class TeX2SVGExample extends StatefulWidget {
+  const TeX2SVGExample({super.key});
 
-# Api Changes:
-* Please see [CHANGELOG.md](https://github.com/Shahxad-Akram/flutter_tex/blob/master/CHANGELOG.md).
+  @override
+  State<TeX2SVGExample> createState() => _TeX2SVGExampleState();
+}
 
-# Api Usage:
-- `children:` A list of `TeXViewWidget`
+class _TeX2SVGExampleState extends State<TeX2SVGExample> {
+  double fontSize = 18.0;
+  TextStyle baseStyle = TextStyle(fontSize: 18.0, color: Colors.black);
 
-- **`TeXViewWidget`**
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text("TeX2SVG Example"),
+      ),
+      body: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(16.0),
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.red, width: 4),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Quadratic Formula",
+                    style: baseStyle.copyWith(
+                      fontSize: fontSize * 1.5,
+                      color: Colors.black,
+                    )),
+                RichText(
+                  text: TextSpan(
+                    style: baseStyle,
+                    children: <InlineSpan>[
+                      const TextSpan(text: 'When '),
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: TeX2SVG(
+                          teXInputType: TeXInputType.teX,
+                          math: r"a \ne 0",
+                        ),
+                      ),
+                      const TextSpan(text: ', there are two solutions to'),
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: TeX2SVG(
+                          math: r"ax^2 + bx + c = 0",
+                        ),
+                      ),
+                      const TextSpan(text: ' and they are:'),
+                    ],
+                  ),
+                ),
+                Divider(
+                  height: 20,
+                  color: Colors.transparent,
+                ),
+                TeX2SVG(
+                  math: r"""x = {-b \pm \sqrt{b^2-4ac} \over 2a}""",
+                  formulaWidgetBuilder: (context, svg) {
+                    double displayFontSize = fontSize * 3;
+                    return SvgPicture.string(
+                      svg,
+                      height: displayFontSize,
+                      width: displayFontSize,
+                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                    );
+                  },
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+# More Examples
+
+- ### [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart)
+
+- ### [TeX2SVG Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex2svg_example.dart)
+
+- ### [TeXView Document Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_document_example.dart)
+
+- ### [TeXView Markdown Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_markdown_example.dart)
+
+- ### [TeXView Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+
+- ### [TeXView Custom Fonts Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_fonts_example.dart)
+
+- ### [TeXView Image and Video Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_image_video_example.dart)
+
+- ### [TeXView InkWell Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_ink_well_example.dart)
+
+
+# MathJax Configurations - `TeXView`
+To apply a custom MathJax configuration, create a file named `flutter_tex.js` in the root of your project's `assets` directory, your project structure should look like this:
+
+```text
+your_flutter_app/
+├── assets/
+│   └── flutter_tex.js
+├── lib/
+...
+```
+and make sure to add this into `pubspec.yaml` like:
+
+```yaml
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/flutter_tex.js
+```
+
+An example `flutter_tex.js` file:
+
+```js
+window.MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    },
+    svg: {
+        fontCache: 'global'
+    }
+};
+```
+
+For more info please refer to the [MathJax Docs](https://docs.mathjax.org/en/latest/basic/mathjax.html)
+
+# Custom Fonts - `TeXView`
+To use custom fonts for `TeXView`, create a create a file named `flutter_tex.css` in the root of your project's `assets` directory, this style file should define your custom fonts. Your project structure should look like this:
+
+```textyour_flutter_app/
+├── assets/
+│   ├── fonts/
+│   └── flutter_tex.css
+├── lib/
+...
+```
+and make sure to add this into `pubspec.yaml` like:
+```yaml
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/flutter_tex.css
+```
+
+An example `flutter_tex.css` file defining a custom font:
+
+```css
+@font-face {
+    font-family: 'army';
+    src: url("fonts/Army.ttf");
+}
+```
+Then you can use this custom font in your `TeXViewStyle` like this:
+
+```dart
+TeXViewStyle(
+  fontStyle: TeXViewFontStyle(
+      fontFamily: 'army'),
+)
+```
+
+
+# API Usage - `TeXView`
+- `children` A list of `TeXViewWidget`
+- `heightOffset` Height offset to be added to the rendered height.
+
+- **`TeXViewWidget`s**
     - `TeXViewDocument` Holds TeX data by using a raw string e.g. `r"""$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$<br> """` You can also put HTML and Javascript code in it.
     - `TeXViewMarkdown` Holds markdown data.
     - `TeXViewContainer` Holds a single `TeXViewWidget` with styling.
     - `TeXViewImage` renders image from assets or network.
     - `TeXViewColumn` holds a list of `TeXViewWidget` vertically.
-    - `TeXViewInkWell` for listening tap events. Its child and id is mandatory.
-    - `TeXViewGroup` a group of `TeXViewGroupItem` usually used to create quiz layout.
+    - `TeXViewInkWell` for listening tap events..
     - `TeXViewDetails` like html `<details>`.
 
 
 - `TeXViewStyle()` You can style each and everything using `TeXViewStyle()` or by using custom `CSS` code by `TeXViewStyle.fromCSS()` where you can pass hard coded String containing CSS code. For more information please check the example.
     
 
-- `loadingWidgetBuilder:` Show a loading widget before rendering completes.
+- `loadingWidgetBuilder` Shows a loading widget before rendering completes.
 
-- `onRenderFinished:` Callback with the rendered page height, when TEX rendering finishes.
+- `onRenderFinished` Callback with the rendered page height, when TEX rendering finishes.
 
 For more please see the [Example](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example).
 
-# ToDo
-- MathJax configurations from Flutter.
-
-# Limitations:
-- Please avoid using too many `TeXView`s in a single page, because this is based on [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) a complete web browser. Which may cause slowing down your app. I am trying to add all necessary widgets within `TeXView`, So please prefer to use `TeXViewWidget`. You can check [example folder](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example) for details. If you find any problem you can [report an issue](https://github.com/Shahxad-Akram/flutter_tex/issues/new).
+# API Changes
+* Please see [CHANGELOG.md](https://github.com/Shahxad-Akram/flutter_tex/blob/master/CHANGELOG.md).

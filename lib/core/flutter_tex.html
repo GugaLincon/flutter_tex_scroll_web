@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
 
-    <link crossorigin="anonymous" href="flutter_tex.css" rel="stylesheet">
+    <!-- Load scripts and Styles from the app assets -->
+    <script src="../../../assets/flutter_tex.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../../assets/flutter_tex.css" type="text/css">
+
+    <!-- Flutter TeX styles and scripts -->
+    <link rel="stylesheet" href="flutter_tex.css" type="text/css">
     <script src="flutter_tex.js" type="text/javascript"></script>
-    <script src="mathjax.js" id="MathJax-script"></script>
+    <script src="mathjax_core.js" id="MathJax-script"></script>
+
 
     <title>Flutter TeX</title>
 
@@ -18,11 +24,10 @@
     <div id="TeXView"></div>
 
     <script>
-
         function renderTeXView(onCompleteCallback) {
             MathJax.typesetPromise(["#TeXView"]).then(() => {
                 onCompleteCallback();
-                console.log("MathJax typesetting complete");
+                console.log("MathJax typesetting complete.");
             }).catch((err) => {
                 console.error("Error during MathJax typesetting:", err);
             });
