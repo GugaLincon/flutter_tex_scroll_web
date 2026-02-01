@@ -65,9 +65,9 @@ external set onTapCallback(JSFunction callback);
 ///
 /// This function is called from the Dart side to initialize a specific
 /// TeX view instance within its iframe.
-@JS('initTeXViewWeb')
-external void initTeXViewWeb(
-    Window iframeContentWindow, String iframId, String flutterTeXData);
+@JS('initTeXView')
+external void initTeXView(
+    Window context, String flutterTeXData, bool isWeb, String iframeId);
 
 /// A JavaScript interop binding for the `mathJaxLiteDOM.teX2SVG` function.
 ///

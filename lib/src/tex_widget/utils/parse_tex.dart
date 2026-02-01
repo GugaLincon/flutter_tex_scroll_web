@@ -7,17 +7,17 @@ class TeXSegment {
   TeXSegment(this.text, this.type);
 }
 
+// Corrected Order: More specific patterns (double delimiters) come first.
+final RegExp _latexRegex = RegExp(
+  "${TeXDelimiter.displayDollar.delimiter}|${TeXDelimiter.diplayBrackets.delimiter}|${TeXDelimiter.inlineDollar.delimiter}|${TeXDelimiter.inlineBrackets.delimiter}",
+);
+
 List<TeXSegment> parseTeX(String latexString) {
   final List<TeXSegment> parsedTeXSegments = [];
 
-  // Corrected Order: More specific patterns (double delimiters) come first.
-  final RegExp latexRegex = RegExp(
-    "${TeXDelimiter.displayDollar.delimiter}|${TeXDelimiter.diplayBrackets.delimiter}|${TeXDelimiter.inlineDollar.delimiter}|${TeXDelimiter.inlineBrackets.delimiter}",
-  );
-
   int lastEnd = 0;
 
-  for (final RegExpMatch match in latexRegex.allMatches(latexString)) {
+  for (final RegExpMatch match in _latexRegex.allMatches(latexString)) {
     if (match.start > lastEnd) {
       final String textSegment = latexString.substring(lastEnd, match.start);
       if (textSegment.isNotEmpty) {

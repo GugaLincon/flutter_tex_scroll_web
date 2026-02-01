@@ -5,7 +5,7 @@ import 'package:flutter_tex/src/tex_widget/utils/parse_tex.dart';
 /// A widget to render TeX segments, which can be inline or display math.
 /// Currently, it only supports rendering TeX.
 
-class TeXWidget extends StatelessWidget {
+class TeXWidget extends StatefulWidget {
   /// A raw TeX string to be rendered.
   final String math;
 
@@ -33,17 +33,40 @@ class TeXWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final segments = parseTeX(math);
-    if (segments.isEmpty) {
-      return const SizedBox.shrink();
+  State<TeXWidget> createState() => _TeXWidgetState();
+}
+
+class _TeXWidgetState extends State<TeXWidget> {
+  late List<TeXSegment> _segments;
+
+  @override
+  void initState() {
+    super.initState();
+    _parseMath();
+  }
+
+  @override
+  void didUpdateWidget(TeXWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Only re-parse if the math string actually changed
+    if (oldWidget.math != widget.math) {
+      _parseMath();
     }
+  }
+
+  void _parseMath() {
+    _segments = parseTeX(widget.math);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_segments.isEmpty) return const SizedBox.shrink();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
-      children: _buildChildren(context, segments),
+      children: _buildChildren(context, _segments),
     );
   }
 
@@ -68,7 +91,7 @@ class TeXWidget extends StatelessWidget {
       switch (segment.type) {
         case TeXSegmentType.text:
           currentRichTextSpans
-              .add(textWidgetBuilder?.call(context, segment.text) ??
+              .add(widget.textWidgetBuilder?.call(context, segment.text) ??
                   TextSpan(
                       text: segment.text,
                       style: TextStyle(
@@ -78,7 +101,8 @@ class TeXWidget extends StatelessWidget {
         case TeXSegmentType.inline:
           currentRichTextSpans.add(WidgetSpan(
               alignment: PlaceholderAlignment.middle,
-              child: inlineFormulaWidgetBuilder?.call(context, segment.text) ??
+              child: widget.inlineFormulaWidgetBuilder
+                      ?.call(context, segment.text) ??
                   Math2SVG(
                     math: segment.text,
                   )));
@@ -86,8 +110,8 @@ class TeXWidget extends StatelessWidget {
         case TeXSegmentType.display:
           flushSpans();
 
-          columnChildren
-              .add(displayFormulaWidgetBuilder?.call(context, segment.text) ??
+          columnChildren.add(
+              widget.displayFormulaWidgetBuilder?.call(context, segment.text) ??
                   Center(
                     child: Math2SVG(
                       math: segment.text,

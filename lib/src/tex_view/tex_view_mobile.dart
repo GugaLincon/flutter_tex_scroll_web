@@ -117,12 +117,12 @@ class TeXViewState extends State<TeXView>
       return; // Don't render if the controller isn't ready.
     }
 
-    String currentRawData = getRawData(widget);
+    String currentRawData = await getRawDataAsync(widget);
 
     // Only re-render if the content has actually changed.
     if (currentRawData != _oldRawData) {
       await teXRenderingController.webViewControllerPlus
-          .runJavaScript('initTeXViewMobile($currentRawData);');
+          .runJavaScript('initTeXView(window, $currentRawData, false, "");');
       _oldRawData = currentRawData;
     }
   }

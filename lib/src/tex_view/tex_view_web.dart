@@ -102,13 +102,13 @@ class TeXViewState extends State<TeXView>
   /// This method generates the raw data from the widget's properties,
   /// and if it has changed, it calls the JavaScript function `initTeXViewWeb`
   /// to update the content.
-  void _renderTeXView() {
+  void _renderTeXView() async {
     if (!_isReady) {
       return; // Don't render if the iframe isn't ready.
     }
-    String currentRawData = getRawData(widget);
+    String currentRawData = await getRawDataAsync(widget);
     if (currentRawData != _oldRawData) {
-      initTeXViewWeb(_iframeContentWindow, _iframeId, currentRawData);
+      initTeXView(_iframeContentWindow, currentRawData, true, _iframeId);
       _oldRawData = currentRawData;
     }
   }
