@@ -1,6 +1,7 @@
 ## [5.2.1]
 * `TeX2SVG` renamed to `Math2SVG`.
-
+* Dependencies upgraded.
+  
 ## [5.2.0]
 * MathJax upgraded to version 4.1.0
 * Optimized rendering performance.

@@ -21,6 +21,8 @@
     - [TeXWidget](#texwidget)
     - [TeXView](#texview)
     - [Math2SVG](#math2svg)
+- [More Examples](#more-examples)
+- [MathJax Configurations - `TeXView`](#mathjax-configurations---texview)
 - [Custom Fonts - `TeXView`](#custom-fonts---texview)
 - [API Usage - `TeXView`](#api-usage---texview)
 - [API Changes](#api-changes)
@@ -73,7 +75,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
 
 ```yaml
 dependencies:
-  flutter_tex: ^5.2.0
+  flutter_tex: ^5.2.1
 ``` 
 
 **2:** You can install packages from the command line:
@@ -439,7 +441,8 @@ class _Math2SVGExampleState extends State<Math2SVGExample> {
       ),
     );
   }
-}```
+}
+```
 
 # More Examples
 
