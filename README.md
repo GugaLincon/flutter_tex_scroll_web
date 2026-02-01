@@ -57,13 +57,13 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
 - ## [Click to Watch Demo on Youtube](https://www.youtube.com/watch?v=YiNbVEXV_NM)
 
 # Screenshots
- |                                                 TeXWidget                                                  |                                                  Quiz Sample                                                  |                                               TeX Document                                               |
- | :--------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
- | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_widget.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_quiz.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view.png"/> |
+ |                                                TeXWidget                                                 |                                                 Quiz Sample                                                 |                                              TeX Document                                              |
+ | :------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
+ | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_widget.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_quiz.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view.png"/> |
 
- |                                                  Custom Fonts                                                  |                                                    Image & Video                                                     |                                                     Markdown                                                      |
- | :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
- | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_fonts.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_image_video.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_markdown.png"/> |
+ |                                                 Custom Fonts                                                 |                                                   Image & Video                                                    |                                                    Markdown                                                     |
+ | :----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: |
+ | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_fonts.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_image_video.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_markdown.png"/> |
 
 
 # How to setup?
@@ -75,7 +75,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
 
 ```yaml
 dependencies:
-  flutter_tex: ^5.2.1
+  flutter_tex: ^5.2.2
 ``` 
 
 **2:** You can install packages from the command line:
@@ -194,7 +194,7 @@ main() async {
 Now you can use `TeXView`,`TeXWidget` or `Math2SVG` as a widgets:
 
 ### TeXWidget
-A simple but a powerful pure Flutter widget based on `Math2SVG`. See [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart) for more details:
+A simple but a powerful pure Flutter widget based on `Math2SVG`. See [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_widget_example.dart) for more details:
 
 ```dart
 TeXWidget(math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
@@ -222,7 +222,7 @@ TeXView(
               style: TeXViewStyle(textAlign: TeXViewTextAlign.center)),
           TeXViewContainer(
             child: TeXViewImage.network(
-                'https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/example/assets/flutter_tex_banner.png'),
+                'https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/example/assets/flutter_tex_banner.png'),
             style: TeXViewStyle(
               margin: TeXViewMargin.all(10),
               borderRadius: TeXViewBorderRadius.all(20),
@@ -446,21 +446,21 @@ class _Math2SVGExampleState extends State<Math2SVGExample> {
 
 # More Examples
 
-- ### [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart)
+- ### [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_widget_example.dart)
 
-- ### [Math2SVG Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/math2svg_example.dart)
+- ### [Math2SVG Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/math2svg_example.dart)
 
-- ### [TeXView Document Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_document_example.dart)
+- ### [TeXView Document Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_document_example.dart)
 
-- ### [TeXView Markdown Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_markdown_example.dart)
+- ### [TeXView Markdown Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_markdown_example.dart)
 
-- ### [TeXView Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+- ### [TeXView Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_quiz_example.dart)
 
-- ### [TeXView Custom Fonts Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_fonts_example.dart)
+- ### [TeXView Custom Fonts Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_fonts_example.dart)
 
-- ### [TeXView Image and Video Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_image_video_example.dart)
+- ### [TeXView Image and Video Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_image_video_example.dart)
 
-- ### [TeXView InkWell Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_ink_well_example.dart)
+- ### [TeXView InkWell Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_ink_well_example.dart)
 
 
 # MathJax Configurations - `TeXView`
@@ -555,7 +555,7 @@ TeXViewStyle(
 
 - `onRenderFinished` Callback with the rendered page height, when TEX rendering finishes.
 
-For more please see the [Example](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example).
+For more please see the [Example](https://github.com/Shahxad-Akram/flutter_tex/tree/main/example).
 
 # API Changes
-* Please see [CHANGELOG.md](https://github.com/Shahxad-Akram/flutter_tex/blob/master/CHANGELOG.md).
+* Please see [CHANGELOG.md](https://github.com/Shahxad-Akram/flutter_tex/blob/main/CHANGELOG.md).

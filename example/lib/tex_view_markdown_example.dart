@@ -164,7 +164,7 @@ TeXView(
               style: TeXViewStyle(textAlign: TeXViewTextAlign.center)),
           TeXViewContainer(
             child: TeXViewImage.network(
-                'https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/example/assets/flutter_tex_banner.png'),
+                'https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/example/assets/flutter_tex_banner.png'),
             style: TeXViewStyle(
               margin: TeXViewMargin.all(10),
               borderRadius: TeXViewBorderRadius.all(20),
@@ -191,34 +191,34 @@ TeXView(
 ```
 
 ### TeXView Document Example
-#### [TeXView Document Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_document_example.dart)
+#### [TeXView Document Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_document_example.dart)
 
 ### TeXView Markdown Example
-#### [TeXView Markdown Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_markdown_example.dart)
+#### [TeXView Markdown Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_markdown_example.dart)
 
 ### TeXView Quiz Example
-#### [TeXView Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+#### [TeXView Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_quiz_example.dart)
 
 ### TeXView Custom Fonts Example
-#### [TeXView Custom Fonts Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_fonts_example.dart)
+#### [TeXView Custom Fonts Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_fonts_example.dart)
 
 ### TeXView Image and Video Example
-#### [TeXView Image and Video Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_image_video_example.dart)
+#### [TeXView Image and Video Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_image_video_example.dart)
 
 ### TeXView InkWell Example
-#### [TeXView InkWell Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_ink_well_example.dart)
+#### [TeXView InkWell Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_ink_well_example.dart)
 
 ### Complete Example
-#### [Complete Example Code](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example)
+#### [Complete Example Code](https://github.com/Shahxad-Akram/flutter_tex/tree/main/example)
 
 
-[Demo Source](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example)
+[Demo Source](https://github.com/Shahxad-Akram/flutter_tex/tree/main/example)
 
 # Web Demo:
 You can find web demo at [https://flutter-tex.web.app](https://flutter-tex.web.app)
 
 # Api Changes:
-* Please see [CHANGELOG.md](https://github.com/Shahxad-Akram/flutter_tex/blob/master/CHANGELOG.md).
+* Please see [CHANGELOG.md](https://github.com/Shahxad-Akram/flutter_tex/blob/main/CHANGELOG.md).
 
 # Api Usage:
 - `children:` A list of `TeXViewWidget`
@@ -241,10 +241,10 @@ You can find web demo at [https://flutter-tex.web.app](https://flutter-tex.web.a
 
 - `onRenderFinished:` Callback with the rendered page height, when TEX rendering finishes.
 
-For more please see the [Example](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example).
+For more please see the [Example](https://github.com/Shahxad-Akram/flutter_tex/tree/main/example).
 
 # Limitations:
-- Please avoid using too many `TeXView` in a single page, because this is based on [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) a complete web browser. Which may cause slowing down your app. I am trying to add all necessary widgets within `TeXView`, So please prefer to use `TeXViewWidget`. You can check [example folder](https://github.com/Shahxad-Akram/flutter_tex/tree/master/example) for details. If you find any problem you can [report an issue](https://github.com/Shahxad-Akram/flutter_tex/issues/new).
+- Please avoid using too many `TeXView` in a single page, because this is based on [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) a complete web browser. Which may cause slowing down your app. I am trying to add all necessary widgets within `TeXView`, So please prefer to use `TeXViewWidget`. You can check [example folder](https://github.com/Shahxad-Akram/flutter_tex/tree/main/example) for details. If you find any problem you can [report an issue](https://github.com/Shahxad-Akram/flutter_tex/issues/new).
 
 
 """;

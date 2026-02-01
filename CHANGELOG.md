@@ -1,3 +1,6 @@
+## [5.2.2]
+* broken links fixed in readme.
+
 ## [5.2.1]
 * `TeX2SVG` renamed to `Math2SVG`.
 * Dependencies upgraded.
@@ -7,10 +10,10 @@
 * Optimized rendering performance.
 
 ## [5.1.10]
-* `TeXViewGroupItem` and `TeXViewGroup` have been removed see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+* `TeXViewGroupItem` and `TeXViewGroup` have been removed see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_quiz_example.dart)
 
 ## [5.1.9]
-* [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart) updated with radio buttons.
+* [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_quiz_example.dart) updated with radio buttons.
 
 ## [5.1.8]
 * Minor fixes.
@@ -40,13 +43,13 @@
 * MathJax custom config problems fixed for web.
 
 ## [5.1.0]
-* `TeXWidget` added, see [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart)
+* `TeXWidget` added, see [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_widget_example.dart)
 
 ## [5.0.9]
-* `TeXViewGroup` and `TeXViewGroupItem` have been deprecated see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+* `TeXViewGroup` and `TeXViewGroupItem` have been deprecated see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_quiz_example.dart)
 
 ## [5.0.8]
-* `TeXViewGroup` and `TeXViewGroupItem` have been deprecated see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
+* `TeXViewGroup` and `TeXViewGroupItem` have been deprecated see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_view_quiz_example.dart)
 
 ## [5.0.7]
 * MathJax custom configuration implementation, see the docs.
@@ -93,20 +96,20 @@
 
 ## [4.0.14]
 * Minmum flutter SDK requirement is 3.27.x
-* Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib) before using this version.
+* Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib) before using this version.
 
 ## [4.0.13]
 * Minmum flutter SDK requirement is 3.27.x
-* Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib) before using this version.
+* Please refer to the [TeXView example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib) before using this version.
 
 ## [4.0.12]
 * Fixed color alpha value calculation in getColor function [#200](https://github.com/Shahxad-Akram/flutter_tex/pull/200)
 
 ## [4.0.11]
-* API changes, please refer to [TeXView Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib)
+* API changes, please refer to [TeXView Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib)
 
 ## [4.0.10]
-* API changes, please refer to [TeXView Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib)
+* API changes, please refer to [TeXView Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib)
 * Performance optimizations.
 
 ## [4.0.9]
