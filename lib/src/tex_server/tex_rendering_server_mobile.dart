@@ -35,66 +35,17 @@ class TeXRenderingServer {
     await teXRenderingController.initController();
   }
 
-  /// Initializes the TeX input processor in the rendering engine.
-  ///
-  /// This allows the engine to process raw TeX strings.
-  /// An optional list of [packages] can be provided to extend TeX functionality.
-  static Future<String> initTeXInput({List<String> packages = const []}) async {
-    try {
-      await teXRenderingController.webViewControllerPlus.runJavaScript(
-          "MathJax.flutterTeXLiteDOM.initTeXInput(${jsonEncode(packages)});");
-      return "TeX Input Initialized";
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error in initTeXInput: $e');
-      }
-      return Future.error('Failed to initialize TeX input: $e');
-    }
-  }
-
-  /// Initializes the MathML input processor in the rendering engine.
-  ///
-  /// This allows the engine to process MathML strings.
-  static Future<String> initMathMLInput() async {
-    try {
-      await teXRenderingController.webViewControllerPlus
-          .runJavaScript("MathJax.flutterTeXLiteDOM.initMathMLInput();");
-      return "MathML Input Initialized";
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error in initMathMLInput: $e');
-      }
-      return Future.error('Failed to initialize MathML input: $e');
-    }
-  }
-
-  /// Initializes the AsciiMath input processor in the rendering engine.
-  ///
-  /// This allows the engine to process AsciiMath strings.
-  static Future<String> initAsciiMathInput() async {
-    try {
-      await teXRenderingController.webViewControllerPlus
-          .runJavaScript("MathJax.flutterTeXLiteDOM.initAsciiMathInput();");
-      return "AsciiMath Input Initialized";
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error in initAsciiMathInput: $e');
-      }
-      return Future.error('Failed to initialize AsciiMath input: $e');
-    }
-  }
-
   /// Converts a TeX, MathML, or AsciiMath string into an SVG image.
   ///
-  /// The [math] string is processed according to the specified [teXInputType].
+  /// The [math] string is processed according to the specified [mathInputType].
   /// Returns a future that completes with the SVG string.
   /// Throws an error if the input is empty or if rendering fails.
   static Future<String> teX2SVG(
-      {required String math, required TeXInputType teXInputType}) {
+      {required String math, required MathInputType mathInputType}) {
     try {
       return teXRenderingController.webViewControllerPlus
           .runJavaScriptReturningResult(
-              "MathJax.flutterTeXLiteDOM.teX2SVG(${jsonEncode(math)}, '${teXInputType.type}');")
+              "MathJax.flutterTeXLiteDOM.teX2SVG(${jsonEncode(math)}, '${mathInputType.type}');")
           .then((data) {
         if (math.trim().isEmpty) {
           return Future.error('TeX input cannot be empty.');

@@ -11,7 +11,6 @@ import 'package:flutter_tex_example/tex_widget_example.dart';
 
 main() async {
   await TeXRenderingServer.start();
-  await TeXRenderingServer.initTeXInput();
   runApp(const FlutterTeXExample());
 }
 

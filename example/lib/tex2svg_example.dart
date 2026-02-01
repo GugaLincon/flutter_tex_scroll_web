@@ -56,7 +56,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
                         child: Math2SVG(
-                          teXInputType: TeXInputType.teX,
+                          teXInputType: MathInputType.teX,
                           math: r"a \ne 0",
                         ),
                       ),
@@ -128,7 +128,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                                   <mn>0</mn>
                               </mrow>
                             </math>""",
-                  teXInputType: TeXInputType.mathML,
+                  teXInputType: MathInputType.mathML,
                   formulaWidgetBuilder: (context, svg) {
                     double displayFontSize = fontSize * 1.25;
                     return SvgPicture.string(
@@ -163,7 +163,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                     )),
                 Math2SVG(
                   math: r"""sum_(i=1)^n i^3=((n(n+1))/2)^2""",
-                  teXInputType: TeXInputType.asciiMath,
+                  teXInputType: MathInputType.asciiMath,
                   formulaWidgetBuilder: (context, svg) {
                     double displayFontSize = fontSize * 5;
                     return SvgPicture.string(

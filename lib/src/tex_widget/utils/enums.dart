@@ -1,11 +1,11 @@
-enum TeXInputType {
+enum MathInputType {
   teX("teX"),
   mathML("mathML"),
   asciiMath("asciiMath");
 
   final String type;
 
-  const TeXInputType(this.type);
+  const MathInputType(this.type);
 }
 
 enum TeXSegmentType {
