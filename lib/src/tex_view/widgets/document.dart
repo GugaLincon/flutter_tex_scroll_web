@@ -2,13 +2,21 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_view/utils/widget_meta.dart';
 import 'package:flutter_tex/src/tex_view/utils/style_utils.dart';
 
+/// A widget that renders a document containing HTML and TeX content.
+///
+/// This widget is the primary way to display mixed text and math content.
+/// It takes a raw string which can contain HTML tags (like `<br>`, `<b>`, etc.)
+/// and TeX code (like `$$...$$` or `\(...\)`).
 class TeXViewDocument extends TeXViewWidget {
-  /// Raw String containing HTML and TEX Code e.g. r"""$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$<br> """
+  /// The raw string containing HTML and TeX code.
+  ///
+  /// Example: `r"""$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$<br> """`
   final String data;
 
-  /// Style TeXView Widget with [TeXViewStyle].
+  /// The style to apply to the document.
   final TeXViewStyle? style;
 
+  /// Creates a [TeXViewDocument] with the content [data] and optional [style].
   const TeXViewDocument(this.data, {this.style});
 
   @override

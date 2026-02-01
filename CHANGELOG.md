@@ -1,3 +1,7 @@
+## [5.2.0]
+* MathJax upgraded to version 4.1.0
+* Optimized rendering performance.
+
 ## [5.1.10]
 * `TeXViewGroupItem` and `TeXViewGroup` have been removed see the [Quiz Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_quiz_example.dart)
 

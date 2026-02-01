@@ -1,3 +1,4 @@
+/// A Flutter package to render (MathML, TeX and LaTeX) on Mobile (Android, iOS) and Web.
 library;
 
 export 'package:flutter_tex/src/tex_view/styles/border.dart';

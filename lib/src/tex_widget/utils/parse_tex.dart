@@ -1,9 +1,14 @@
 import 'package:flutter_tex/flutter_tex.dart';
 
+/// A class representing a segment of TeX input.
 class TeXSegment {
+  /// The text content of the segment.
   final String text;
+
+  /// The type of the segment (text, inline, or display).
   final TeXSegmentType type;
 
+  /// Creates a new [TeXSegment] with the given [text] and [type].
   TeXSegment(this.text, this.type);
 }
 
@@ -12,6 +17,10 @@ final RegExp _latexRegex = RegExp(
   "${TeXDelimiter.displayDollar.delimiter}|${TeXDelimiter.diplayBrackets.delimiter}|${TeXDelimiter.inlineDollar.delimiter}|${TeXDelimiter.inlineBrackets.delimiter}",
 );
 
+/// Parses a raw TeX string into a list of [TeXSegment]s.
+///
+/// This function identifies LaTeX delimiters for display and inline math,
+/// splitting the string into corresponding segments of text and math.
 List<TeXSegment> parseTeX(String latexString) {
   final List<TeXSegment> parsedTeXSegments = [];
 

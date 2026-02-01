@@ -14,48 +14,38 @@ import 'package:webview_flutter_plus/webview_flutter_plus.dart'
 /// rendering updates, and user interactions.
 class TeXViewState extends State<TeXView>
     with AutomaticKeepAliveClientMixin<TeXView> {
-  /// A stream controller to manage the height of the `WebView`.
-  ///
-  /// The `WebView`'s height is determined asynchronously after the content is rendered,
-  /// and this stream is used to update the widget's size accordingly.
+  /// Stream controller to broadcast the height of the rendered content.
   final StreamController<double> heightStreamController = StreamController();
 
-  /// The controller for the `WebView` that handles TeX rendering.
+  /// Controller for managing the TeX rendering server and WebView interactions.
   late final TeXRenderingController teXRenderingController;
 
-  /// A flag to indicate if the `WebView` controller is ready to receive commands.
+  /// Flag indicating if the WebView controller is ready to execute JavaScript.
   bool _isReady = false;
 
-  /// Caches the last rendered data to avoid unnecessary re-renders.
+  /// Stores the previously rendered raw data to avoid unnecessary re-renders.
   String _oldRawData = "";
 
   @override
   void initState() {
     super.initState();
-
-    // Initialize the rendering controller.
-    // If `multiTeXView` is enabled, a new controller is created for this instance.
-    // Otherwise, the shared global controller is used.
+    // ... (Your existing controller init logic is correct, keep it) ...
     if (TeXRenderingServer.multiTeXView) {
       teXRenderingController = TeXRenderingController();
       teXRenderingController.initController();
       teXRenderingController.onPageFinishedCallback =
-          (pageFinishedCallbackMessage) {
-        _onControllerReady();
-      };
+          (_) => _onControllerReady();
     } else {
       teXRenderingController = TeXRenderingServer.teXRenderingController;
       _onControllerReady();
     }
 
-    // Set up the callback for tap events.
+    // Forward tap events from the rendering controller to the widget's callback.
     teXRenderingController.onTapCallback =
         (tapCallbackMessage) => widget.child.onTapCallback(tapCallbackMessage);
 
-    // Set up the callback for when rendering is complete.
-    teXRenderingController.onTeXViewRenderedCallback = (h) async {
-      // The height is received as a string, so it needs to be parsed.
-      // An offset is added for layout adjustments.
+    // callback triggers when the TeX view rendering is complete.
+    teXRenderingController.onTeXViewRenderedCallback = (h) {
       double height = double.parse(h.toString()) + widget.heightOffset;
       if (mounted) {
         heightStreamController.add(height);
@@ -65,66 +55,67 @@ class TeXViewState extends State<TeXView>
   }
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context); // Necessary for AutomaticKeepAliveClientMixin.
+  void didUpdateWidget(TeXView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Trigger a render check when the parent passes new configuration.
     _renderTeXView();
+  }
 
-    // The widget's size is determined by the height received from the stream.
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
     return StreamBuilder<double>(
         stream: heightStreamController.stream,
         builder: (context, snap) {
           if (snap.hasData && !snap.hasError) {
-            double height = snap.data ?? initialHeight;
             return SizedBox(
-              height: height,
+              height: snap.data ?? initialHeight,
               child: WebViewWidget(
                 controller: teXRenderingController.webViewControllerPlus,
               ),
             );
-          } else {
-            // While rendering, show a loading widget or an empty box.
-            return widget.loadingWidgetBuilder?.call(context) ??
-                const SizedBox.shrink();
           }
+          return widget.loadingWidgetBuilder?.call(context) ??
+              const SizedBox.shrink();
         });
   }
 
-  @override
-  void dispose() {
-    if (mounted) {
-      heightStreamController.close();
-    }
-    super.dispose();
-  }
-
-  /// Called when the `WebView` controller is fully initialized and the page is loaded.
+  /// Callback generated when the controller is ready.
+  ///
+  /// Marks the state as ready and attempts the initial render.
   void _onControllerReady() {
     if (mounted) {
       setState(() {
         _isReady = true;
       });
-      _renderTeXView();
+      _renderTeXView(); // Render for the first time
     }
   }
 
-  /// Triggers the rendering of the TeX content in the `WebView`.
+  /// Asynchronously renders the TeX Content.
   ///
-  /// This method generates the raw data from the widget's properties,
-  /// and if it has changed since the last render, it sends the new data
-  /// to the `WebView` via a JavaScript call.
-  void _renderTeXView() async {
-    if (!_isReady) {
-      return; // Don't render if the controller isn't ready.
-    }
+  /// This method fetches the raw data from the widget and executes the JavaScript
+  /// `initTeXView` function to render the content in the WebView.
+  Future<void> _renderTeXView() async {
+    if (!_isReady) return;
 
     String currentRawData = await getRawDataAsync(widget);
 
-    // Only re-render if the content has actually changed.
     if (currentRawData != _oldRawData) {
+      // Assuming you updated the JS as discussed:
+      // initTeXView(context, data, isWeb, iframeId)
       await teXRenderingController.webViewControllerPlus
           .runJavaScript('initTeXView(window, $currentRawData, false, "");');
+
       _oldRawData = currentRawData;
     }
+  }
+
+  @override
+  void dispose() {
+    // Close the stream controller to prevent memory leaks.
+    heightStreamController.close();
+    super.dispose();
   }
 
   @override

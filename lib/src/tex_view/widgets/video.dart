@@ -2,12 +2,16 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_view/utils/widget_meta.dart';
 import 'package:flutter_tex/src/tex_view/utils/style_utils.dart';
 
+/// A widget that embeds a video (e.g., YouTube) within a [TeXView].
 class TeXViewVideo extends TeXViewWidget {
-  /// Uri for Image.
+  /// The URL of the video.
   final String url;
 
   final String _type;
 
+  /// Creates a [TeXViewVideo] that embeds a YouTube video.
+  ///
+  /// The [url] must be a valid YouTube video URL.
   const TeXViewVideo.youtube(this.url) : _type = 'tex-view-video-youtube';
 
   @override

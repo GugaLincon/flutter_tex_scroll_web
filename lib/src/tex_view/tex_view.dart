@@ -45,7 +45,7 @@ class TeXView extends StatefulWidget {
     super.key,
     required this.child,
     this.style,
-    this.wantKeepAlive = false,
+    this.wantKeepAlive = true,
     this.heightOffset = 5.0,
     this.loadingWidgetBuilder,
     this.onRenderFinished,

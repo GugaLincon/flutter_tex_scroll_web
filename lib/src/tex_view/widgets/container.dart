@@ -2,13 +2,21 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_view/utils/widget_meta.dart';
 import 'package:flutter_tex/src/tex_view/utils/style_utils.dart';
 
+/// A widget that contains a single child [TeXViewWidget] with styling options.
+///
+/// [TeXViewContainer] is useful for wrapping a widget to apply specific styles
+/// (like padding, margins, borders, or background colors) to it.
 class TeXViewContainer implements TeXViewWidget {
-  /// A [TeXViewWidget] as child.
+  /// The [TeXViewWidget] child to be wrapped by this container.
   final TeXViewWidget child;
 
-  /// Style TeXView Widget with [TeXViewStyle].
+  /// The style to apply to the container.
+  ///
+  /// Use [TeXViewStyle] to define properties such as height, width, padding,
+  /// margin, and decoration.
   final TeXViewStyle? style;
 
+  /// Creates a [TeXViewContainer] with a required [child] and optional [style].
   const TeXViewContainer({required this.child, this.style});
 
   @override

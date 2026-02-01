@@ -2,20 +2,30 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_view/utils/widget_meta.dart';
 import 'package:flutter_tex/src/tex_view/utils/style_utils.dart';
 
+/// A widget that responds to taps with a visual ripple effect.
+///
+/// This widget wraps a [child] widget and triggers the [onTap] callback when tapped.
 class TeXViewInkWell implements TeXViewWidget {
+  /// A unique identifier for this ink well.
+  ///
+  /// This ID is passed to the [onTap] callback to identify which widget was tapped.
   final String id;
 
-  /// A [TeXViewWidget] as child.
+  /// The child widget to be wrapped by the ink well.
   final TeXViewWidget child;
 
-  /// Style TeXView Widget with [TeXViewStyle].
+  /// The style to apply to the ink well container.
   final TeXViewStyle? style;
 
+  /// Whether to show a ripple effect on tap. Defaults to `true`.
   final bool? rippleEffect;
 
-  /// On Tap Callback when a tap is triggered.
+  /// A callback function that is called when the widget is tapped.
+  ///
+  /// The callback receives the [id] of the widget.
   final Function(String id)? onTap;
 
+  /// Creates a [TeXViewInkWell] widget.
   const TeXViewInkWell(
       {required this.child,
       required this.id,

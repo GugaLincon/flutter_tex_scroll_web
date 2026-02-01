@@ -19,8 +19,7 @@ const double initialHeight = 1;
 /// - `data`: The hierarchical structure of the [TeXViewWidget] children.
 /// - `style`: The CSS styles to be applied to the root container.
 Future<String> getRawDataAsync(TeXView teXView) async {
-  // Pass only the necessary map data to the isolate, not the Widget itself
-  final mapData = {
+  final Map<String, dynamic> dataMap = {
     'meta': const TeXViewWidgetMeta(
             tag: 'div', classList: 'tex-view', node: Node.root)
         .toJson(),
@@ -28,5 +27,6 @@ Future<String> getRawDataAsync(TeXView teXView) async {
     'style': teXView.style?.initStyle() ?? teXViewDefaultStyle
   };
 
-  return await compute(jsonEncode, mapData);
+  // 2. Offload the heavy string serialization to a background thread.
+  return compute(jsonEncode, dataMap);
 }
