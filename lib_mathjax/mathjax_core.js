@@ -68,7 +68,7 @@ import '@mathjax/mathjax-mhchem-font-extension/svg.js';
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Import additional MathJax components
+
 import { mathjax } from '@mathjax/src/js/mathjax.js';
 import { liteAdaptor } from '@mathjax/src/js/adaptors/liteAdaptor.js';
 import { RegisterHTMLHandler } from '@mathjax/src/js/handlers/html.js';
@@ -76,88 +76,95 @@ import { TeX } from '@mathjax/src/js/input/tex.js';
 import { MathML } from '@mathjax/src/js/input/mathml.js';
 import { AsciiMath } from '@mathjax/src/js/input/asciimath.js';
 import { SVG } from '@mathjax/src/js/output/svg.js';
-import { GLOBAL } from '@mathjax/src/js/components/global.js';
 
-// Class definition for FlutterTeXLiteDOM
+// Define default packages outside the class to ensure they are never null
+const DEFAULT_TEX_PACKAGES = ['base', 'ams', 'newcommand', 'textmacros', 'noundefined', 'require', 'autoload', 'configmacros'];
+
 class FlutterTeXLiteDOM {
-
   constructor() {
-    // Initialize options and adaptor
     this.options = {};
     this.adaptor = liteAdaptor();
     RegisterHTMLHandler(this.adaptor);
     this.outputJax = new SVG();
+    this.docs = new Map();
   }
 
-  // Initialize TeX document
-  initTeXDoc() {
-    this.teXDoc = mathjax.document('', {
-      InputJax: new TeX({
-        packages: ['base',
-          'ams',
-          'newcommand',
-          'textmacros',
-          'noundefined',
-          'require',
-          'autoload',
-          'configmacros'].concat(tex_packages || []),
+  #createDoc(Type, isTeX = false) {
+    let inputJax;
+
+    if (isTeX) {
+      // Safely grab external packages
+      const externalPackages = (typeof window.tex_packages !== 'undefined' && window.tex_packages !== null) 
+        ? window.tex_packages 
+        : [];
+      
+      inputJax = new TeX({
         ...this.options,
-      }), OutputJax: this.outputJax
-    });
-    return this.teXDoc;
-  }
-
-  // Initialize MathML document
-  initMathMLDoc() {
-    this.mathmlDoc = mathjax.document('', { InputJax: new MathML(this.options), OutputJax: this.outputJax });
-    return this.mathmlDoc;
-  }
-
-  // Initialize AsciiMath document
-  initAsciiMathDoc() {
-    this.asciiDoc = mathjax.document('', { InputJax: new AsciiMath(this.options), OutputJax: this.outputJax });
-    return this.asciiDoc;
-  }
-
-  // Convert TeX to SVG
-  teX2SVG(math, inputType, options) {
-    return this.adaptor.innerHTML(this.#getJaxDoc(inputType).convert(math, options));
-  }
-
-  // Get the appropriate Jax document based on input type
-  #getJaxDoc(input) {
-    switch (input) {
-      case 'teX':
-        return this.teXDoc || this.initTeXDoc();
-      case 'mathML':
-        return this.mathmlDoc || this.initMathMLDoc();
-      case 'asciiMath':
-        return this.asciiDoc || this.initAsciiMathDoc();
-      default:
-        return this.teXDoc || this.initTeXDoc();
+        // Ensure this is a flat array of strings with no nulls
+        packages: [...DEFAULT_TEX_PACKAGES, ...externalPackages].filter(p => typeof p === 'string')
+      });
+    } else {
+      inputJax = new Type(this.options);
     }
+
+    return mathjax.document('', {
+      InputJax: inputJax,
+      OutputJax: this.outputJax
+    });
+  }
+
+  math2SVG(math, inputType = 'teX', options = {}) {
+    try {
+      // Ensure math is a string and not null/undefined
+      const content = math || '';
+      const doc = this.#getJaxDoc(inputType);
+      
+      const node = doc.convert(content, options);
+      const svg = this.adaptor.innerHTML(node);
+      
+      // Clear internal state to prevent memory leaks
+      doc.clear(); 
+      
+      return svg;
+    } catch (e) {
+      console.error(`Error in math2SVG (${inputType}):`, e);
+      return ''; // Return empty string so Flutter doesn't crash
+    }
+  }
+
+  #getJaxDoc(input) {
+    if (this.docs.has(input)) return this.docs.get(input);
+
+    let doc;
+    switch (input) {
+      case 'mathML':
+        doc = this.#createDoc(MathML);
+        break;
+      case 'asciiMath':
+        doc = this.#createDoc(AsciiMath);
+        break;
+      case 'teX':
+      default:
+        doc = this.#createDoc(TeX, true);
+        break;
+    }
+    
+    this.docs.set(input, doc);
+    return doc;
   }
 }
 
-// Create an instance of FlutterTeXLiteDOM
 const flutterTeXLiteDOM = new FlutterTeXLiteDOM();
 
-// 1. Ensure MathJax global exists
+// Attach to window
 window.MathJax = window.MathJax || {};
-
-// 2. Attach your custom class to MathJax
 window.MathJax.flutterTeXLiteDOM = flutterTeXLiteDOM;
+window.MathJax.startup = window.MathJax.startup || { promise: Promise.resolve() };
 
-// 3. Attach the standard typesetPromise for HTML function
 window.MathJax.typesetPromise = (elements) => {
-  // If using the component system, startup handles this
-  if (startup && startup.promise) {
+  const startup = window.MathJax.startup;
+  if (startup.typeset) {
     return startup.promise.then(() => startup.typeset(elements));
   }
-  // Fallback to manual conversion if not using the component sequence
   return Promise.resolve();
 };
-
-// 4. Signal that everything is ready
-window.MathJax.startup = window.MathJax.startup || {};
-window.MathJax.startup.promise = Promise.resolve();

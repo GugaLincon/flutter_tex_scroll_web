@@ -44,7 +44,7 @@ class _Math2SVGState extends State<Math2SVG>
   void initState() {
     super.initState();
 
-    _texRenderingFuture = TeXRenderingServer.teX2SVG(
+    _texRenderingFuture = TeXRenderingServer.math2SVG(
       math: widget.math,
       mathInputType: widget.teXInputType,
     );

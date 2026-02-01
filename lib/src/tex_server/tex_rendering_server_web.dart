@@ -24,12 +24,12 @@ class TeXRenderingServer {
   /// Converts a TeX, MathML, or AsciiMath string into an SVG image on the web.
   ///
   /// The [math] string is processed according to the specified [mathInputType].
-  /// This method directly calls the external JavaScript function `mathJaxLiteDOMTeX2SVG`.
-  static Future<String> teX2SVG(
+  /// This method directly calls the external JavaScript function `mathJaxLiteDOMMath2SVG`.
+  static Future<String> math2SVG(
       {required String math, required MathInputType mathInputType}) {
     try {
       return Future<String>.value(
-          teX2SVGflutterTeXLiteDOM(math, mathInputType.type));
+          math2SVGflutterTeXLiteDOM(math, mathInputType.type));
     } catch (e) {
       if (kDebugMode) {
         print('Error in math2SVG: $e');
@@ -69,11 +69,11 @@ external set onTapCallback(JSFunction callback);
 external void initTeXView(
     Window context, String flutterTeXData, bool isWeb, String iframeId);
 
-/// A JavaScript interop binding for the `mathJaxLiteDOM.teX2SVG` function.
+/// A JavaScript interop binding for the `mathJaxLiteDOM.math2SVG` function.
 ///
 /// This function performs the actual conversion of a math string to an SVG.
-@JS('MathJax.flutterTeXLiteDOM.teX2SVG')
-external String teX2SVGflutterTeXLiteDOM(String math, String inputType);
+@JS('MathJax.flutterTeXLiteDOM.math2SVG')
+external String math2SVGflutterTeXLiteDOM(String math, String inputType);
 
 /// Manages the global callbacks and communication between JavaScript and Dart for web.
 ///

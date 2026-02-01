@@ -40,12 +40,12 @@ class TeXRenderingServer {
   /// The [math] string is processed according to the specified [mathInputType].
   /// Returns a future that completes with the SVG string.
   /// Throws an error if the input is empty or if rendering fails.
-  static Future<String> teX2SVG(
+  static Future<String> math2SVG(
       {required String math, required MathInputType mathInputType}) {
     try {
       return teXRenderingController.webViewControllerPlus
           .runJavaScriptReturningResult(
-              "MathJax.flutterTeXLiteDOM.teX2SVG(${jsonEncode(math)}, '${mathInputType.type}');")
+              "MathJax.flutterTeXLiteDOM.math2SVG(${jsonEncode(math)}, '${mathInputType.type}');")
           .then((data) {
         if (math.trim().isEmpty) {
           return Future.error('TeX input cannot be empty.');
@@ -65,7 +65,7 @@ class TeXRenderingServer {
       });
     } catch (e) {
       if (kDebugMode) {
-        print('Error in teX2SVG: $e');
+        print('Error in math2SVG: $e');
       }
       return Future.error('Error rendering TeX: $e');
     }

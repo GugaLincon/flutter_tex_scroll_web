@@ -8,18 +8,18 @@ main() async {
   }
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: TeX2SVGExample(),
+    home: Math2SVGExample(),
   ));
 }
 
-class TeX2SVGExample extends StatefulWidget {
-  const TeX2SVGExample({super.key});
+class Math2SVGExample extends StatefulWidget {
+  const Math2SVGExample({super.key});
 
   @override
-  State<TeX2SVGExample> createState() => _TeX2SVGExampleState();
+  State<Math2SVGExample> createState() => _Math2SVGExampleState();
 }
 
-class _TeX2SVGExampleState extends State<TeX2SVGExample> {
+class _Math2SVGExampleState extends State<Math2SVGExample> {
   double fontSize = 18.0;
   TextStyle baseStyle = TextStyle(fontSize: 18.0, color: Colors.black);
 
@@ -28,7 +28,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("TeX2SVG Example"),
+        title: const Text("Math2SVG Example"),
       ),
       body: ListView(
         shrinkWrap: true,

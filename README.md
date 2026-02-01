@@ -18,11 +18,9 @@
     - [Web](#web)
     - [MacOS](#macos)
 - [How to use?](#how-to-use)
-    - [MathWidget](#mathwidget)
+    - [TeXWidget](#texwidget)
     - [TeXView](#texview)
     - [Math2SVG](#math2svg)
-- [More Examples](#more-examples)
-- [MathJax Configurations - `TeXView`](#mathjax-configurations---texview)
 - [Custom Fonts - `TeXView`](#custom-fonts---texview)
 - [API Usage - `TeXView`](#api-usage---texview)
 - [API Changes](#api-changes)
@@ -191,13 +189,13 @@ main() async {
 }
 ```
 
-Now you can use `TeXView`,`MathWidget` or `Math2SVG` as a widgets:
+Now you can use `TeXView`,`TeXWidget` or `Math2SVG` as a widgets:
 
-### MathWidget
-A simple but a powerful pure Flutter widget based on `Math2SVG`. See [MathWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/math_widget_example.dart) for more details:
+### TeXWidget
+A simple but a powerful pure Flutter widget based on `Math2SVG`. See [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart) for more details:
 
 ```dart
-MathWidget(math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
+TeXWidget(math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
 ```
 
 
@@ -209,7 +207,7 @@ This is an advanced widget, based on [webview_flutter_plus](https://pub.dartlang
 - **Markdown:** Display text with Markdown formatting.
 
 > [!CAUTION]
-Avoid using multiple `TeXView` instances on a single page, It's based on a `webview` and it can lead to performance issues. Instead, use `TeXWidget` or `TeX2SVG` for multiple TeX elements.
+Avoid using multiple `TeXView` instances on a single page, It's based on a `webview` and it can lead to performance issues. Instead, use `TeXWidget` or `Math2SVG` for multiple TeX elements.
 
 
 ```dart
@@ -262,21 +260,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 
 main() async {
-  await TeXRenderingServer.start();
+  if (!kIsWeb) {
+    await TeXRenderingServer.start();
+  }
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: TeX2SVGExample(),
+    home: Math2SVGExample(),
   ));
 }
 
-class TeX2SVGExample extends StatefulWidget {
-  const TeX2SVGExample({super.key});
+class Math2SVGExample extends StatefulWidget {
+  const Math2SVGExample({super.key});
 
   @override
-  State<TeX2SVGExample> createState() => _TeX2SVGExampleState();
+  State<Math2SVGExample> createState() => _Math2SVGExampleState();
 }
 
-class _TeX2SVGExampleState extends State<TeX2SVGExample> {
+class _Math2SVGExampleState extends State<Math2SVGExample> {
   double fontSize = 18.0;
   TextStyle baseStyle = TextStyle(fontSize: 18.0, color: Colors.black);
 
@@ -285,7 +285,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("TeX2SVG Example"),
+        title: const Text("Math2SVG Example"),
       ),
       body: ListView(
         shrinkWrap: true,
@@ -300,7 +300,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Quadratic Formula",
+                Text("TeX",
                     style: baseStyle.copyWith(
                       fontSize: fontSize * 1.5,
                       color: Colors.black,
@@ -312,15 +312,15 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                       const TextSpan(text: 'When '),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: TeX2SVG(
-                          teXInputType: TeXInputType.teX,
+                        child: Math2SVG(
+                          teXInputType: MathInputType.teX,
                           math: r"a \ne 0",
                         ),
                       ),
                       const TextSpan(text: ', there are two solutions to'),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: TeX2SVG(
+                        child: Math2SVG(
                           math: r"ax^2 + bx + c = 0",
                         ),
                       ),
@@ -332,7 +332,7 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
                   height: 20,
                   color: Colors.transparent,
                 ),
-                TeX2SVG(
+                Math2SVG(
                   math: r"""x = {-b \pm \sqrt{b^2-4ac} \over 2a}""",
                   formulaWidgetBuilder: (context, svg) {
                     double displayFontSize = fontSize * 3;
@@ -348,18 +348,104 @@ class _TeX2SVGExampleState extends State<TeX2SVGExample> {
               ],
             ),
           ),
+          Divider(
+            height: 20,
+            color: Colors.transparent,
+          ),
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.red, width: 4),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("MathML",
+                    style: baseStyle.copyWith(
+                      fontSize: fontSize * 1.5,
+                      color: Colors.black,
+                    )),
+                Math2SVG(
+                  math: r"""
+                            <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                              <mrow>
+                                  <mrow>
+                                    <msup> <mi>x</mi> <mn>2</mn> </msup> <mo>+</mo>
+                                    <mrow>
+                                        <mn>4</mn>
+                                        <mo>⁢</mo>
+                                        <mi>x</mi>
+                                    </mrow>
+                                    <mo>+</mo>
+                                    <mn>4</mn>
+                                  </mrow>
+                                  
+                                  <mo>=</mo>
+                                  <mn>0</mn>
+                              </mrow>
+                            </math>""",
+                  teXInputType: MathInputType.mathML,
+                  formulaWidgetBuilder: (context, svg) {
+                    double displayFontSize = fontSize * 1.25;
+                    return SvgPicture.string(
+                      svg,
+                      height: displayFontSize,
+                      width: displayFontSize,
+                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            height: 20,
+            color: Colors.transparent,
+          ),
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.red, width: 4),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("AsciiMath",
+                    style: baseStyle.copyWith(
+                      fontSize: fontSize * 1.5,
+                      color: Colors.black,
+                    )),
+                Math2SVG(
+                  math: r"""sum_(i=1)^n i^3=((n(n+1))/2)^2""",
+                  teXInputType: MathInputType.asciiMath,
+                  formulaWidgetBuilder: (context, svg) {
+                    double displayFontSize = fontSize * 5;
+                    return SvgPicture.string(
+                      svg,
+                      height: displayFontSize,
+                      width: displayFontSize,
+                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
-}
-```
+}```
 
 # More Examples
 
 - ### [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_widget_example.dart)
 
-- ### [TeX2SVG Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex2svg_example.dart)
+- ### [Math2SVG Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/math2svg_example.dart)
 
 - ### [TeXView Document Example](https://github.com/Shahxad-Akram/flutter_tex/blob/master/example/lib/tex_view_document_example.dart)
 
