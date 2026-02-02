@@ -1,0 +1,9 @@
+site_name: Flutter TeX
+theme:
+  name: material
+
+repo_url: https://github.com/Shahxad-Akram/flutter_tex
+repo_name: flutter_tex
+
+nav:
+  - Home: index.md
