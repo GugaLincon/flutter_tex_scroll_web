@@ -2,8 +2,35 @@ site_name: Flutter TeX
 theme:
   name: material
 
+  features:
+    - content.tabs.link
+    - content.code.copy
+    - navigation.sections
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+
 repo_url: https://github.com/Shahxad-Akram/flutter_tex
 repo_name: flutter_tex
 
 nav:
   - Home: index.md
+  - Installation: Installation.md
+  - Math Widgets:
+      - Math2SVG: Math2SVG.md
+      - TeXWidget: TeXWidget.md
+      - TeXView: TeXView.md
+  - Configuration:
+      - MathJax Setup: MathJax Configuration.md
+      - Custom Fonts: Custom Fonts.md
+  - Examples: Examples.md

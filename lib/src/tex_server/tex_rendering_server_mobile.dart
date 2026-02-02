@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex/src/globals.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 
@@ -45,7 +46,7 @@ class TeXRenderingServer {
     try {
       return teXRenderingController.webViewControllerPlus
           .runJavaScriptReturningResult(
-              "MathJax.flutterTeXLiteDOM.math2SVG(${jsonEncode(math)}, '${mathInputType.type}');")
+              "$mathJaxFlutterTeXLiteDOMMath2SVGChannelLabel(${jsonEncode(math)}, '${mathInputType.type}');")
           .then((data) {
         if (math.trim().isEmpty) {
           return Future.error('TeX input cannot be empty.');
@@ -111,12 +112,12 @@ class TeXRenderingController {
 
     webViewControllerPlus
       ..addJavaScriptChannel(
-        'OnTapCallback',
+        onTapCallbackChannelLabel,
         onMessageReceived: (onTapCallbackMessage) =>
             onTapCallback?.call(onTapCallbackMessage.message),
       )
       ..addJavaScriptChannel(
-        'OnTeXViewRenderedCallback',
+        onTeXViewRenderedCallbackChannelLabel,
         onMessageReceived: (teXViewRenderedCallbackMessage) =>
             onTeXViewRenderedCallback
                 ?.call(teXViewRenderedCallbackMessage.message),

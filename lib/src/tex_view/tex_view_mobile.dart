@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex/src/globals.dart';
 import 'package:flutter_tex/src/tex_server/tex_rendering_server_mobile.dart';
 import 'package:flutter_tex/src/tex_view/utils/core_utils.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart'
@@ -102,10 +103,9 @@ class TeXViewState extends State<TeXView>
     String currentRawData = await getRawDataAsync(widget);
 
     if (currentRawData != _oldRawData) {
-      // Assuming you updated the JS as discussed:
       // initTeXView(context, data, isWeb, iframeId)
-      await teXRenderingController.webViewControllerPlus
-          .runJavaScript('initTeXView(window, $currentRawData, false, "");');
+      await teXRenderingController.webViewControllerPlus.runJavaScript(
+          '$initTeXViewChannelLabel(window, $currentRawData, false, "");');
 
       _oldRawData = currentRawData;
     }

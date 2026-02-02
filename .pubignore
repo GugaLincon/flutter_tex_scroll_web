@@ -1,3 +1,6 @@
 lib_mathjax
 screenshots
 .vscode
+mkdocs.yml
+docs/
+.readthedocs.yaml

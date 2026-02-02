@@ -2,6 +2,7 @@ import 'dart:js_interop';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex/src/globals.dart';
 import 'package:flutter_tex/src/tex_view/tex_view_web.dart';
 import 'package:web/web.dart';
 
@@ -51,28 +52,28 @@ class TeXRenderingServer {
 ///
 /// This allows Dart to set a JavaScript function that will be called when
 /// the TeX view has finished rendering.
-@JS('OnTeXViewRenderedCallback')
+@JS(onTeXViewRenderedCallbackChannelLabel)
 external set onTeXViewRenderedCallback(JSFunction callback);
 
 /// A JavaScript interop binding for the `OnTapCallback` function.
 ///
 /// This allows Dart to set a JavaScript function that will be called when
 /// a tap event occurs within the rendered TeX content.
-@JS('OnTapCallback')
+@JS(onTapCallbackChannelLabel)
 external set onTapCallback(JSFunction callback);
 
 /// A JavaScript interop binding for the `initTeXViewWeb` function.
 ///
 /// This function is called from the Dart side to initialize a specific
 /// TeX view instance within its iframe.
-@JS('initTeXView')
+@JS(initTeXViewChannelLabel)
 external void initTeXView(
     Window context, String flutterTeXData, bool isWeb, String iframeId);
 
 /// A JavaScript interop binding for the `mathJaxLiteDOM.math2SVG` function.
 ///
 /// This function performs the actual conversion of a math string to an SVG.
-@JS('MathJax.flutterTeXLiteDOM.math2SVG')
+@JS(mathJaxFlutterTeXLiteDOMMath2SVGChannelLabel)
 external String math2SVGflutterTeXLiteDOM(String math, String inputType);
 
 /// Manages the global callbacks and communication between JavaScript and Dart for web.
