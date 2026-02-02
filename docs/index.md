@@ -1,4 +1,8 @@
 # Flutter TeX
+<img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/refs/heads/main/example/assets/flutter_tex_banner.png" alt=""/>
+
+[![GitHub stars](https://img.shields.io/github/stars/Shahxad-Akram/flutter_tex?style=social)](https://github.com/Shahxad-Akram/flutter_tex/stargazers) [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
+
 A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **TeX**, and **MathML**, making it a universal solution for in-app scientific and mathematical visualization.
 
 **Primary use cases include, but are not limited to:**
