@@ -1,7 +1,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/Shahxad-Akram/flutter_tex?style=social)](https://github.com/Shahxad-Akram/flutter_tex/stargazers) [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
 
 <div align="middle">
-  <img src="logo.png" height="250px"/>
+  <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/logo.png" height="250px"/>
 </div>
 
 
@@ -22,6 +22,10 @@ A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax
  |                                                        TeXWidget                                                        |                                                        Quiz Sample                                                         |                                                     TeX Document                                                      |
  | :---------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
  | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_widget.png" height="500"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_quiz.png" height="500"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view.png" height="500"/> |
+
+
+## 🌏 Web Demo: [https://flutter-tex.web.app/](https://flutter-tex.web.app/)
+
 
 ## 📦 Installation
 
