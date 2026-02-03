@@ -6,7 +6,7 @@
 
 
 A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notations.
------------------------------------------------
+---
 
 ## 🚀 Key Features
 
@@ -16,44 +16,30 @@ A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax
   - [Math2SVG](https://flutter-tex.readthedocs.io/en/latest/Math2SVG/): Pure Flutter based (no webview) high-performance widget, for maths formulas rendering, support LaTeX, MathML and AsciiMath.
   - [TeXWidget](https://flutter-tex.readthedocs.io/en/latest/TeXWidget/): Based on `Math2SVG` dedicated for LaTeX rendering.
   - [TeXView](https://flutter-tex.readthedocs.io/en/latest/TeXView/): Advanced webview-based rendering for complex HTML/JS content.
-
+* [👉 Click Here for Full Documentation](https://flutter-tex.readthedocs.io/en/latest/)
 
 # Screenshots
- |                                                 TeXWidget                                                  |                                                  Quiz Sample                                                  |                                               TeX Document                                               |
- | :--------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
- | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_widget.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_quiz.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view.png"/> |
+ |                                                        TeXWidget                                                        |                                                        Quiz Sample                                                         |                                                     TeX Document                                                      |
+ | :---------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
+ | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_widget.png" height="500"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_quiz.png" height="500"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view.png" height="500"/> |
 
 ## 📦 Installation
 
-
-Add the latest version of `flutter_tex`: [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex) to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  flutter_tex: ^5.2.2
-
-```
-
-Initialize the rendering server at the start of your application:
-
-```dart
-main() async {
-  await TeXRenderingServer.start();
-  runApp(MyApp());
-}
-
-```
+For the detailed installation and setup instructions for different platforms , please refer to the [Installation Guide](https://flutter-tex.readthedocs.io/en/latest/Installation/).
 
 ## 🛠 Quick Example
 
+> [!CAUTION]
+Make sure to follow the [Installation Guide](https://flutter-tex.readthedocs.io/en/latest/Installation/) before running the example.
+
 ```dart
 TeXWidget(math: r"When \(a \ne 0 \), then $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
-
 ```
 Output:
 
 When $a \ne 0$, then
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+
 
 
 ## 📖 Full Documentation
@@ -70,4 +56,4 @@ For detailed setup instructions, API references, and advanced configurations (Cu
 </h2>
 
 # Demo Application
-<a href='https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'  height="150px"/></a>
