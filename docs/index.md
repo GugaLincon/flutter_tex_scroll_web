@@ -1,9 +1,9 @@
 # Flutter TeX
 <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/refs/heads/main/example/assets/flutter_tex_banner.png" alt=""/>
 
-[![GitHub stars](https://img.shields.io/github/stars/Shahxad-Akram/flutter_tex?style=social)](https://github.com/Shahxad-Akram/flutter_tex/stargazers) [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
+[![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
 
-A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **TeX**, and **MathML**, making it a universal solution for in-app scientific and mathematical visualization.
+A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **TeX**, **MathML** and **AsciiMath**, making it a universal solution for in-app scientific and mathematical visualization.
 
 **Primary use cases include, but are not limited to:**
 
@@ -13,10 +13,8 @@ A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax
 - In addition to its mathematical capabilities, the package is a powerful tool for displaying rich content, offering complete HTML and JavaScript support.
 
 
-## How it works?
-Flutter TeX brings the power of the [MathJax](https://github.com/mathjax/MathJax) rendering engine to Flutter applications. As a direct port of this essential JavaScript library, it enables the display of a wide range of equations and expressions from formats like LaTeX, TeX, and MathML.
-
-The rendering itself is handled within a [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) widget, allowing for a robust and faithful presentation of the original MathJax output.
+## Maths Rendering
+Flutter TeX brings the power of the [MathJax](https://github.com/mathjax/MathJax) rendering engine to Flutter applications. As a direct port of this essential JavaScript library, it enables the display of a wide range of equations and expressions from formats like LaTeX, TeX, MathML and AsciiMath.
 
 ## Credits
 We extend our sincere credit to the original [MathJax](https://github.com/mathjax/MathJax) developers, whose work is the foundation of this package.

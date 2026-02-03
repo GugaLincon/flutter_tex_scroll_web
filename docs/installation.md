@@ -7,7 +7,7 @@
 
 ```yaml
 dependencies:
-  flutter_tex: ^5.2.2
+  flutter_tex: ^{{ flutter_tex_version }}
 ``` 
 
 **2:** You can install packages from the command line:

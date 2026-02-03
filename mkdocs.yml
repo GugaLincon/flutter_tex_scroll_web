@@ -1,7 +1,11 @@
 site_name: Flutter TeX
+extra:
+  flutter_tex_version: "5.2.4"
 theme:
   name: material
   logo: https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/logo.png
+  favicon: images/favicon.png
+
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -19,9 +23,7 @@ theme:
         name: Switch to light mode
 
   features:
-    # - navigation.sections
     - navigation.expand
-    # - navigation.tabs
     - navigation.top
     - navigation.tracking
     - toc.follow
@@ -51,6 +53,10 @@ markdown_extensions:
 
 repo_url: https://github.com/Shahxad-Akram/flutter_tex
 repo_name: flutter_tex
+
+plugins:
+  - search
+  - macros
 
 nav:
   - Home: index.md
