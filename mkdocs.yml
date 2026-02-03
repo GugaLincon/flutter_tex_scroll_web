@@ -59,6 +59,6 @@ nav:
       - TeXWidget: TeXWidget.md
       - TeXView: TeXView.md
   - Configuration:
-      - MathJax Setup: MathJax Configuration.md
+      - MathJax Configs: MathJax Configs.md
       - Custom Fonts: Custom Fonts.md
   - Examples: Examples.md

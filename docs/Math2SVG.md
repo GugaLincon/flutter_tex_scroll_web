@@ -4,6 +4,17 @@ A high-performance, pure Flutter solution for displaying mathematical notations.
 - **High-Quality Output**: Renders TeX as SVG for sharp, scalable graphics on any screen size.
 - **Full Render Control**: Provides a comprehensive API for fine-tuning the appearance and behavior of rendered equations.
 
+A simple example of using Math2SVG to render mathematical expressions in a Flutter application:
+
+```dart
+Math2SVG(
+  teXInputType: MathInputType.teX,
+  math: r"ax^2 + bx + c = 0",
+)
+```
+
+A complete example application using Math2SVG:
+
 
 ```dart
 import 'package:flutter/foundation.dart';
