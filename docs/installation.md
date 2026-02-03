@@ -1,5 +1,6 @@
+# Installation
 
-# Adding Flutter Dependency
+## Adding Flutter Dependency
 
 **Minmum flutter SDK requirement is 3.27.x**
 
@@ -21,7 +22,7 @@ Alternatively, your editor might support flutter packages get. Check the docs fo
 
 **3:** Now you need to put the following implementations in `Android`, `iOS`, `MacOS` and `Web` respectively.
 
-### Android
+## Android
 Make sure to add this line `android:usesCleartextTraffic="true"` in your `<project-directory>/android/app/src/main/AndroidManifest.xml` under `application` like this.
 
 ```xml
@@ -68,7 +69,7 @@ and intents in queries block:
 ```
 
 
-### iOS
+## iOS
 Add following lines in `<project-directory>/ios/Runner/Info.plist`
 
 ```xml
@@ -86,7 +87,7 @@ Add following lines in `<project-directory>/ios/Runner/Info.plist`
 </array> 
 ```
 
-### Web
+## Web
 For Web support modify `<project-directory>/web/index.html` like this.
 
 ```html
@@ -98,7 +99,7 @@ For Web support modify `<project-directory>/web/index.html` like this.
 </head>
 ```
 
-### MacOS
+## MacOS
 By default, macOS apps running in a sandboxed environment (which is the standard for Flutter apps) are not allowed to make network requests. You need to explicitly grant your application the capability to access the internet. In your Flutter project, navigate to the `macos/Runner/` directory and add the following key-value pair to `DebugProfile.entitlements` and `Release.entitlements`.
 
 ```xml
@@ -107,8 +108,7 @@ By default, macOS apps running in a sandboxed environment (which is the standard
 ```
 
 
-# Initialization
-
+## Initialization
 In your Dart code, you can use like:
 
 ```dart

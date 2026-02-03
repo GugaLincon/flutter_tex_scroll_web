@@ -45,7 +45,7 @@ TeXView(
 ```
 
 
-#### API Usage
+## API Usage
 
 - `children` A list of `TeXViewWidget`
 - `heightOffset` Height offset to be added to the rendered height.

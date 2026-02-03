@@ -1,12 +1,14 @@
 To use custom fonts for `TeXView`, create a create a file named `flutter_tex.css` in the root of your project's `assets` directory, this style file should define your custom fonts. Your project structure should look like this:
 
-```textyour_flutter_app/
+```text
+your_flutter_app/
 ├── assets/
 │   ├── fonts/
 │   └── flutter_tex.css
 ├── lib/
 ...
 ```
+
 and make sure to add this into `pubspec.yaml` like:
 ```yaml
 flutter:
