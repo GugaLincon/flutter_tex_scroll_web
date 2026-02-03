@@ -1,9 +1,12 @@
-# flutter_tex
 [![GitHub stars](https://img.shields.io/github/stars/Shahxad-Akram/flutter_tex?style=social)](https://github.com/Shahxad-Akram/flutter_tex/stargazers) [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
 
-<img src="logo.png" alt=""/>
+<div align="middle">
+  <img src="logo.png" height="250px"/>
+</div>
+
 
 A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notations.
+-----------------------------------------------
 
 ## 🚀 Key Features
 
