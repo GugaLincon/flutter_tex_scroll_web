@@ -19,14 +19,15 @@ theme:
         name: Switch to light mode
 
   features:
-    - navigation.sections
+    # - navigation.sections
     - navigation.expand
+    # - navigation.tabs
     - navigation.top
     - navigation.tracking
     - toc.follow
     - navigation.instant
     - content.code.copy
-    - content.code.annotate # Allows you to put clickable (1) markers in code
+    - content.code.annotate
     - search.suggest
     - search.highlight
 
