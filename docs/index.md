@@ -13,34 +13,47 @@ A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax
 - In addition to its mathematical capabilities, the package is a powerful tool for displaying rich content, offering complete HTML and JavaScript support.
 
 
-# How it works?
+## How it works?
 Flutter TeX brings the power of the [MathJax](https://github.com/mathjax/MathJax) rendering engine to Flutter applications. As a direct port of this essential JavaScript library, it enables the display of a wide range of equations and expressions from formats like LaTeX, TeX, and MathML.
 
 The rendering itself is handled within a [webview_flutter_plus](https://pub.dartlang.org/packages/webview_flutter_plus) widget, allowing for a robust and faithful presentation of the original MathJax output.
 
+## Credits
 We extend our sincere credit to the original [MathJax](https://github.com/mathjax/MathJax) developers, whose work is the foundation of this package.
 
 
-# Web Demo
-- ## [https://flutter-tex.web.app](https://flutter-tex.web.app)
+## Demos
 
-
-# Application Demo
-<a href='https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
-
-# Demo Video
-<div align="left">
-      <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM">
-         <img src="https://img.youtube.com/vi/YiNbVEXV_NM/0.jpg" style="width:100%;">
+<div style="display: flex; justify-content: space-around; align-items: stretch; gap: 20px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+  
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+    <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+      <a href="https://flutter-tex.web.app">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="225" alt="Flutter Web">
       </a>
+    </div>
+    <h3 style="margin: 20px 0 10px 0; height: 1.2em;">Web Demo</h3>
+    <p style="font-size: 14px; color: #555; line-height: 1.4; margin: 0;">View the live Flutter TeX implementation directly in your browser.</p>
+  </div>
+
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+    <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+      <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250" alt="Get it on Google Play"/>
+      </a>
+    </div>
+    <h3 style="margin: 20px 0 10px 0; height: 1.2em;">Android App</h3>
+    <p style="font-size: 14px; color: #555; line-height: 1.4; margin: 0;">Download and install the example application from the Google Play Store.</p>
+  </div>
+
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+    <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+      <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="100" alt="YouTube Demo"/>
+      </a>
+    </div>
+    <h3 style="margin: 20px 0 10px 0; height: 1.2em;">Video Demo</h3>
+    <p style="font-size: 14px; color: #555; line-height: 1.4; margin: 0;">Watch a quick video on YouTube showcasing the features.</p>
+  </div>
+
 </div>
-
-
-# Screenshots
- |                                                TeXWidget                                                 |                                                 Quiz Sample                                                 |                                              TeX Document                                              |
- | :------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
- | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_widget.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_quiz.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view.png"/> |
-
- |                                                 Custom Fonts                                                 |                                                   Image & Video                                                    |                                                    Markdown                                                     |
- | :----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: |
- | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_fonts.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_image_video.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/screenshots/tex_view_markdown.png"/> |

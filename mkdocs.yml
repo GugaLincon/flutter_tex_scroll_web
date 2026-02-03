@@ -54,12 +54,13 @@ repo_name: flutter_tex
 
 nav:
   - Home: index.md
-  - Installation: Installation.md
+  - Installation: installation.md
   - Math Widgets:
-      - Math2SVG: Math2SVG.md
-      - TeXWidget: TeXWidget.md
-      - TeXView: TeXView.md
+      - Math2SVG: math-2-svg.md
+      - TeXWidget: tex-widget.md
+      - TeXView: tex-view.md
   - Configuration:
-      - MathJax Configs: MathJax Configs.md
-      - Custom Fonts: Custom Fonts.md
-  - Examples: Examples.md
+      - MathJax Configs: mathjax-configs.md
+      - Custom Fonts: custom-fonts.md
+  - Examples: examples.md
+  - Gallery: gallery.md
