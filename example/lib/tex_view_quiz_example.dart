@@ -231,7 +231,7 @@ class _TeXViewQuizExampleState extends State<TeXViewQuizExample> {
             ]),
             style: const TeXViewStyle(
               margin: TeXViewMargin.all(5),
-              padding: TeXViewPadding.all(10),
+              padding: TeXViewPadding.all(5),
               borderRadius: TeXViewBorderRadius.all(10),
               border: TeXViewBorder.all(
                 TeXViewBorderDecoration(

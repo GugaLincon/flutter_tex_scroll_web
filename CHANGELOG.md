@@ -1,3 +1,6 @@
+## [5.2.3]
+* Full Documentation [https://flutter-tex.readthedocs.io](https://flutter-tex.readthedocs.io)
+
 ## [5.2.2]
 * broken links fixed in readme.
 

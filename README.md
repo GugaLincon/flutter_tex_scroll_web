@@ -50,13 +50,13 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
 
 For detailed setup instructions, API references, and advanced configurations (Custom Fonts, MathJax settings, etc.), please visit our official documentation:
 <p align="center">
-  <a href="https://flutter-tex.readthedocs.io/en/latest/">
+  <a href="https://flutter-tex.readthedocs.io">
     <img src="https://img.shields.io/badge/READ_THE_DOCS-PASSING?style=for-the-badge&logo=readthedocs&logoColor=white&color=blueviolet">
   </a>
 </p>
 
 <h2 align="center">
-  👉 <a href="https://flutter-tex.readthedocs.io/en/latest/">Click Here for Full Documentation</a>
+  👉 <a href="https://flutter-tex.readthedocs.io">Click Here for Full Documentation</a>
 </h2>
 
 # Demo Application
