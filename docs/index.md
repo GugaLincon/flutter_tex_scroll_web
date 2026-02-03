@@ -26,7 +26,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
   
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
     <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-      <a href="https://flutter-tex.web.app">
+      <a href="https://flutter-tex.web.app" target="_blank" rel="noopener noreferrer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="225" alt="Flutter Web">
       </a>
     </div>
@@ -36,7 +36,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
 
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
     <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-      <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example">
+      <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example" target="_blank" rel="noopener noreferrer">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250" alt="Get it on Google Play"/>
       </a>
     </div>
@@ -46,7 +46,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
 
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
     <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-      <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM">
+      <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" target="_blank" rel="noopener noreferrer">
          <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="100" alt="YouTube Demo"/>
       </a>
     </div>
