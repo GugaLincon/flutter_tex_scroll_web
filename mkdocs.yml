@@ -5,6 +5,7 @@ theme:
   name: material
   logo: https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/logo.png
   favicon: images/favicon.png
+  site_url: https://flutter-tex.readthedocs.io
 
   palette:
     - media: "(prefers-color-scheme: light)"
