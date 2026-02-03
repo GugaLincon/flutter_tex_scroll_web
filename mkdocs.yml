@@ -10,15 +10,16 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: deep navy blue
-      accent: navy blue
+      primary: indigo
+      accent: blue
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
+
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep navy blue
-      accent: navy blue
+      primary: indigo
+      accent: blue
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
