@@ -16,7 +16,7 @@ Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https
   - [Math2SVG](https://flutter-tex.readthedocs.io/en/latest/math-2-svg/): Pure Flutter based (no webview) high-performance widget, for maths formulas rendering, support LaTeX, MathML and AsciiMath.
   - [TeXWidget](https://flutter-tex.readthedocs.io/en/latest/tex-widget/): Based on `Math2SVG` dedicated for LaTeX rendering.
   - [TeXView](https://flutter-tex.readthedocs.io/en/latest/tex-view/): Advanced webview-based rendering for complex HTML/JS content.
-* [👉 Click Here for Full Documentation](https://flutter-tex.readthedocs.io/en/latest/)
+* 👉 [Click Here for Full Documentation](https://flutter-tex.readthedocs.io/en/latest/)
 
 <br>
 <table>
