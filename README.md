@@ -18,8 +18,7 @@ Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https
   - [TeXView](https://flutter-tex.readthedocs.io/en/latest/tex-view/): Advanced webview-based rendering for complex HTML/JS content.
 * [👉 Click Here for Full Documentation](https://flutter-tex.readthedocs.io/en/latest/)
 
-
-## Demos
+<br>
 <table>
   <tr>
     <td align="center">
