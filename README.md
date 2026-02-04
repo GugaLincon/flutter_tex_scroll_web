@@ -78,7 +78,7 @@ For detailed setup instructions, API references, and advanced configurations (Cu
 
 <p align="center">
   <a href="https://flutter-tex.readthedocs.io">
-    <img src="https://img.shields.io/badge/READ_THE_DOCS-PASSING?style=for-the-badge&logo=readthedocs&logoColor=white&color=blueviolet" height="50">
+    <img src="https://img.shields.io/badge/READ_THE_DOCS-PASSING?style=for-the-badge&logo=readthedocs&logoColor=white&color=blueviolet" width="300">
   </a>
 </p>
 
