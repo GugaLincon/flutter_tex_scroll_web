@@ -21,36 +21,47 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
 
 
 ## Demos
+<style>
+  .tex-link-card {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+  .tex-link-card:hover h3 {
+    color: #007bff; /* Professional Link Blue */
+    text-decoration: underline;
+  }
+</style>
 
-<div style="display: flex; justify-content: space-around; align-items: stretch; gap: 20px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+<div style="display: flex; justify-content: space-around; align-items: flex-start; gap: 20px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
   
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-    <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-      <a href="https://flutter-tex.web.app" target="_blank" rel="noopener noreferrer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="225" alt="Flutter Web">
-      </a>
-    </div>
-    <h3 style="margin: 20px 0 10px 0; height: 1.2em;">Web Demo</h3>
+    <a href="https://flutter-tex.web.app" class="tex-link-card" target="_blank" rel="noopener noreferrer">
+      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="180" alt="Flutter Web">
+      </div>
+      <h3 style="margin: 15px 0 10px 0; font-size: 1.17em;">Web Demo</h3>
+    </a>
     <p style="font-size: 14px; color: #555; line-height: 1.4; margin: 0;">View the live Flutter TeX implementation directly in your browser.</p>
   </div>
 
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-    <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-      <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example" target="_blank" rel="noopener noreferrer">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250" alt="Get it on Google Play"/>
-      </a>
-    </div>
-    <h3 style="margin: 20px 0 10px 0; height: 1.2em;">Android App</h3>
+    <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example" class="tex-link-card" target="_blank" rel="noopener noreferrer">
+      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200" alt="Get it on Google Play"/>
+      </div>
+      <h3 style="margin: 15px 0 10px 0; font-size: 1.17em;">Android App</h3>
+    </a>
     <p style="font-size: 14px; color: #555; line-height: 1.4; margin: 0;">Download and install the example application from the Google Play Store.</p>
   </div>
 
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-    <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-      <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" target="_blank" rel="noopener noreferrer">
-         <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="100" alt="YouTube Demo"/>
-      </a>
-    </div>
-    <h3 style="margin: 20px 0 10px 0; height: 1.2em;">Video Demo</h3>
+    <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" class="tex-link-card" target="_blank" rel="noopener noreferrer">
+      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="80" alt="YouTube Demo"/>
+      </div>
+      <h3 style="margin: 15px 0 10px 0; font-size: 1.17em;">Video Demo</h3>
+    </a>
     <p style="font-size: 14px; color: #555; line-height: 1.4; margin: 0;">Watch a quick video on YouTube showcasing the features.</p>
   </div>
 
