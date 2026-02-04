@@ -31,7 +31,7 @@ Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https
       <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example" target="_blank">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="75%" alt="Get it on Google Play"/>
       </a>
-      <h3>Android App</h3>
+      <h3>Android Demo</h3>
     </td>
     <td align="center">
       <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" target="_blank">
