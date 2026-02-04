@@ -20,6 +20,8 @@ Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https
 
 
 ## Demos
+<p align="center">
+
 <table width="100%">
   <tr>
     <td align="center" width="33%">
@@ -45,6 +47,7 @@ Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https
     </td>
   </tr>
 </table>
+</p>
 
 See screenshots in the [Gallery](https://flutter-tex.readthedocs.io/en/latest/gallery/).
 
