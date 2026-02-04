@@ -26,7 +26,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
     <a href="https://flutter-tex.web.app" class="tex-link-card" target="_blank" rel="noopener noreferrer">
       <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="180" alt="Flutter Web">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="100%" alt="Flutter Web">
       </div>
     </a>
     <h3 style="margin: 15px 0 10px 0; font-size: 1.17em;">Web Demo</h3>
@@ -36,7 +36,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
     <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example" class="tex-link-card" target="_blank" rel="noopener noreferrer">
       <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200" alt="Get it on Google Play"/>
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="100%" alt="Get it on Google Play"/>
       </div>
     </a>
       <h3 style="margin: 15px 0 10px 0; font-size: 1.17em;">Android App</h3>
@@ -46,7 +46,7 @@ We extend our sincere credit to the original [MathJax](https://github.com/mathja
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
     <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" class="tex-link-card" target="_blank" rel="noopener noreferrer">
       <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="80" alt="YouTube Demo"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/960px-YouTube_2024.svg.png" width="100%" alt="YouTube Demo"/>
       </div>
     </a>
       <h3 style="margin: 15px 0 10px 0; font-size: 1.17em;">Video Demo</h3>

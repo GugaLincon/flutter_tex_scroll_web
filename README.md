@@ -20,33 +20,38 @@ Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https
 
 
 ## Demos
-<p align="center">
 <table>
   <tr>
     <td align="center">
       <a href="https://flutter-tex.web.app" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" height="75" alt="Flutter Web">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="100%" alt="Flutter Web">
       </a>
       <br />
       <h3>Web Demo</h3>
     </td>
+    <td align="center" width="75px">
+      <h3> </h3>
+    </td>
     <td align="center">
       <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example" target="_blank">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="75" alt="Get it on Google Play"/>
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="100%" alt="Get it on Google Play"/>
       </a>
       <br />
       <h3>Android App</h3>
     </td>
+        <td align="center" width="75px">
+      <h3> </h3>
+    </td>
     <td align="center">
       <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" target="_blank">
-         <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" height="75" alt="YouTube Demo"/>
+         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/960px-YouTube_2024.svg.png" width="100%" alt="YouTube Demo"/>
       </a>
       <br />
       <h3>Video Demo</h3>
     </td>
   </tr>
 </table>
-</p>
+
 
 See screenshots in the [Gallery](https://flutter-tex.readthedocs.io/en/latest/gallery/).
 
