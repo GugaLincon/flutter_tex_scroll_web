@@ -62,27 +62,27 @@ For detailed setup instructions, API references, and advanced configurations (Cu
   <tr>
     <td align="center">
       <a href="https://flutter-tex.web.app" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="225" alt="Flutter Web">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" height="75" alt="Flutter Web">
       </a>
       <br />
       <h3>Web Demo</h3>
-      <p>View the live Flutter TeX implementation directly in your browser.</p>
+      <p>View Flutter TeX implementation directly in your browser.</p>
     </td>
     <td align="center">
       <a href="https://play.google.com/store/apps/details?id=com.shahxad.flutter_tex_example" target="_blank">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250" alt="Get it on Google Play"/>
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="75" alt="Get it on Google Play"/>
       </a>
       <br />
       <h3>Android App</h3>
-      <p>Download and install the example application from the Google Play Store.</p>
+      <p>Install the example application from the Play Store.</p>
     </td>
     <td align="center">
       <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" target="_blank">
-         <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" width="100" alt="YouTube Demo"/>
+         <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" height="75" alt="YouTube Demo"/>
       </a>
       <br />
       <h3>Video Demo</h3>
-      <p>Watch a quick video on YouTube showcasing the features.</p>
+      <p>A quick video showcasing the features.</p>
     </td>
   </tr>
 </table>
