@@ -1,11 +1,11 @@
 [![GitHub stars](https://img.shields.io/github/stars/Shahxad-Akram/flutter_tex?style=social)](https://github.com/Shahxad-Akram/flutter_tex/stargazers) [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
 
 <div align="middle">
-  <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/logo.png" height="250px"/>
+  <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/refs/heads/main/example/assets/flutter_tex_banner.png" height="250px"/>
 </div>
 
 
-A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notations.
+Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notations.
 ---
 
 ## 🚀 Key Features
@@ -18,46 +18,9 @@ A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax
   - [TeXView](https://flutter-tex.readthedocs.io/en/latest/tex-view/): Advanced webview-based rendering for complex HTML/JS content.
 * [👉 Click Here for Full Documentation](https://flutter-tex.readthedocs.io/en/latest/)
 
-# Screenshots
- |                                                 TeXWidget                                                  |                                                  Quiz Sample                                                  |                                               TeX Document                                               |
- | :--------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
- | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_widget.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view_quiz.png"/> | <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/master/screenshots/tex_view.png"/> |
-
-
-## 📦 Installation
-
-For the detailed installation and setup instructions for different platforms , please refer to the [Installation Guide](https://flutter-tex.readthedocs.io/en/latest/installation/).
-
-## 🛠 Quick Example
-
-> [!CAUTION]
-Make sure to follow the [Installation Guide](https://flutter-tex.readthedocs.io/en/latest/installation/) before running the example.
-
-```dart
-TeXWidget(math: r"When \(a \ne 0 \), then $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
-```
-Output:
-
-When $a \ne 0$, then
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
-
-
-
-## 📖 Full Documentation
-
-For detailed setup instructions, API references, and advanced configurations (Custom Fonts, MathJax settings, etc.), please visit our official documentation:
-<p align="center">
-  <a href="https://flutter-tex.readthedocs.io">
-    <img src="https://img.shields.io/badge/READ_THE_DOCS-PASSING?style=for-the-badge&logo=readthedocs&logoColor=white&color=blueviolet">
-  </a>
-</p>
-
-<h2 align="center">
-  👉 <a href="https://flutter-tex.readthedocs.io">Click Here for Full Documentation</a>
-</h2>
-
 
 ## Demos
+<p align="center">
 <table>
   <tr>
     <td align="center">
@@ -86,3 +49,39 @@ For detailed setup instructions, API references, and advanced configurations (Cu
     </td>
   </tr>
 </table>
+</p>
+
+See screenshots in the [Gallery](https://flutter-tex.readthedocs.io/en/latest/gallery/).
+
+## 📦 Installation
+
+For the detailed installation and setup instructions for different platforms , please refer to the [Installation Guide](https://flutter-tex.readthedocs.io/en/latest/installation/).
+
+## 🛠 Quick Example
+
+> [!CAUTION]
+Make sure to follow the [Installation Guide](https://flutter-tex.readthedocs.io/en/latest/installation/) before running the example.
+
+```dart
+TeXWidget(math: r"When \(a \ne 0 \), then $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
+```
+Output:
+
+When $a \ne 0$, then
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+
+
+
+## 📖 Full Documentation
+
+For detailed setup instructions, API references, and advanced configurations (Custom Fonts, MathJax settings, etc.), please visit our official documentation:
+
+<p align="center">
+  <a href="https://flutter-tex.readthedocs.io">
+    <img src="https://img.shields.io/badge/READ_THE_DOCS-PASSING?style=for-the-badge&logo=readthedocs&logoColor=white&color=blueviolet" height="50">
+  </a>
+</p>
+
+## Credits
+We extend our sincere credit to the original [MathJax](https://github.com/mathjax/MathJax) developers, whose work is the foundation of this package.
+
