@@ -13,7 +13,7 @@ $$
 </div>
 
 
-Flutter $$ self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **TeX**, **MathML** and **AsciiMath**, making it a universal solution for in-app scientific and mathematical visualization.
+Flutter $\rm\TeX$ self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **$\rm\TeX$**, **MathML** and **AsciiMath**, making it a universal solution for in-app scientific and mathematical visualization.
 
 **Primary use cases include, but are not limited to:**
 
