@@ -5,13 +5,10 @@
 </div>
 
 
-<div style="font-size: 150%; text-align: center; margin-top: 10px;">
-
 $$ 
+\Large
 i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r},t) = \left[ -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r},t) \right] \Psi(\mathbf{r},t) 
 $$
-
-</div>
 
 Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notations.
 ---
