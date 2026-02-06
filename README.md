@@ -3,10 +3,10 @@
 <div align="middle">
   <img src="https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/refs/heads/main/example/assets/flutter_tex_banner.png" height="250px"/>
 </div>
-
+<br>
 
 $$ 
-\Large
+\Huge
 i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r},t) = \left[ -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r},t) \right] \Psi(\mathbf{r},t) 
 $$
 
