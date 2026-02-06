@@ -4,9 +4,8 @@ This is an advanced widget, based on [webview_flutter_plus](https://pub.dartlang
 - **JavaScript:** Execute custom scripts for interactive elements.
 - **Markdown:** Display text with Markdown formatting.
 
-> [!CAUTION]
-Avoid using multiple `TeXView` instances on a single page, It's based on a `webview` and it can lead to performance issues. Instead, use `TeXWidget` or `Math2SVG` for multiple TeX elements.
-
+!!! danger "Caution"
+    Avoid using multiple `TeXView` instances on a single page. It's based on a `webview` and it can lead to performance issues. Instead, use `TeXWidget` or `Math2SVG` for multiple TeX elements.
 
 ```dart
 TeXView(
