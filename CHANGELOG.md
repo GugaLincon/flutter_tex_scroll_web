@@ -1,3 +1,9 @@
+## [5.2.6]
+* Performance optimizations
+* Renewned Example application with new UI and more examples.
+* Flutter TeX online [TeX editor](https://flutter-tex.web.app/#/editor)
+* Full Documentation [https://flutter-tex.readthedocs.io](https://flutter-tex.readthedocs.io)
+
 ## [5.2.5]
 * Performance optimizations
 * Renewned Example application with new UI and more examples.
