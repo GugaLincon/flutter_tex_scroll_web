@@ -3,40 +3,70 @@ import 'dart:js_interop';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/globals.dart';
+import 'package:flutter_tex/src/tex_server/tex_rendering_cache.dart';
+import 'package:flutter_tex/src/tex_server/tex_rendering_queue.dart';
 import 'package:flutter_tex/src/tex_view/tex_view_web.dart';
 import 'package:web/web.dart';
 
-/// A rendering server for TeXView on the web.
+/// The Web-specific implementation of [TeXRenderingServer].
 ///
-/// This implementation communicates with the JavaScript rendering engine (MathJax)
-/// using `dart:js_interop` to render TeX content directly in the browser.
+/// Unlike the mobile implementation which spawns a WebView, this implementation
+/// leverages `dart:js_interop` (Dart 3.3+) to communicate directly with the browser's
+/// JavaScript context where MathJax is loaded.
+///
+/// Optimization Strategy:
+/// - **Direct JS calls**: No IPC overhead like Mobile.
+/// - **Async UI Unblocking**: Uses `Future.delayed(Duration.zero)` to yield control to the event loop,
+///   ensure the UI remains responsive even during heavy rendering tasks.
+/// - **Higher Concurrency**: Browsers can handle more concurrent renders than mobile WebViews.
 class TeXRenderingServer {
   /// A flag to indicate if multiple TeXViews are being used.
   static bool multiTeXView = false;
 
+  // We allow higher concurrency (6) on web compared to mobile (3) because the
+  // JS interop bridge is much faster and less prone to congestion than the WebView channel.
+  static final TexRenderingQueue _queue =
+      TexRenderingQueue(maxConcurrentRequests: 6);
+
   /// Starts the TeX rendering server for the web.
   ///
-  /// This method initializes the [TeXRenderingControllerWeb], which sets up
-  /// the necessary JavaScript interoperability for callbacks.
+  /// Initializes the [TeXRenderingControllerWeb] to handle callbacks from JS.
   static Future<void> start({int port = 0}) async {
     TeXRenderingControllerWeb.initialize();
   }
 
-  /// Converts a TeX, MathML, or AsciiMath string into an SVG image on the web.
+  /// Synchronous cache check for the Widget.
+  static String? getCachedSVG(String math, MathInputType type) {
+    return TexRenderingCache.getCachedSVG(math, type);
+  }
+
+  /// Converts a TeX, MathML, or AsciiMath string into an SVG image.
   ///
-  /// The [math] string is processed according to the specified [mathInputType].
-  /// This method directly calls the external JavaScript function `mathJaxLiteDOMMath2SVG`.
-  static Future<String> math2SVG(
+  /// This wraps the raw JS call with our Caching and Queueing logic to ensure
+  /// stability and performance.
+  static TexRenderingRequest math2SVG(
       {required String math, required MathInputType mathInputType}) {
-    try {
-      return Future<String>.value(
-          math2SVGflutterTeXLiteDOM(math, mathInputType.type));
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error in math2SVG: $e');
-      }
-      return Future.error('Error rendering TeX: $e');
-    }
+    return TexRenderingCache.render(
+      math: math,
+      mathInputType: mathInputType,
+      onMissing: () {
+        return _queue.addRequest(
+            math: math,
+            inputType: mathInputType,
+            processor: () async {
+              try {
+                // Yield to event loop to prevent UI blocking on heavy loads
+                await Future.delayed(Duration.zero);
+                return math2SVGflutterTeXLiteDOM(math, mathInputType.type);
+              } catch (e) {
+                if (kDebugMode) {
+                  print('Error in math2SVG: $e');
+                }
+                throw 'Error rendering TeX: $e';
+              }
+            });
+      },
+    );
   }
 
   /// Stops the TeX rendering server for the web.

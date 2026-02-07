@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
@@ -7,10 +6,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/globals.dart';
+import 'package:flutter_tex/src/tex_server/tex_rendering_cache.dart';
+import 'package:flutter_tex/src/tex_server/tex_rendering_queue.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 
-/// An optimized rendering server for TeXView using a LIFO queue and request deduplication.
+/// The standard (Mobile/Desktop) implementation of [TeXRenderingServer].
+///
+/// This server uses a hidden [WebViewControllerPlus] (WebView) to load a local HTML file
+/// containing the MathJax library. It communicates via JavaScript channels to render TeX to SVG.
+///
+/// Key Features:
+/// - **Localhost Server**: Serves the engine files locally.
+/// - **LIFO Queue**: Prioritizes visible items during rapid scrolling.
+/// - **LRU Cache**: Caches rendered SVGs to minimize repeated render calls.
 class TeXRenderingServer {
   static final LocalhostServer _server = LocalhostServer();
   static final TeXRenderingController teXRenderingController =
@@ -19,97 +28,56 @@ class TeXRenderingServer {
   static int? get port => _server.port;
   static bool multiTeXView = false;
 
-  /// 1. Memory Management: Using LinkedHashMap to implement an LRU (Least Recently Used) cache.
-  /// This prevents the app from crashing due to memory leaks if thousands of equations are rendered.
-  static const int _maxCacheSize = 500;
-  static final LinkedHashMap<String, String> _svgCache =
-      LinkedHashMap<String, String>();
-
-  /// 2. Deduplication: Tracks requests currently being processed in the WebView.
-  /// If 10 widgets ask for the same formula, the WebView renders it once.
-  static final Map<String, Completer<String>> _inFlightRequests = {};
-
-  /// 3. LIFO Queue: We prioritize the latest request (top of the stack) because
-  /// in a scrolling list, the most recently requested items are what's visible.
-  static final List<_MathRequest> _queue = [];
-
-  static int _activeRequests = 0;
-
-  /// 4. Concurrency: Reduced to 3. Since WebView JS execution is single-threaded,
-  /// hammering the bridge with 5+ concurrent calls causes "bridge congestion" and lag.
-  static const int _maxConcurrentRequests = 3;
+  // Limiting concurrency to 3 is crucial for mobile WebViews to prevent "bridge congestion"
+  // where too many JS calls choke the platform channel.
+  static final TexRenderingQueue _queue =
+      TexRenderingQueue(maxConcurrentRequests: 3);
 
   static Future<void> start({int port = 0}) async {
     await _server.start(port: port);
     await teXRenderingController.initController();
   }
 
-  /// Synchronous cache check for the Widget to use in initState.
+  /// Synchronous cache check for the Widget.
+  /// This allows widgets to build immediately if the SVG is already in memory.
   static String? getCachedSVG(String math, MathInputType type) {
-    return _svgCache['${type.type}_$math'];
+    return TexRenderingCache.getCachedSVG(math, type);
   }
 
-  static Future<String> math2SVG({
+  /// Converts a TeX string to an SVG image.
+  ///
+  /// This method orchestrates:
+  /// 1. **Cache Lookup**: Returns immediately if found.
+  /// 2. **Deduplication**: Joins an existing in-flight request if one exists.
+  /// 3. **Queueing**: Adds the task to a LIFO queue to be processed by the WebView.
+  static TexRenderingRequest math2SVG({
     required String math,
     required MathInputType mathInputType,
   }) {
-    final cacheKey = '${mathInputType.type}_$math';
+    return TexRenderingCache.render(
+      math: math,
+      mathInputType: mathInputType,
+      onMissing: () {
+        return _queue.addRequest(
+            math: math,
+            inputType: mathInputType,
+            processor: () async {
+              final data = await teXRenderingController.webViewControllerPlus
+                  .runJavaScriptReturningResult(
+                      "$mathJaxFlutterTeXLiteDOMMath2SVGChannelLabel(${jsonEncode(math)}, '${mathInputType.type}');");
 
-    // Check Cache
-    if (_svgCache.containsKey(cacheKey)) {
-      return Future.value(_svgCache[cacheKey]!);
-    }
+              String svg = Platform.isAndroid
+                  ? jsonDecode(data.toString()).toString()
+                  : data.toString();
 
-    // Check if already rendering (Deduplication)
-    if (_inFlightRequests.containsKey(cacheKey)) {
-      return _inFlightRequests[cacheKey]!.future;
-    }
-
-    final completer = Completer<String>();
-    _inFlightRequests[cacheKey] = completer;
-
-    // LIFO: Insert at index 0
-    _queue.insert(0, _MathRequest(math, mathInputType, completer, cacheKey));
-
-    _processQueue();
-    return completer.future;
-  }
-
-  static void _processQueue() async { 
-    if (_activeRequests >= _maxConcurrentRequests || _queue.isEmpty) return;
-
-    _activeRequests++;
-    final request = _queue.removeAt(0);
-
-    try {
-      final data = await teXRenderingController.webViewControllerPlus
-          .runJavaScriptReturningResult(
-              "$mathJaxFlutterTeXLiteDOMMath2SVGChannelLabel(${jsonEncode(request.math)}, '${request.inputType.type}');");
-
-      String svg = Platform.isAndroid
-          ? jsonDecode(data.toString()).toString()
-          : data.toString();
-
-      if (svg.isNotEmpty && svg != "null") {
-        _updateCache(request.cacheKey, svg);
-        request.completer.complete(svg);
-      } else {
-        request.completer.completeError('Render failed');
-      }
-    } catch (e) {
-      request.completer.completeError(e);
-    } finally {
-      _inFlightRequests.remove(request.cacheKey);
-      _activeRequests--;
-      _processQueue(); // Loop to next item
-    }
-  }
-
-  static void _updateCache(String key, String value) {
-    if (_svgCache.length >= _maxCacheSize) {
-      _svgCache.remove(_svgCache.keys.first); // Evict oldest
-    }
-    _svgCache[key] = value;
+              if (svg.isNotEmpty && svg != "null") {
+                return svg;
+              } else {
+                throw 'Render failed';
+              }
+            });
+      },
+    );
   }
 
   static Future<void> stop() async {
@@ -117,22 +85,8 @@ class TeXRenderingServer {
   }
 }
 
-class _MathRequest {
-  final String math;
-  final MathInputType inputType;
-  final Completer<String> completer;
-  final String cacheKey;
-
-  _MathRequest(this.math, this.inputType, this.completer, this.cacheKey);
-}
-
 /// A controller for the WebView that handles TeX rendering.
-///
-/// This class manages the lifecycle of the [WebViewControllerPlus] and facilitates
-/// communication between the Flutter app and the JavaScript rendering engine
-/// running in the WebView. It handles navigation, JavaScript channels, and callbacks.
 class TeXRenderingController {
-  /// The WebView controller used to render TeX.
   final WebViewControllerPlus webViewControllerPlus = WebViewControllerPlus();
 
   /// The base URL for the rendering engine's HTML file, served by the localhost server.

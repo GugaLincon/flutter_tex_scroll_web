@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex/src/tex_server/tex_rendering_queue.dart';
 
 class Math2SVG extends StatefulWidget {
   final String math;
@@ -29,6 +30,7 @@ class _Math2SVGState extends State<Math2SVG>
   String? _svgData;
   Object? _error;
   bool _isRendering = false;
+  TexRenderingRequest? _currentRequest;
 
   @override
   void initState() {
@@ -45,6 +47,9 @@ class _Math2SVGState extends State<Math2SVG>
     super.didUpdateWidget(oldWidget);
     if (widget.math != oldWidget.math ||
         widget.teXInputType != oldWidget.teXInputType) {
+      // Cancel previous request if it's still pending
+      _currentRequest?.cancel();
+
       final cached =
           TeXRenderingServer.getCachedSVG(widget.math, widget.teXInputType);
       if (cached != null) {
@@ -58,6 +63,13 @@ class _Math2SVGState extends State<Math2SVG>
     }
   }
 
+  @override
+  void dispose() {
+    _currentRequest
+        ?.cancel(); // OPTIMIZATION: Removed from queue if not started
+    super.dispose();
+  }
+
   Future<void> _resolveMath() async {
     if (!mounted) return;
 
@@ -67,10 +79,12 @@ class _Math2SVGState extends State<Math2SVG>
     });
 
     try {
-      final result = await TeXRenderingServer.math2SVG(
+      _currentRequest = TeXRenderingServer.math2SVG(
         math: widget.math,
         mathInputType: widget.teXInputType,
       );
+
+      final result = await _currentRequest!.future;
 
       if (mounted) {
         setState(() {
@@ -80,6 +94,11 @@ class _Math2SVGState extends State<Math2SVG>
       }
     } catch (e) {
       if (mounted) {
+        // If cancelled, we might not want to show error depending on preference,
+        // but here we just show it. Often cancelled futures throw.
+        if (e.toString().contains("Cancelled")) {
+          return;
+        }
         setState(() {
           _error = e;
           _isRendering = false;
