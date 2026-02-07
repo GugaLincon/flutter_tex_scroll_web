@@ -141,19 +141,17 @@ class _SpecificFormulaEditorState extends State<SpecificFormulaEditor>
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       return Center(
-                        child: SingleChildScrollView(
-                          child: Math2SVG(
-                            math: _previewText,
-                            teXInputType: widget.inputType,
-                            errorWidgetBuilder: (context, error) =>
-                                _buildErrorWidget(error),
-                            formulaWidgetBuilder: (context, svg) => Center(
-                              child: SvgPicture.string(
-                                svg,
-                                width: constraints.maxWidth - 32,
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.center,
-                              ),
+                        child: Math2SVG(
+                          math: _previewText,
+                          teXInputType: widget.inputType,
+                          errorWidgetBuilder: (context, error) =>
+                              _buildErrorWidget(error),
+                          formulaWidgetBuilder: (context, svg) => Center(
+                            child: SvgPicture.string(
+                              svg,
+                              width: constraints.maxWidth - 32,
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.center,
                             ),
                           ),
                         ),
