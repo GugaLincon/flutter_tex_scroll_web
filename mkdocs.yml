@@ -1,13 +1,18 @@
 site_name: Flutter TeX
 extra:
   flutter_tex_version: "5.2.4"
+
+site_url: https://flutter-tex.readthedocs.io
+repo_url: https://github.com/Shahxad-Akram/flutter_tex
+repo_name: flutter_tex
+edit_uri: edit/main/docs/
+
 theme:
   name: material
-
   logo: https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/logo.png
   favicon: images/favicon.png
-  site_url: https://flutter-tex.readthedocs.io
-
+  icon:
+    annotation: material/arrow-right-circle
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -29,20 +34,25 @@ theme:
     - navigation.expand
     - navigation.top
     - navigation.tracking
-    - toc.follow
     - navigation.instant
     - navigation.footer
+    - toc.follow
     - content.code.copy
     - content.code.annotate
+    - content.action.edit
+    - content.action.view
     - search.suggest
     - search.highlight
     - search.share
 
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/mathjax-config.js
+  - https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - admonition
   - pymdownx.details
   - pymdownx.keys
@@ -55,7 +65,6 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
       linenums: true
-      pygments_style: dracula
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -64,14 +73,14 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/extra.css
-
-repo_url: https://github.com/Shahxad-Akram/flutter_tex
-repo_name: flutter_tex
+  - stylesheets/code_dark.css
+  - stylesheets/code_light.css
 
 plugins:
   - search
   - macros
-
+  - git-revision-date-localized:
+      type: date
 nav:
   - Home: index.md
   - Installation: installation.md

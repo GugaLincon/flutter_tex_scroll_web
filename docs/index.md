@@ -3,7 +3,12 @@
 
 [![pub package](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dev/packages/flutter_tex)
 
-A self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **TeX**, **MathML** and **AsciiMath**, making it a universal solution for in-app scientific and mathematical visualization.
+<div align="center">
+  <img class="invert-on-dark_svg" src="https://latex.codecogs.com/svg.latex?\Large&space;i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r},t) = \left[ -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r},t) \right] \Psi(\mathbf{r},t)" 
+  title="Schrödinger Equation" />
+</div>
+
+Flutter TeX self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notation. It parses multiple formats, including **LaTeX**, **TeX**, **MathML** and **AsciiMath**, making it a universal solution for in-app scientific and mathematical visualization.
 
 **Primary use cases include, but are not limited to:**
 
