@@ -25,6 +25,8 @@ class _Math2SVGExampleState extends State<Math2SVGExample> {
 
   @override
   Widget build(BuildContext context) {
+    final defaultTextStyle = Theme.of(context).textTheme.bodyMedium;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -58,6 +60,16 @@ class _Math2SVGExampleState extends State<Math2SVGExample> {
                         child: Math2SVG(
                           teXInputType: MathInputType.teX,
                           math: r"a \ne 0",
+                          formulaWidgetBuilder: (context, svg) =>
+                              SvgPicture.string(
+                            svg,
+                            height: defaultTextStyle?.fontSize != null
+                                ? defaultTextStyle!.fontSize! * 1.25
+                                : null,
+                            width: null,
+                            fit: BoxFit.contain,
+                            alignment: Alignment.center,
+                          ),
                         ),
                       ),
                       const TextSpan(text: ', there are two solutions to'),
@@ -65,6 +77,16 @@ class _Math2SVGExampleState extends State<Math2SVGExample> {
                         alignment: PlaceholderAlignment.middle,
                         child: Math2SVG(
                           math: r"ax^2 + bx + c = 0",
+                          formulaWidgetBuilder: (context, svg) =>
+                              SvgPicture.string(
+                            svg,
+                            height: defaultTextStyle?.fontSize != null
+                                ? defaultTextStyle!.fontSize! * 1.25
+                                : null,
+                            width: null,
+                            fit: BoxFit.contain,
+                            alignment: Alignment.center,
+                          ),
                         ),
                       ),
                       const TextSpan(text: ' and they are:'),
