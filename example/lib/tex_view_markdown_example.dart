@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex_example/source_code_view.dart';
 
 String _markdownFlutterTeX = r"""
 
@@ -103,36 +104,38 @@ class TeXViewMarkdownExamples extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("TeXViewMarkdown"),
-      ),
-      body: TeXView(
-        child: TeXViewMarkdown(_markdownFlutterTeX,
-            style: TeXViewStyle.fromCSS("")),
-        style: const TeXViewStyle(
-          margin: TeXViewMargin.all(10),
-          padding: TeXViewPadding.all(20),
-          elevation: 10,
-          borderRadius: TeXViewBorderRadius.all(25),
-          border: TeXViewBorder.all(
-            TeXViewBorderDecoration(
-                borderColor: Colors.blue,
-                borderStyle: TeXViewBorderStyle.solid,
-                borderWidth: 5),
-          ),
-          backgroundColor: Colors.white,
+    return ExampleWrapper(
+      filePath: 'lib/tex_view_markdown_example.dart',
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("TeXViewMarkdown"),
         ),
-        loadingWidgetBuilder: (context) => const Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircularProgressIndicator(),
-              Text("Rendering...")
-            ],
+        body: TeXView(
+          child: TeXViewMarkdown(_markdownFlutterTeX,
+              style: TeXViewStyle.fromCSS("")),
+          style: const TeXViewStyle(
+            margin: TeXViewMargin.all(16),
+            padding: TeXViewPadding.all(20),
+            elevation: 2,
+            borderRadius: TeXViewBorderRadius.all(16),
+            border: TeXViewBorder.all(
+              TeXViewBorderDecoration(
+                  borderColor: Colors.blueGrey,
+                  borderStyle: TeXViewBorderStyle.solid,
+                  borderWidth: 1),
+            ),
+            backgroundColor: Colors.white,
+          ),
+          loadingWidgetBuilder: (context) => const Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CircularProgressIndicator(),
+                Text("Rendering...")
+              ],
+            ),
           ),
         ),
       ),

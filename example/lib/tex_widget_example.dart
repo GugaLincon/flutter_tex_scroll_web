@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex_example/source_code_view.dart';
 
 class TeXWidgetExamples extends StatelessWidget {
   const TeXWidgetExamples({super.key});
@@ -13,90 +14,99 @@ class TeXWidgetExamples extends StatelessWidget {
   Widget build(BuildContext context) {
     final defaultTextStyle = Theme.of(context).textTheme.bodyMedium;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("TeXWidget Example"),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(8.0),
-        shrinkWrap: true,
-        children: [
-          Text("Default TeXWidget",
-              style: Theme.of(context).textTheme.headlineSmall),
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 4),
-              borderRadius: BorderRadius.circular(8.0),
+    return ExampleWrapper(
+      filePath: 'lib/tex_widget_example.dart',
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("TeXWidget Example"),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(16.0),
+          shrinkWrap: true,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: Text("Default TeXWidget",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.bold)),
             ),
-            child: TeXWidget(content: _formula),
-          ),
-          Divider(
-            height: 30,
-            color: Colors.transparent,
-          ),
-          Text("Custom TeXWidget",
-              style: Theme.of(context).textTheme.headlineSmall),
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.lime, width: 4),
-              borderRadius: BorderRadius.circular(8.0),
+            Card(
+              elevation: 2,
+              margin: const EdgeInsets.only(bottom: 24),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TeXWidget(content: _formula),
+              ),
             ),
-            child: TeXWidget(
-              content: _formula,
-              displayFormulaWidgetBuilder: (context, displayFormula) {
-                return Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return Math2SVG(
-                        math: displayFormula,
-                        formulaWidgetBuilder: (context, svg) =>
-                            SvgPicture.string(
-                          svg,
-                          colorFilter: const ColorFilter.mode(
-                              Colors.red, BlendMode.srcIn),
-                          width: constraints.maxWidth,
-                          height: defaultTextStyle?.fontSize != null
-                              ? defaultTextStyle!.fontSize! * 4
-                              : null,
-                          alignment: Alignment.center,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
-              inlineFormulaWidgetBuilder: (context, inlineFormula) {
-                return Math2SVG(
-                  math: inlineFormula,
-                  formulaWidgetBuilder: (context, svg) => SvgPicture.string(
-                    svg,
-                    height: defaultTextStyle?.fontSize != null
-                        ? defaultTextStyle!.fontSize! * 1.25
-                        : null,
-                    width: null,
-                    fit: BoxFit.contain,
-                    alignment: Alignment.center,
-                  ),
-                );
-              },
-              textWidgetBuilder: (context, text) {
-                return TextSpan(
-                  text: text,
-                  style: const TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                  ),
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: Text("Custom TeXWidget",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.bold)),
             ),
-          )
-        ],
+            Card(
+              elevation: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TeXWidget(
+                  content: _formula,
+                  displayFormulaWidgetBuilder: (context, displayFormula) {
+                    return Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return Math2SVG(
+                            math: displayFormula,
+                            formulaWidgetBuilder: (context, svg) =>
+                                SvgPicture.string(
+                              svg,
+                              colorFilter: const ColorFilter.mode(
+                                  Colors.red, BlendMode.srcIn),
+                              width: constraints.maxWidth,
+                              height: defaultTextStyle?.fontSize != null
+                                  ? defaultTextStyle!.fontSize! * 4
+                                  : null,
+                              alignment: Alignment.center,
+                              fit: BoxFit.scaleDown,
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  inlineFormulaWidgetBuilder: (context, inlineFormula) {
+                    return Math2SVG(
+                      math: inlineFormula,
+                      formulaWidgetBuilder: (context, svg) => SvgPicture.string(
+                        svg,
+                        height: defaultTextStyle?.fontSize != null
+                            ? defaultTextStyle!.fontSize! * 1.25
+                            : null,
+                        width: null,
+                        fit: BoxFit.contain,
+                        alignment: Alignment.center,
+                      ),
+                    );
+                  },
+                  textWidgetBuilder: (context, text) {
+                    return TextSpan(
+                      text: text,
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontSize: 16,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

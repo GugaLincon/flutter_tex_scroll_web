@@ -1,117 +1,59 @@
-A simple but a powerful pure Flutter widget based on `Math2SVG`. A simple example of `TeXWidget` usage is as follows:
+# TeXWidget
+
+`TeXWidget` is a convenient, high-level wrapper around [Math2SVG](math-2-svg.md) designed specifically for easy LaTeX rendering. It automatically handles text and math mixtures, making it ideal for displaying paragraphs containing equations.
+
+## Usage
+
+### Simple Example
+Render a sentence with mixed text and math effortlessly.
 
 ```dart
-TeXWidget(math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
+TeXWidget(
+    math: r"When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) "
+          r"and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$"
+)
 ```
 
+### Formatting Options
+You can customize how text, inline math, and display math are rendered individually.
 
-A more detailed example with customizations is as follows:
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_tex/flutter_tex.dart';
-
-class TeXWidgetExamples extends StatelessWidget {
-  const TeXWidgetExamples({super.key});
-
-  final String _formula =
-      r"""Flutter $ \rm\TeX $ is a Flutter Package to render so many types of equations based on \( \rm\LaTeX \), It also includes full HTML with JavaScript support. Here's a simple example of $ \rm\TeX $ rendering:
-          
-          When \(a \ne 0 \), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
-          
-          Another display formula is:
-          
-          \[ E = mc^2 + \frac{p^2}{2m} + \sum_{i} \frac{(p_i - qA_i)^2}{2m_i} + V(r) + ... \]
-          
-          """;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("TeXWidget Example"),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(8.0),
-        shrinkWrap: true,
-        children: [
-          Text("Default TeXWidget",
-              style: Theme.of(context).textTheme.headlineSmall),
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 4),
-              borderRadius: BorderRadius.circular(8.0),
+??? quote "View Advanced Implementation"
+    ```dart
+    TeXWidget(
+      math: _formula,
+      // Customize the main display equations (centered, large)
+      displayFormulaWidgetBuilder: (context, displayFormula) {
+        return Center(
+          child: Math2SVG(
+            math: displayFormula,
+            formulaWidgetBuilder: (context, svg) => SvgPicture.string(
+              svg,
+              colorFilter: const ColorFilter.mode(Colors.red, BlendMode.srcIn),
+              height: 50,
             ),
-            child: TeXWidget(math: _formula),
           ),
-          Divider(
-            height: 30,
-            color: Colors.transparent,
+        );
+      },
+      // Customize inline math (embedded in text)
+      inlineFormulaWidgetBuilder: (context, inlineFormula) {
+        return Math2SVG(
+          math: inlineFormula,
+          formulaWidgetBuilder: (context, svg) => SvgPicture.string(
+            svg,
+            colorFilter: const ColorFilter.mode(Colors.purple, BlendMode.srcIn),
+            height: 16,
           ),
-          Text("Custom TeXWidget",
-              style: Theme.of(context).textTheme.headlineSmall),
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.lime, width: 4),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: TeXWidget(
-              math: _formula,
-              displayFormulaWidgetBuilder: (context, displayFormula) {
-                return Center(
-                  child: Math2SVG(
-                    math: displayFormula,
-                    formulaWidgetBuilder: (context, svg) {
-                      double displayFontSize = 50;
-                      return SvgPicture.string(
-                        svg,
-                        colorFilter:
-                            const ColorFilter.mode(Colors.red, BlendMode.srcIn),
-                        height: displayFontSize,
-                        width: displayFontSize,
-                        fit: BoxFit.contain,
-                        alignment: Alignment.center,
-                      );
-                    },
-                  ),
-                );
-              },
-              inlineFormulaWidgetBuilder: (context, inlineFormula) {
-                return Math2SVG(
-                  math: inlineFormula,
-                  formulaWidgetBuilder: (context, svg) {
-                    double displayFontSize = 16;
-                    return SvgPicture.string(
-                      svg,
-                      colorFilter: const ColorFilter.mode(
-                          Colors.purple, BlendMode.srcIn),
-                      height: displayFontSize,
-                      width: displayFontSize,
-                      fit: BoxFit.contain,
-                      alignment: Alignment.center,
-                    );
-                  },
-                );
-              },
-              textWidgetBuilder: (context, text) {
-                return TextSpan(
-                  text: text,
-                  style: const TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                  ),
-                );
-              },
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-```
+        );
+      },
+      // Customize standard text
+      textWidgetBuilder: (context, text) {
+        return TextSpan(text: text, style: TextStyle(color: Colors.black));
+      },
+    )
+    ```
 
-See [TeXWidget Example](https://github.com/Shahxad-Akram/flutter_tex/blob/main/example/lib/tex_widget_example.dart) for more details.
+## API Reference
+- **`math`**: The string input containing LaTeX.
+- **`style`**: General style for the widget.
+- **`loadingWidgetBuilder`**: Widget to show while parsing.
+- **`onFinished`**: Callback when rendering completes.

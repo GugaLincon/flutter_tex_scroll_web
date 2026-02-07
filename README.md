@@ -42,7 +42,7 @@ Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https
       <a href="https://www.youtube.com/watch?v=YiNbVEXV_NM" target="_blank">
          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/960px-YouTube_2024.svg.png" width="75%" alt="YouTube Demo"/>
       </a>
-      <h3>Video Demo</h3>
+      <h3>Video Demo (old)</h3>
     </td>
   </tr>
 </table>
@@ -67,7 +67,7 @@ Output:
 When $a \ne 0$, then
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
 
-
+👉 [See Detailed Examples](https://github.com/Shahxad-Akram/flutter_tex/tree/main/example)
 
 ## 📖 Full Documentation
 

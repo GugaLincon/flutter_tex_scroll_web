@@ -70,7 +70,9 @@ class TeXRenderingServer {
                   ? jsonDecode(data.toString()).toString()
                   : data.toString();
 
-              if (svg.isNotEmpty && svg != "null") {
+              if (svg.contains("Error: ")) {
+                throw svg;
+              } else if (svg.isNotEmpty && svg != "null") {
                 return svg;
               } else {
                 throw 'Render failed';

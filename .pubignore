@@ -1,6 +1,6 @@
-lib_mathjax
-screenshots
 .vscode
+lib_mathjax
+
+.readthedocs.yaml
 mkdocs.yml
 docs/
-.readthedocs.yaml
