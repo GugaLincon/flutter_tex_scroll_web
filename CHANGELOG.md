@@ -1,4 +1,4 @@
-## [5.2.4]
+## [5.2.5]
 * Performance optimizations
 * Renewned Example application with new UI and more examples.
 * Flutter TeX online [TeX editor](https://flutter-tex.web.app/#/editor)
