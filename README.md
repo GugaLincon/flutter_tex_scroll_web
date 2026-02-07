@@ -5,10 +5,11 @@
 </div>
 <br>
 
-$$ 
-\Huge
-i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r},t) = \left[ -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r},t) \right] \Psi(\mathbf{r},t) 
-$$
+<div align="middle">
+
+![Schrödinger Equation](https://latex.codecogs.com/svg.image?\Huge&space;i\hbar&space;\frac{\partial}{\partial&space;t}&space;\Psi(\mathbf{r},t)&space;=&space;\left[&space;-\frac{\hbar^2}{2m}&space;\nabla^2&space;+&space;V(\mathbf{r},t)&space;\right]&space;\Psi(\mathbf{r},t))
+
+</div>
 
 Flutter $\rm\TeX$ is a self-contained Flutter package leveraging [MathJax](https://github.com/mathjax/MathJax) to deliver robust, fully offline rendering of mathematical and chemical notations.
 ---
@@ -60,12 +61,12 @@ For the detailed installation and setup instructions for different platforms , p
 Make sure to follow the [Installation Guide](https://flutter-tex.readthedocs.io/en/latest/installation/) before running the example.
 
 ```dart
-TeXWidget(math: r"When \(a \ne 0 \), then $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$")
+Math2SVG(math: r"x = {-b \pm \sqrt{b^2-4ac} \over 2a}")
 ```
 Output:
 
-When $a \ne 0$, then
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+![Quadratic Formula](https://latex.codecogs.com/svg.image?\Huge&space;x&space;=&space;\frac{-b&space;\pm&space;\sqrt{b^2-4ac}}{2a})
+
 
 👉 [See Detailed Examples](https://github.com/Shahxad-Akram/flutter_tex/tree/main/example)
 
