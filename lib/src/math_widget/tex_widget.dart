@@ -2,18 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/math_widget/utils/parse_tex.dart';
 
-/// A widget to render TeX segments, which can be inline or display math.
-/// Currently, it only supports rendering TeX.
-
+/// A widget that parses and renders mixed content containing text and TeX formulas.
+///
+/// This widget automatically detects TeX segments (both inline and display math)
+/// and renders them using [Math2SVG], while displaying regular text using [RichText].
 class TeXWidget extends StatefulWidget {
+  /// The input content string containing mixed text and TeX formulas.
+  ///
+  /// Example: "The solution is $x=2$ where $$y=x^2$$."
   final String content;
+
+  /// A builder for customizing the display of inline formulas (e.g., $...$).
+  ///
+  /// If provided, this builder is used instead of the default [Math2SVG] rendering.
   final Widget Function(BuildContext context, String inlineFormula)?
       inlineFormulaWidgetBuilder;
+
+  /// A builder for customizing the display of block formulas (e.g., $$...$$).
+  ///
+  /// If provided, this builder is used instead of the default [Math2SVG] rendering.
   final Widget Function(BuildContext context, String displayFormula)?
       displayFormulaWidgetBuilder;
+
+  /// A builder for customizing the display of regular text segments.
+  ///
+  /// Use this to apply custom styles or gestures to the text parts of the content.
   final InlineSpan Function(BuildContext context, String text)?
       textWidgetBuilder;
 
+  /// Creates a [TeXWidget].
   const TeXWidget({
     super.key,
     required this.content,
@@ -49,8 +66,6 @@ class _TeXWidgetState extends State<TeXWidget> {
   Widget build(BuildContext context) {
     if (_segments.isEmpty) return const SizedBox.shrink();
 
-    // Use a ListView.shrinkWrap if this is part of a larger scroll view,
-    // or just a Column for static blocks.
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -64,7 +79,7 @@ class _TeXWidgetState extends State<TeXWidget> {
     final style = Theme.of(context).textTheme.bodyMedium;
     final double? fontSize = style?.fontSize;
 
-    // Helper to push text/inline math into the Column
+    // Flushes accumulated text spans into a RichText widget and adds it to the column.
     void flushSpans() {
       if (currentRichTextSpans.isNotEmpty) {
         columnChildren.add(
@@ -97,14 +112,11 @@ class _TeXWidgetState extends State<TeXWidget> {
             child:
                 widget.inlineFormulaWidgetBuilder?.call(context, mathContent) ??
                     Math2SVG(
-                      key: ValueKey(
-                          'inline_$mathContent'), // VITAL: Maintain widget state
+                      key: ValueKey('inline_$mathContent'),
                       math: mathContent,
                       formulaWidgetBuilder: (context, svg) => SvgPicture.string(
                         svg,
-                        height: fontSize != null
-                            ? fontSize * 1.125
-                            : null, // Slightly larger for readability
+                        height: fontSize != null ? fontSize * 1.125 : null,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -112,19 +124,17 @@ class _TeXWidgetState extends State<TeXWidget> {
           break;
 
         case TeXSegmentType.display:
-          flushSpans(); // Move pending text to the Column
+          flushSpans();
           columnChildren.add(
             widget.displayFormulaWidgetBuilder?.call(context, mathContent) ??
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Center(
                     child: Math2SVG(
-                      key: ValueKey('display_$mathContent'), // VITAL
+                      key: ValueKey('display_$mathContent'),
                       math: mathContent,
                       formulaWidgetBuilder: (context, svg) => SvgPicture.string(
                         svg,
-                        // Display math is usually larger.
-                        // Instead of LayoutBuilder, we use a constrained box or let SVG fit width.
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: fontSize != null ? fontSize * 3.375 : null,
                         fit: BoxFit.scaleDown,

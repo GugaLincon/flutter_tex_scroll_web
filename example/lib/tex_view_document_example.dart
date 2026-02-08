@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/source_code_view.dart';
 
+/// A wrapper class for various TeX View examples.
 class TeXExample {
   static TeXViewWidget introduction =
       _teXViewWidget(r"""<h4>Flutter \( \rm\TeX \)</h4>""", r"""
@@ -123,6 +124,10 @@ class TeXExample {
   }
 }
 
+/// A widget that displays a list of various [TeXViewDocument] examples.
+///
+/// This includes mathematical formulas, chemistry equations, matrices, and more,
+/// rendered using [TeXView].
 class TeXViewDocumentExamples extends StatelessWidget {
   const TeXViewDocumentExamples({super.key});
 

@@ -2,15 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_server/tex_rendering_queue.dart';
 
+/// A Flutter widget that renders TeX/LaTeX expressions as SVG images.
+///
+/// This widget uses the [TeXRenderingServer] to convert the input [math] string
+/// into an SVG, which is then rendered using [SvgPicture].
+///
+/// It handles caching, loading states, error reporting, and automatic updates
+/// when the input math changes.
 class Math2SVG extends StatefulWidget {
+  /// The TeX/LaTeX expression to render.
   final String math;
+
+  /// The input type of the math expression (e.g., TeX, MathML).
+  ///
+  /// Defaults to [MathInputType.teX].
   final MathInputType teXInputType;
+
+  /// A builder for the widget to display while the SVG is being generated.
   final WidgetBuilder? loadingWidgetBuilder;
+
+  /// A builder for the widget to display when the SVG has been successfully generated.
+  ///
+  /// [svg] contains the raw SVG string.
   final Widget Function(BuildContext context, String svg)? formulaWidgetBuilder;
+
+  /// A builder for the widget to display if an error occurs during rendering.
   final Widget Function(BuildContext context, Object? error)?
       errorWidgetBuilder;
+
+  /// Whether to keep the state of this widget alive (e.g., in a ListView).
+  ///
+  /// Defaults to `false`.
   final bool wantKeepAlive;
 
+  /// Creates a [Math2SVG] widget.
   const Math2SVG({
     super.key,
     required this.math,
@@ -65,8 +90,8 @@ class _Math2SVGState extends State<Math2SVG>
 
   @override
   void dispose() {
-    _currentRequest
-        ?.cancel(); // OPTIMIZATION: Removed from queue if not started
+    // Cancel the request if it hasn't started processing yet to save resources.
+    _currentRequest?.cancel();
     super.dispose();
   }
 
@@ -109,27 +134,23 @@ class _Math2SVGState extends State<Math2SVG>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context); // Required for KeepAlive
+    super.build(context);
 
-    // 3. PERFORMANCE: Priority logic for the UI tree
     if (_error != null && _svgData == null) {
       return widget.errorWidgetBuilder?.call(context, _error) ??
           _buildDefaultError();
     }
 
     if (_svgData != null) {
-      // We wrap the SVG in a RepaintBoundary here to cache the rasterized pixels on the GPU
+      // RepaintBoundary caches the rasterized pixels, improving performance for complex SVGs.
       return RepaintBoundary(
         child: Opacity(
-          opacity: _isRendering
-              ? 0.6
-              : 1.0, // Subtly indicate "updating" without a jarring spinner
+          opacity: _isRendering ? 0.6 : 1.0,
           child: widget.formulaWidgetBuilder?.call(context, _svgData!) ??
               SvgPicture.string(
                 _svgData!,
                 fit: BoxFit.contain,
                 alignment: Alignment.center,
-                // Use the raw text as a placeholder during the very first parse of the SVG string
                 placeholderBuilder: (_) => Text(widget.math),
               ),
         ),

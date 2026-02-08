@@ -3,6 +3,10 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/maths_examples.dart';
 import 'package:flutter_tex_example/source_code_view.dart';
 
+/// A widget that demonstrates the usage of the [TeXWidget].
+///
+/// It shows both a default implementation and a custom implementation where
+/// specific builders are used to style text, inline formulas, and display formulas differently.
 class TeXWidgetExamples extends StatelessWidget {
   const TeXWidgetExamples({super.key});
 

@@ -9,16 +9,18 @@ import 'package:flutter_tex/src/tex_server/tex_rendering_queue.dart';
 /// 1. **LRU Caching**: Stores recently rendered SVGs to avoid re-rendering.
 /// 2. **Request Deduplication**: Prevents multiple identical requests from hitting the rendering engine unnecessarily.
 class TexRenderingCache {
-  /// 1. Memory Management: Using LinkedHashMap to implement an LRU (Least Recently Used) cache.
-  /// This prevents the app from crashing due to memory leaks if thousands of equations are rendered.
+  /// An LRU (Least Recently Used) cache for rendered SVGs.
   ///
-  /// The maximum size is set to 1000 items. When the limit is reached, the least recently used item is evicted.
+  /// This prevents excessive memory usage by limiting the cache to [_maxCacheSize] items.
+  /// When the limit is reached, the least recently used item is evicted.
   static const int _maxCacheSize = 1000;
   static final LinkedHashMap<String, String> _svgCache =
       LinkedHashMap<String, String>();
 
-  /// 2. Deduplication: Tracks requests currently being processed.
-  /// If multiple widgets ask for the same formula, the logic renders it once and shares the result.
+  /// A map to track rendering requests that are currently in progress.
+  ///
+  /// This enables request deduplication: if multiple widgets request the same
+  /// formula, the rendering logic runs only once, and the result is shared.
   static final Map<String, TexRenderingRequest> _inFlightRequests = {};
 
   /// Retrieves a cached SVG if available.

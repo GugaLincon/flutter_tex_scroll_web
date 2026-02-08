@@ -3,11 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_highlight/themes/atom-one-dark.dart';
 
+/// A reusable widget providing a code editing interface with syntax highlighting.
+///
+/// Wraps [CodeField] and adds utility buttons like Copy and Clear.
 class CodeEditorWidget extends StatelessWidget {
+  /// The controller for the code field.
   final CodeController controller;
+
+  /// The label displayed above the editor.
   final String label;
+
+  /// Callback when the text changes.
   final ValueChanged<String>? onChanged;
+
+  /// Whether the editor should expand to fill available height.
   final bool isFullHeight;
+
+  /// Whether the editor is editable.
   final bool enabled;
 
   const CodeEditorWidget({

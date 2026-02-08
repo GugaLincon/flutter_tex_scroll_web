@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex_example/tex_editor/document_editor.dart';
 import 'package:flutter_tex_example/tex_editor/formula_editor.dart';
 
+/// The main entry point for the TeX Editor example.
+///
+/// This widget provides a menu to navigate between the [FormulaEditor] (for single equations)
+/// and the [DocumentEditor] (for full HTML/TeX documents).
 class TeXViewEditorExample extends StatelessWidget {
   const TeXViewEditorExample({super.key});
 

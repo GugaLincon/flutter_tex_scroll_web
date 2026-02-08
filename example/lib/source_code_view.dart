@@ -3,8 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/atom-one-light.dart';
 
+/// A widget that displays the source code of a file with syntax highlighting.
+///
+/// It allows the user to view the code within the app and copy it to the clipboard.
 class SourceCodeView extends StatelessWidget {
+  /// The path to the file whose content needs to be displayed.
   final String filePath;
+
+  /// An optional child widget (unused in current implementation, but kept for future extensibility).
   final Widget? child;
 
   const SourceCodeView({
@@ -78,8 +84,15 @@ class SourceCodeView extends StatelessWidget {
   }
 }
 
+/// A wrapper widget that provides a "Show Code" floating action button.
+///
+/// Toggling the button switches the view between the [child] widget and the [SourceCodeView]
+/// of the specified [filePath].
 class ExampleWrapper extends StatefulWidget {
+  /// The example content widget.
   final Widget child;
+
+  /// The file path of the source code for the example.
   final String filePath;
 
   const ExampleWrapper({

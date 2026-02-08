@@ -5,6 +5,9 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/tex_editor/code_editor_widget.dart';
 import 'package:flutter_tex_example/maths_examples.dart';
 
+/// A widget for editing and previewing full documents containing mixed HTML and TeX.
+///
+/// This editor allows users to write raw content and see a live preview rendered by [TeXWidget].
 class DocumentEditor extends StatefulWidget {
   const DocumentEditor({super.key});
 

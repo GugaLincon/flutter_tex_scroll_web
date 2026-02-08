@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/source_code_view.dart';
 
+/// A widget that demonstrates the use of custom fonts within [TeXView].
+///
+/// This example shows how to apply different font families to [TeXViewWidget]s
+/// to change their appearance.
 class TeXViewFontsExamples extends StatelessWidget {
   const TeXViewFontsExamples({super.key});
 

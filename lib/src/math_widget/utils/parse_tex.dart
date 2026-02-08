@@ -14,7 +14,7 @@ class TeXSegment {
 
 // Corrected Order: More specific patterns (double delimiters) come first.
 final RegExp _latexRegex = RegExp(
-  "${TeXDelimiter.displayDollar.delimiter}|${TeXDelimiter.diplayBrackets.delimiter}|${TeXDelimiter.inlineDollar.delimiter}|${TeXDelimiter.inlineBrackets.delimiter}",
+  "${TeXDelimiter.displayDollar.delimiter}|${TeXDelimiter.displayBrackets.delimiter}|${TeXDelimiter.inlineDollar.delimiter}|${TeXDelimiter.inlineBrackets.delimiter}",
 );
 
 /// Parses a raw TeX string into a list of [TeXSegment]s.

@@ -10,12 +10,17 @@ import 'package:flutter_tex_example/tex_view_quiz_example.dart';
 import 'package:flutter_tex_example/tex_widget_example.dart';
 import 'package:flutter_tex_example/tex_editor/tex_view_editor_example.dart';
 
+/// The main entry point for the Flutter TeX example application.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Initialize the TeX rendering server to ensure assets are ready.
   await TeXRenderingServer.start();
   runApp(const FlutterTeXExample());
 }
 
+/// The root widget of the Flutter TeX example application.
+///
+/// This widget sets up the [MaterialApp], theme, and routing for the various examples.
 class FlutterTeXExample extends StatelessWidget {
   const FlutterTeXExample({super.key});
 

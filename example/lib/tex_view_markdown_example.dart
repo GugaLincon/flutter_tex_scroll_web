@@ -99,6 +99,10 @@ For detailed setup instructions, API references, and advanced configurations (Cu
 
 """;
 
+/// A widget that demonstrates how to render Markdown content containing TeX equations.
+///
+/// This example uses [TeXViewMarkdown] to parse and display a mix of standard Markdown
+/// (headings, links, images, code blocks) and mathematical formulas.
 class TeXViewMarkdownExamples extends StatelessWidget {
   const TeXViewMarkdownExamples({super.key});
 

@@ -35,7 +35,7 @@ enum TeXDelimiter {
   inlineDollar(r"(\$(.*?)\$)"),
 
   /// Display brackets `\[...\]`
-  diplayBrackets(r"(\\\[(.*?)\\\])"),
+  displayBrackets(r"(\\\[(.*?)\\\])"),
 
   /// Display dollar `$$...$$`
   displayDollar(r"(\$\$(.*?)\$\$)");

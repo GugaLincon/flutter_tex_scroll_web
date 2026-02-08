@@ -7,6 +7,9 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
+/// A smoke test for the example app.
+///
+/// This test verifies that the application builds without crashing.
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {});
 }

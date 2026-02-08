@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/source_code_view.dart';
 
+/// A widget that demonstrates the interactivity of [TeXViewInkWell].
+///
+/// This example shows how to handle tap events on different elements within the [TeXView],
+/// distinguishing between them using unique IDs and optionally showing a ripple effect.
 class TeXViewInkWellExample extends StatefulWidget {
   const TeXViewInkWellExample({super.key});
 

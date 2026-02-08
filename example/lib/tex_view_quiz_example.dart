@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/source_code_view.dart';
 
+/// Represents a quiz question with a statement and multiple options.
 class Quiz {
+  /// The question text, which can include TeX formulas.
   final String statement;
+
+  /// The list of possible answers.
   final List<QuizOption> options;
+
+  /// The ID of the correct option.
   final String correctOptionId;
+
+  /// The ID of the currently selected option.
   String? selectedOptionId;
 
   Quiz(
@@ -15,6 +23,7 @@ class Quiz {
       this.selectedOptionId});
 }
 
+/// Style for a default quiz item.
 const TeXViewStyle quizItemStyleNormal = TeXViewStyle(
   margin: TeXViewMargin.all(7),
   padding: TeXViewPadding.all(2),
@@ -28,6 +37,7 @@ const TeXViewStyle quizItemStyleNormal = TeXViewStyle(
   ),
 );
 
+/// Style for an incorrectly selected quiz item.
 const TeXViewStyle quizItemStyleError = TeXViewStyle(
   margin: TeXViewMargin.all(7),
   padding: TeXViewPadding.all(2),
@@ -41,6 +51,7 @@ const TeXViewStyle quizItemStyleError = TeXViewStyle(
   ),
 );
 
+/// Style for a correctly selected quiz item.
 const TeXViewStyle quizItemStyleCorrect = TeXViewStyle(
   margin: TeXViewMargin.all(7),
   padding: TeXViewPadding.all(2),
@@ -54,16 +65,28 @@ const TeXViewStyle quizItemStyleCorrect = TeXViewStyle(
   ),
 );
 
+/// Represents a single option in a multiple-choice quiz.
 class QuizOption {
+  /// The unique identifier for this option.
   final String id;
+
+  /// The display text or content of the option (supports TeX).
   final String option;
+
+  /// Whether this option is currently selected.
   bool isSelected;
+
+  /// The current style of this option.
   TeXViewStyle? style;
 
   QuizOption(this.id, this.option,
       {this.style = quizItemStyleNormal, this.isSelected = false});
 }
 
+/// A widget that demonstrates a fully interactive quiz using [TeXView].
+///
+/// This example shows how to handle user interactions (taps), update styles dynamically
+/// based on correct/incorrect answers, and navigate through a list of questions involving math.
 class TeXViewQuizExample extends StatefulWidget {
   const TeXViewQuizExample({super.key});
 

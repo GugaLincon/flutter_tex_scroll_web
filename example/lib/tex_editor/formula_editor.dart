@@ -8,6 +8,10 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/maths_examples.dart';
 import 'package:flutter_tex_example/tex_editor/code_editor_widget.dart';
 
+/// A widget that allows editing various types of math formulas (TeX, MathML, AsciiMath).
+///
+/// It uses a [TabBar] to switch between different input formats and renders the result
+/// using [Math2SVG] for high performance.
 class FormulaEditor extends StatelessWidget {
   const FormulaEditor({super.key});
 

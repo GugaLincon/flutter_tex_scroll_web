@@ -1,3 +1,9 @@
+/// This file contains strings for various mathematical examples used in the application.
+///
+/// It includes TeX, MathML, and AsciiMath examples covering topics from Physics,
+/// Mathematics, and Chemistry.
+library;
+
 final String teXWidgetContent =
     r"""Flutter $ \rm\TeX $ is a Flutter Package to render so many types of equations based on \( \rm\LaTeX \), It also includes full HTML with JavaScript support. Here's a simple example of $ \rm\TeX $ rendering:
           

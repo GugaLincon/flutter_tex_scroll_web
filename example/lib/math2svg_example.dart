@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/source_code_view.dart';
 
+/// Initializes the application and runs the [Math2SVGExample].
 main() async {
   if (!kIsWeb) {
+    // Start the TeX rendering server on mobile platforms.
     await TeXRenderingServer.start();
   }
   runApp(const MaterialApp(
@@ -13,6 +15,10 @@ main() async {
   ));
 }
 
+/// A widget that demonstrates the usage of [Math2SVG] to render TeX equations as SVG images.
+///
+/// This example showcases how to render TeX, MathML, and AsciiMath strings
+/// into vector graphics that can be displayed using [SvgPicture].
 class Math2SVGExample extends StatefulWidget {
   const Math2SVGExample({super.key});
 

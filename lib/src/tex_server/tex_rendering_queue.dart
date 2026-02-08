@@ -36,15 +36,15 @@ class TexRenderingQueue {
     final completer = Completer<String>();
     final request = _MathRequest(math, inputType, completer, processor);
 
-    // LIFO: Insert at index 0 so the most recent request is processed first.
+    // LIFO: Insert at the beginning so the most recent request is processed first.
     _queue.insert(0, request);
     _processQueue();
 
     return TexRenderingRequest(
       future: completer.future,
       cancel: () {
-        // Optimization: If the request is still in the queue (waiting), remove it.
-        // This prevents the server from processing items that are no longer visible/needed.
+        // If the request is still in the queue (waiting), remove it.
+        // This prevents the server from processing items that are no longer visible or needed.
         if (_queue.contains(request)) {
           _queue.remove(request);
           if (!completer.isCompleted) {

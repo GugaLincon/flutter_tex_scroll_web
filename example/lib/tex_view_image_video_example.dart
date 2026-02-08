@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex_example/source_code_view.dart';
 
+/// A widget that demonstrates how to display images and videos within a [TeXView].
+///
+/// This example includes loading images from assets and the network, as well as
+/// embedding videos using [TeXViewVideo] (though the video part is currently commented out).
 class TeXViewImageVideoExample extends StatelessWidget {
   const TeXViewImageVideoExample({super.key});
 
