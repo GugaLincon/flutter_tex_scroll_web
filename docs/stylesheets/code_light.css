@@ -1,0 +1,281 @@
+pre {
+    line-height: 125%;
+}
+
+td.linenos .normal {
+    color: inherit;
+    background-color: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+span.linenos {
+    color: inherit;
+    background-color: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+td.linenos .special {
+    color: #000000;
+    background-color: #ffffc0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+span.linenos.special {
+    color: #000000;
+    background-color: #ffffc0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.md-typeset .hll {
+    background-color: #ffffcc
+}
+
+.md-typeset .c {
+    color: #080;
+    font-style: italic
+}
+
+/* Comment */
+.md-typeset .err {
+    color: #A61717;
+    background-color: #E3D2D2
+}
+
+/* Error */
+.md-typeset .k {
+    color: #353580;
+    font-weight: bold
+}
+
+/* Keyword */
+.md-typeset .ch {
+    color: #080;
+    font-style: italic
+}
+
+/* Comment.Hashbang */
+.md-typeset .cm {
+    color: #080;
+    font-style: italic
+}
+
+/* Comment.Multiline */
+.md-typeset .cp {
+    color: #080;
+    font-style: italic
+}
+
+/* Comment.Preproc */
+.md-typeset .cpf {
+    color: #080;
+    font-style: italic
+}
+
+/* Comment.PreprocFile */
+.md-typeset .c1 {
+    color: #080;
+    font-style: italic
+}
+
+/* Comment.Single */
+.md-typeset .cs {
+    color: #080;
+    font-style: italic
+}
+
+/* Comment.Special */
+.md-typeset .kc {
+    color: #353580;
+    font-weight: bold
+}
+
+/* Keyword.Constant */
+.md-typeset .kd {
+    color: #353580;
+    font-weight: bold
+}
+
+/* Keyword.Declaration */
+.md-typeset .kn {
+    color: #353580;
+    font-weight: bold
+}
+
+/* Keyword.Namespace */
+.md-typeset .kp {
+    color: #353580;
+    font-weight: bold
+}
+
+/* Keyword.Pseudo */
+.md-typeset .kr {
+    color: #353580;
+    font-weight: bold
+}
+
+/* Keyword.Reserved */
+.md-typeset .kt {
+    color: #353580;
+    font-weight: bold
+}
+
+/* Keyword.Type */
+.md-typeset .m {
+    color: #2C2CFF
+}
+
+/* Literal.Number */
+.md-typeset .s {
+    color: #7A2424
+}
+
+/* Literal.String */
+.md-typeset .nf {
+    color: #2C2CFF
+}
+
+/* Name.Function */
+.md-typeset .nx {
+    color: #BE646C
+}
+
+/* Name.Other */
+.md-typeset .nv {
+    color: #35BABA;
+    font-weight: bold
+}
+
+/* Name.Variable */
+.md-typeset .w {
+    color: #BBB
+}
+
+/* Text.Whitespace */
+.md-typeset .mb {
+    color: #2C2CFF
+}
+
+/* Literal.Number.Bin */
+.md-typeset .mf {
+    color: #2C2CFF
+}
+
+/* Literal.Number.Float */
+.md-typeset .mh {
+    color: #2C2CFF
+}
+
+/* Literal.Number.Hex */
+.md-typeset .mi {
+    color: #2C2CFF
+}
+
+/* Literal.Number.Integer */
+.md-typeset .mo {
+    color: #2C2CFF
+}
+
+/* Literal.Number.Oct */
+.md-typeset .sa {
+    color: #7A2424
+}
+
+/* Literal.String.Affix */
+.md-typeset .sb {
+    color: #7A2424
+}
+
+/* Literal.String.Backtick */
+.md-typeset .sc {
+    color: #7A2424
+}
+
+/* Literal.String.Char */
+.md-typeset .dl {
+    color: #7A2424
+}
+
+/* Literal.String.Delimiter */
+.md-typeset .sd {
+    color: #7A2424
+}
+
+/* Literal.String.Doc */
+.md-typeset .s2 {
+    color: #7A2424
+}
+
+/* Literal.String.Double */
+.md-typeset .se {
+    color: #7A2424
+}
+
+/* Literal.String.Escape */
+.md-typeset .sh {
+    color: #7A2424
+}
+
+/* Literal.String.Heredoc */
+.md-typeset .si {
+    color: #7A2424
+}
+
+/* Literal.String.Interpol */
+.md-typeset .sx {
+    color: #7A2424
+}
+
+/* Literal.String.Other */
+.md-typeset .sr {
+    color: #7A2424
+}
+
+/* Literal.String.Regex */
+.md-typeset .s1 {
+    color: #7A2424
+}
+
+/* Literal.String.Single */
+.md-typeset .ss {
+    color: #7A2424
+}
+
+/* Literal.String.Symbol */
+.md-typeset .fm {
+    color: #2C2CFF
+}
+
+/* Name.Function.Magic */
+.md-typeset .vc {
+    color: #35BABA;
+    font-weight: bold
+}
+
+/* Name.Variable.Class */
+.md-typeset .vg {
+    color: #B5565E;
+    font-weight: bold
+}
+
+/* Name.Variable.Global */
+.md-typeset .vi {
+    color: #35BABA;
+    font-weight: bold
+}
+
+/* Name.Variable.Instance */
+.md-typeset .vm {
+    color: #35BABA;
+    font-weight: bold
+}
+
+/* Name.Variable.Magic */
+.md-typeset .il {
+    color: #2C2CFF
+}
+
+/* Literal.Number.Integer.Long */

@@ -2,17 +2,25 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_view/utils/widget_meta.dart';
 import 'package:flutter_tex/src/tex_view/utils/style_utils.dart';
 
-/// Specify details that the user can open and close on demand:
+/// A widget that provides a disclosure widget in which information is visible
+/// only when the widget is toggled into an "open" state.
+///
+/// It corresponds to the HTML `<details>` element.
 class TeXViewDetails implements TeXViewWidget {
-  /// Summary for [TeXViewDetails] widget as a [String]
+  /// The summary or title of the details widget.
+  ///
+  /// This text is always visible and is clicked to toggle the visibility of the [body].
   final String title;
 
-  /// A [TeXViewWidget] as child.
+  /// The content hidden inside the details widget.
+  ///
+  /// This [TeXViewWidget] becomes visible when the user expands the details view.
   final TeXViewWidget body;
 
-  /// Style TeXView Widget with [TeXViewStyle].
+  /// The style to apply to the details container.
   final TeXViewStyle? style;
 
+  /// Creates a [TeXViewDetails] widget with a [title] and a [body].
   const TeXViewDetails({required this.title, required this.body, this.style});
 
   @override

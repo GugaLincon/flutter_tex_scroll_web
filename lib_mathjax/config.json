@@ -1,0 +1,6 @@
+{
+    "webpack": {
+        "name": "mathjax_core",
+        "dist": "./dist"
+    }
+}

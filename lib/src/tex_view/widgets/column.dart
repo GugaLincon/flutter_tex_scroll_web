@@ -2,14 +2,21 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_view/utils/widget_meta.dart';
 import 'package:flutter_tex/src/tex_view/utils/style_utils.dart';
 
-/// A widget that displays its children in a vertical array.
+/// A [TeXViewWidget] that displays its children in a vertical linear array.
+///
+/// This widget behaves similarly to Flutter's [Column] widget but is rendered
+/// as an HTML `div` with children stacked vertically.
 class TeXViewColumn implements TeXViewWidget {
-  /// A list of [TeXViewWidget].
+  /// The list of [TeXViewWidget]s to be displayed as children of this column.
   final List<TeXViewWidget> children;
 
-  /// Style TeXView Widget with [TeXViewStyle].
+  /// The style to apply to the column container.
+  ///
+  /// You can use [TeXViewStyle] to define properties like margin, padding,
+  /// border, background color, etc.
   final TeXViewStyle? style;
 
+  /// Creates a [TeXViewColumn] with a list of [children] and an optional [style].
   const TeXViewColumn({required this.children, this.style});
 
   @override

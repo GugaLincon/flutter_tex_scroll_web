@@ -5,52 +5,81 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex/src/globals.dart';
+import 'package:flutter_tex/src/tex_server/tex_rendering_cache.dart';
+import 'package:flutter_tex/src/tex_server/tex_rendering_queue.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 
-/// A rendering server for TeXView. This is backed by a [LocalhostServer] and a [WebViewControllerPlus] for Andtoid, iOS and MacOS.
-/// Make sure to call [start] before using the [TeXRenderingServer].
+/// The standard (Mobile/Desktop) implementation of [TeXRenderingServer].
+///
+/// This server uses a hidden [WebViewControllerPlus] (WebView) to load a local HTML file
+/// containing the MathJax library. It communicates via JavaScript channels to render TeX to SVG.
+///
+/// Key Features:
+/// - **Localhost Server**: Serves the engine files locally.
+/// - **LIFO Queue**: Prioritizes visible items during rapid scrolling.
+/// - **LRU Cache**: Caches rendered SVGs to minimize repeated render calls.
 class TeXRenderingServer {
   static final LocalhostServer _server = LocalhostServer();
   static final TeXRenderingController teXRenderingController =
       TeXRenderingController();
 
+  static int? get port => _server.port;
   static bool multiTeXView = false;
 
-  static int? get port => _server.port;
+  // Limiting concurrency to 3 is crucial for mobile WebViews to prevent "bridge congestion"
+  // where too many JS calls choke the platform channel.
+  static final TexRenderingQueue _queue =
+      TexRenderingQueue(maxConcurrentRequests: 3);
 
   static Future<void> start({int port = 0}) async {
     await _server.start(port: port);
     await teXRenderingController.initController();
   }
 
-  static Future<String> teX2SVG(
-      {required String math, required TeXInputType teXInputType}) {
-    try {
-      return teXRenderingController.webViewControllerPlus
-          .runJavaScriptReturningResult(
-              "mathJaxLiteDOM.teX2SVG(${jsonEncode(math)}, '${teXInputType.value}');")
-          .then((data) {
-        if (math.trim().isNotEmpty && data.toString().isEmpty) {
-          return Future.error('TeX input cannot be empty');
-        }
+  /// Synchronous cache check for the Widget.
+  /// This allows widgets to build immediately if the SVG is already in memory.
+  static String? getCachedSVG(String math, MathInputType type) {
+    return TexRenderingCache.getCachedSVG(math, type);
+  }
 
-        if (Platform.isAndroid) {
-          if (data == "null") {
-            return Future.error('');
-          }
+  /// Converts a TeX string to an SVG image.
+  ///
+  /// This method orchestrates:
+  /// 1. **Cache Lookup**: Returns immediately if found.
+  /// 2. **Deduplication**: Joins an existing in-flight request if one exists.
+  /// 3. **Queueing**: Adds the task to a LIFO queue to be processed by the WebView.
+  static TexRenderingRequest math2SVG({
+    required String math,
+    required MathInputType mathInputType,
+  }) {
+    return TexRenderingCache.render(
+      math: math,
+      mathInputType: mathInputType,
+      onMissing: () {
+        return _queue.addRequest(
+            math: math,
+            inputType: mathInputType,
+            processor: () async {
+              final data = await teXRenderingController.webViewControllerPlus
+                  .runJavaScriptReturningResult(
+                      "$mathJaxFlutterTeXLiteDOMMath2SVGChannelLabel(${jsonEncode(math)}, '${mathInputType.type}');");
 
-          return jsonDecode(data.toString()).toString();
-        } else {
-          return data.toString();
-        }
-      });
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error in teX2SVG: $e');
-      }
-      return Future.error('Error rendering TeX: $e');
-    }
+              String svg = Platform.isAndroid
+                  ? jsonDecode(data.toString()).toString()
+                  : data.toString();
+
+              if (svg.contains("Error: ")) {
+                throw svg;
+              } else if (svg.isNotEmpty && svg != "null") {
+                return svg;
+              } else {
+                throw 'Render failed';
+              }
+            });
+      },
+    );
   }
 
   static Future<void> stop() async {
@@ -58,25 +87,37 @@ class TeXRenderingServer {
   }
 }
 
-//// A controller for rendering TeX in a WebView. This controller manages the
-/// communication between the WebView and the Dart code, handling events like
-/// page finished loading, tap events, and TeX view rendered events.
+/// A controller for the WebView that handles TeX rendering.
 class TeXRenderingController {
   final WebViewControllerPlus webViewControllerPlus = WebViewControllerPlus();
+
+  /// The base URL for the rendering engine's HTML file, served by the localhost server.
   final String baseUrl =
       "http://localhost:${TeXRenderingServer.port!}/packages/flutter_tex/core/flutter_tex.html";
 
-  RenderingControllerCallback? onPageFinishedCallback,
-      onTapCallback,
-      onTeXViewRenderedCallback,
-      onWheelCallback;
+  /// Callback triggered when the WebView finishes loading a page.
+  RenderingControllerCallback? onPageFinishedCallback;
 
+  /// Callback triggered when a tap event occurs within the rendered TeX content.
+  RenderingControllerCallback? onTapCallback;
+
+  /// Callback triggered when the TeX view has finished rendering.
+  RenderingControllerCallback? onTeXViewRenderedCallback;
+
+  /// Callback triggered when a wheel event occurs within the rendered TeX content.
+  RenderingControllerCallback? onWheelCallback;
+
+  /// Initializes the [WebViewControllerPlus].
+  ///
+  /// This sets up JavaScript channels for communication, a navigation delegate
+  /// to handle URL requests, and loads the initial rendering page.
+  /// It returns a future that completes with the initialized controller.
   Future<WebViewControllerPlus> initController() {
     var controllerCompleter = Completer<WebViewControllerPlus>();
 
     webViewControllerPlus
       ..addJavaScriptChannel(
-        'OnTapCallback',
+        onTapCallbackChannelLabel,
         onMessageReceived: (onTapCallbackMessage) =>
             onTapCallback?.call(onTapCallbackMessage.message),
       )
@@ -86,7 +127,7 @@ class TeXRenderingController {
             onWheelCallback?.call(onWheelCallbackMessage.message),
       )
       ..addJavaScriptChannel(
-        'OnTeXViewRenderedCallback',
+        onTeXViewRenderedCallbackChannelLabel,
         onMessageReceived: (teXViewRenderedCallbackMessage) =>
             onTeXViewRenderedCallback
                 ?.call(teXViewRenderedCallbackMessage.message),
@@ -99,7 +140,7 @@ class TeXRenderingController {
             controllerCompleter.complete(webViewControllerPlus);
           },
           onNavigationRequest: (request) {
-            if (request.url.contains(
+            if (request.url.startsWith(
               baseUrl,
             )) {
               return NavigationDecision.navigate;
@@ -112,7 +153,7 @@ class TeXRenderingController {
       )
       ..setOnConsoleMessage(
         (message) {
-          _debugPrint(message.message);
+          _debugPrint('WebView Console: ${message.message}');
         },
       )
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -121,20 +162,24 @@ class TeXRenderingController {
       ));
 
     if (!Platform.isMacOS) {
+      // Setting a transparent background is not supported on macOS.
       webViewControllerPlus.setBackgroundColor(Colors.transparent);
     }
 
     return controllerCompleter.future;
   }
 
+  /// Launches the given [url] in an external browser.
   static void _launchURL(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
       throw 'Could not launch $url';
     }
   }
 
+  /// Prints a [message] to the console only in debug mode.
   static void _debugPrint(String message) {
     if (kDebugMode) {
       print(message);
@@ -142,4 +187,7 @@ class TeXRenderingController {
   }
 }
 
+/// A callback function type for handling messages from the rendering controller.
+///
+/// The [message] parameter contains the data sent from the JavaScript side.
 typedef RenderingControllerCallback = void Function(dynamic message);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_tex_example/source_code_view.dart';
 
+/// A wrapper class for various TeX View examples.
 class TeXExample {
   static TeXViewWidget introduction =
       _teXViewWidget(r"""<h4>Flutter \( \rm\TeX \)</h4>""", r"""
@@ -122,46 +124,52 @@ class TeXExample {
   }
 }
 
+/// A widget that displays a list of various [TeXViewDocument] examples.
+///
+/// This includes mathematical formulas, chemistry equations, matrices, and more,
+/// rendered using [TeXView].
 class TeXViewDocumentExamples extends StatelessWidget {
   const TeXViewDocumentExamples({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("TeXViewDocument"),
-      ),
-      body: TeXView(
-        child: TeXViewColumn(children: [
-          TeXExample.introduction,
-          TeXExample.mathML,
-          TeXExample.asciiMath,
-          TeXExample.quadraticEquation,
-          TeXExample.relationEnergyPrincipalQuantum,
-          TeXExample.alignedTag,
-          TeXExample.bohrRadius,
-          TeXExample.longFormulaScroll,
-          TeXExample.chemistryEquations,
-          TeXExample.matrix,
-          TeXViewDetails(
-            title: "Collapsible Widget",
-            style: const TeXViewStyle(backgroundColor: Colors.amber),
-            body: TeXExample.matrix,
+    return ExampleWrapper(
+      filePath: 'lib/tex_view_document_example.dart',
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("TeXViewDocument"),
+        ),
+        body: TeXView(
+          child: TeXViewColumn(children: [
+            TeXExample.introduction,
+            TeXExample.mathML,
+            TeXExample.asciiMath,
+            TeXExample.quadraticEquation,
+            TeXExample.relationEnergyPrincipalQuantum,
+            TeXExample.alignedTag,
+            TeXExample.bohrRadius,
+            TeXExample.longFormulaScroll,
+            TeXExample.chemistryEquations,
+            TeXExample.matrix,
+            TeXViewDetails(
+              title: "Collapsible Widget",
+              style: const TeXViewStyle(backgroundColor: Colors.amber),
+              body: TeXExample.matrix,
+            ),
+            TeXExample.others
+          ]),
+          style: const TeXViewStyle(
+            margin: TeXViewMargin.all(16),
+            elevation: 2,
+            borderRadius: TeXViewBorderRadius.all(16),
+            border: TeXViewBorder.all(
+              TeXViewBorderDecoration(
+                  borderColor: Colors.blueGrey,
+                  borderStyle: TeXViewBorderStyle.solid,
+                  borderWidth: 1),
+            ),
+            backgroundColor: Colors.white,
           ),
-          TeXExample.others
-        ]),
-        style: const TeXViewStyle(
-          margin: TeXViewMargin.all(10),
-          elevation: 10,
-          borderRadius: TeXViewBorderRadius.all(25),
-          border: TeXViewBorder.all(
-            TeXViewBorderDecoration(
-                borderColor: Colors.blue,
-                borderStyle: TeXViewBorderStyle.solid,
-                borderWidth: 5),
-          ),
-          backgroundColor: Colors.white,
         ),
       ),
     );

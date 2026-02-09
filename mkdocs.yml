@@ -1,0 +1,96 @@
+site_name: Flutter TeX
+extra:
+  flutter_tex_version: "5.2.6"
+
+site_url: https://flutter-tex.readthedocs.io
+repo_url: https://github.com/Shahxad-Akram/flutter_tex
+repo_name: flutter_tex
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  logo: https://raw.githubusercontent.com/Shahxad-Akram/flutter_tex/main/logo.png
+  favicon: images/favicon.png
+  icon:
+    annotation: material/arrow-right-circle
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.action.view
+    - search.suggest
+    - search.highlight
+    - search.share
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - javascripts/mathjax-config.js
+  - https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/code_dark.css
+  - stylesheets/code_light.css
+
+plugins:
+  - search
+  - macros
+  - glightbox
+  - git-revision-date-localized:
+      type: date
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Math Widgets:
+      - Math2SVG: math-2-svg.md
+      - TeXWidget: tex-widget.md
+      - TeXView: tex-view.md
+  - Configuration:
+      - MathJax Configs: mathjax-configs.md
+      - Custom Fonts: custom-fonts.md
+  - Gallery: gallery.md

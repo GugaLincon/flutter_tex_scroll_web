@@ -1,3 +1,4 @@
+/// A Flutter package to render (MathML, TeX and LaTeX) on Mobile (Android, iOS) and Web.
 library;
 
 export 'package:flutter_tex/src/tex_view/styles/border.dart';
@@ -9,7 +10,7 @@ export 'package:flutter_tex/src/tex_view/styles/style.dart';
 export 'package:flutter_tex/src/tex_view/styles/text_align.dart';
 export 'package:flutter_tex/src/tex_view/styles/overflow.dart';
 export 'package:flutter_tex/src/tex_view/tex_view.dart';
-export 'package:flutter_tex/src/tex_widget/tex2svg.dart';
+export 'package:flutter_tex/src/math_widget/math2svg.dart';
 export 'package:flutter_tex/src/tex_view/widgets/column.dart';
 export 'package:flutter_tex/src/tex_view/widgets/container.dart';
 export 'package:flutter_tex/src/tex_view/widgets/document.dart';
@@ -21,6 +22,6 @@ export 'package:flutter_tex/src/tex_view/widgets/widget.dart';
 export 'package:flutter_tex/src/tex_view/widgets/details.dart';
 export 'package:flutter_tex/src/tex_server/tex_rendering_server.dart';
 export 'package:flutter_tex/src/tex_view/utils/font.dart';
-export 'package:flutter_tex/src/tex_widget/utils/enums.dart';
-export 'package:flutter_tex/src/tex_widget/tex_widget.dart';
+export 'package:flutter_tex/src/math_widget/utils/enums.dart';
+export 'package:flutter_tex/src/math_widget/tex_widget.dart';
 export 'package:flutter_svg/flutter_svg.dart';

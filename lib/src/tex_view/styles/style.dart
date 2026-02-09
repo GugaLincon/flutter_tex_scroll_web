@@ -2,67 +2,79 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/tex_view/utils/style_utils.dart';
 
-/// TeXViewStyle provide an easy interface for styling TeXView which converts dart code to CSS code.
+/// A comprehensive styling class for [TeXView] and its child widgets.
+///
+/// This class provides a Dart-friendly interface to generate CSS styles,
+/// covering properties like padding, margin, dimensions, colors, borders,
+/// text alignment, and more.
 class TeXViewStyle {
-  ///Hard coded CSS code.
+  /// A string of raw, hard-coded CSS to be applied to the widget.
+  ///
+  /// If this is provided via the [TeXViewStyle.fromCSS] constructor, all other
+  /// properties in this class are ignored.
   final String? cascadingStyleSheets;
 
-  ///TeXViewPadding to manage padding of by using [TeXViewPadding].
+  /// The padding around the content, defined by [TeXViewPadding].
   final TeXViewPadding? padding;
 
-  ///TeXViewMargin to manage margin of View by using [TeXViewMargin].
+  /// The margin around the widget, defined by [TeXViewMargin].
   final TeXViewMargin? margin;
 
-  ///[TeXViewSizeUnit] for [height], [width] and [elevation].
+  /// The default size unit for [height], [width], and [elevation].
   final TeXViewSizeUnit? sizeUnit;
 
-  ///Height of View.
+  /// The height of the widget.
   final int? height;
 
-  ///Width of view.
+  /// The width of the widget.
   final int? width;
 
-  ///Elevation of View.
+  /// The elevation of the widget, simulated using a `box-shadow`.
   final int? elevation;
 
-  ///Overflow of content in TeXView.
+  /// How to handle content that overflows the widget's boundaries.
   final TeXViewOverflow? overflow;
 
-  ///Color of content(fonts) within the View.
+  /// The color of the text content.
   final Color? contentColor;
 
-  ///Background color of View.
+  /// The background color of the widget.
   final Color? backgroundColor;
 
-  ///Styling of border by using [TeXViewBorder] class.
+  /// The border of the widget, defined by [TeXViewBorder].
   final TeXViewBorder? border;
 
-  ///Managing radius of border by using [TeXViewBorderRadius] class.
+  /// The radius of the widget's corners, defined by [TeXViewBorderRadius].
   final TeXViewBorderRadius? borderRadius;
 
-  /// Text alignment within TeXView.
+  /// The alignment of the text within the widget.
   final TeXViewTextAlign? textAlign;
 
-  /// Font styling for TeXView widgets
+  /// The font style for the text, defined by [TeXViewFontStyle].
   final TeXViewFontStyle? fontStyle;
 
-  const TeXViewStyle(
-      {this.padding,
-      this.margin,
-      this.sizeUnit,
-      this.height,
-      this.width,
-      this.elevation,
-      this.contentColor,
-      this.backgroundColor,
-      this.border,
-      this.borderRadius,
-      this.overflow,
-      this.textAlign,
-      this.fontStyle})
-      : cascadingStyleSheets = null;
+  /// Creates a [TeXViewStyle] with individual styling properties.
+  const TeXViewStyle({
+    this.padding,
+    this.margin,
+    this.sizeUnit,
+    this.height,
+    this.width,
+    this.elevation,
+    this.contentColor,
+    this.backgroundColor,
+    this.border,
+    this.borderRadius,
+    this.overflow,
+    this.textAlign,
+    this.fontStyle,
+  }) : cascadingStyleSheets = null;
 
-  /// Styling TeXView with hard coded CSS e.g. "color:green;background-color:red".
+  /// Creates a [TeXViewStyle] from a raw CSS string.
+  ///
+  /// Example: `TeXViewStyle.fromCSS('color: green; background-color: red;')`
+  ///
+  /// When using this constructor, all other properties of [TeXViewStyle] are ignored.
   const TeXViewStyle.fromCSS(this.cascadingStyleSheets)
       : padding = null,
         margin = null,
@@ -78,8 +90,35 @@ class TeXViewStyle {
         fontStyle = null,
         textAlign = null;
 
-  String? initStyle() {
-    return cascadingStyleSheets ??
-        """$teXViewDefaultStyle ${padding?.getPadding() ?? ""}${margin?.getMargin() ?? ""}${borderRadius?.getRadius() ?? ""}${border?.getBorder() ?? ""}${height != null ? "height: ${getSizeWithUnit(height, sizeUnit)};" : ""}${width != null ? "width: ${getSizeWithUnit(width, sizeUnit)};" : ""}${elevation != null ? "box-shadow: ${getElevation(elevation, sizeUnit)};" : ""}${contentColor != null ? "color: ${getColor(contentColor)};" : ""}${backgroundColor != null ? "background-color: ${getColor(backgroundColor)};" : ""}${textAlign != null ? "text-align: ${TeXViewTextAlignHelper.getValue(textAlign)};" : ""}${fontStyle?.initFontStyle() ?? ""}${overflow != null ? "overflow: ${TeXViewOverflowHelper.getValue(overflow)};" : ""}""";
+  /// Compiles all the style properties into a single CSS string.
+  ///
+  /// This method is used internally to apply the styles to the web content.
+  String initStyle() {
+    if (cascadingStyleSheets != null) {
+      return '$teXViewDefaultStyle $cascadingStyleSheets';
+    }
+
+    final styleParts = [
+      teXViewDefaultStyle,
+      padding?.getPadding(),
+      margin?.getMargin(),
+      borderRadius?.getRadius(),
+      border?.getBorder(),
+      if (height != null) 'height: ${getSizeWithUnit(height, sizeUnit)};',
+      if (width != null) 'width: ${getSizeWithUnit(width, sizeUnit)};',
+      if (elevation != null)
+        'box-shadow: ${getElevation(elevation, sizeUnit)};',
+      if (contentColor != null) 'color: ${getColor(contentColor)};',
+      if (backgroundColor != null)
+        'background-color: ${getColor(backgroundColor)};',
+      if (textAlign != null)
+        'text-align: ${TeXViewTextAlignHelper.getValue(textAlign)};',
+      fontStyle?.initFontStyle(),
+      if (overflow != null)
+        'overflow: ${TeXViewOverflowHelper.getValue(overflow)};',
+    ];
+
+    // Filter out null or empty strings and join them.
+    return styleParts.where((s) => s != null && s.isNotEmpty).join(' ');
   }
 }
