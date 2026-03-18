@@ -88,23 +88,22 @@ class TeXViewState extends State<TeXView>
   void onTap(JSString tapId) => widget.child.onTapCallback(tapId.toDart);
 
   void onWheel(JSNumber deltaY) {
-    if (widget.scrollController?.position.isScrollingNotifier.value == false) {
-      final delta = double.parse(deltaY.toString());
-      final scaleFactor = 1.0;
-      final adjustedDelta = delta * scaleFactor;
-      if (delta.abs() < 10) {
-        widget.scrollController?.position.jumpTo(
-            widget.scrollController!.position.pixels + adjustedDelta);
-      } else {
-        final duration = Duration(
-            milliseconds: (20 + delta.abs() * 0.5).clamp(20, 150).toInt());
-
-        widget.scrollController?.position.animateTo(
-          widget.scrollController!.position.pixels + adjustedDelta,
-          duration: duration,
-          curve: Curves.linear,
-        );
-      }
+    final controller = widget.scrollController;
+    if (controller == null || !controller.hasClients) return;
+    final delta = double.parse(deltaY.toString());
+    final target =
+        (controller.position.pixels + delta).clamp(0.0, controller.position.maxScrollExtent);
+    if (delta.abs() < 10) {
+      // Trackpad: many small frequent events — instant jump feels natural.
+      controller.jumpTo(target);
+    } else {
+      // Mouse wheel: fewer large events — short animation smooths the steps.
+      controller.animateTo(
+        target,
+        duration: Duration(
+            milliseconds: (20 + delta.abs() * 0.5).clamp(20, 150).toInt()),
+        curve: Curves.easeOut,
+      );
     }
   }
 
