@@ -87,33 +87,14 @@ class TeXViewState extends State<TeXView>
   /// Handles tap events routed from JavaScript.
   void onTap(JSString tapId) => widget.child.onTapCallback(tapId.toDart);
 
-  /// Accumulated scroll target — survives across rapid events.
-  double? _scrollTarget;
-
   void onWheel(JSNumber deltaY) {
     final controller = widget.scrollController;
     if (controller == null || !controller.hasClients) return;
 
     final delta = deltaY.toDartDouble;
     final pos = controller.position;
-
-    // Small deltas (trackpad) → jump directly for pixel-perfect accuracy.
-    // Large deltas (mouse wheel) → animate with accumulation.
-    if (delta.abs() < 20) {
-      final target = (pos.pixels + delta).clamp(0.0, pos.maxScrollExtent);
-      controller.jumpTo(target);
-      _scrollTarget = null;
-    } else {
-      // Accumulate from the current target, not from position.pixels,
-      // so rapid events don't lose distance.
-      _scrollTarget = ((_scrollTarget ?? pos.pixels) + delta)
-          .clamp(0.0, pos.maxScrollExtent);
-      controller.animateTo(
-        _scrollTarget!,
-        duration: const Duration(milliseconds: 80),
-        curve: Curves.easeOut,
-      );
-    }
+    final target = (pos.pixels + delta).clamp(0.0, pos.maxScrollExtent);
+    controller.jumpTo(target);
   }
 
   /// Handles height updates routed from JavaScript.
