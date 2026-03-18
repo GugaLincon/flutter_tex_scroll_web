@@ -93,18 +93,13 @@ class TeXViewState extends State<TeXView>
     final delta = double.parse(deltaY.toString());
     final target =
         (controller.position.pixels + delta).clamp(0.0, controller.position.maxScrollExtent);
-    if (delta.abs() < 10) {
-      // Trackpad: many small frequent events — instant jump feels natural.
-      controller.jumpTo(target);
-    } else {
-      // Mouse wheel: fewer large events — short animation smooths the steps.
-      controller.animateTo(
-        target,
-        duration: Duration(
-            milliseconds: (20 + delta.abs() * 0.5).clamp(20, 150).toInt()),
-        curve: Curves.easeOut,
-      );
-    }
+    // Mouse wheel: fewer large events — short animation smooths the steps.
+    controller.animateTo(
+      target,
+      duration: Duration(
+          milliseconds: (20 + delta.abs() * 0.5).clamp(20, 150).toInt()),
+      curve: Curves.easeOut,
+    );
   }
 
   /// Handles height updates routed from JavaScript.
